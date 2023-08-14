@@ -1,0 +1,85 @@
+%\documentclass[
+%    a4paper,        % paper size
+%    11pt,           % default font size
+%]{memoir}
+
+%\input{includes/preamble.tex}
+\documentclass[12pt, a4paper]{book}
+\input{includes/preamble1}
+%\usepackage[a4paper, top=25.4mm, bottom=20.5mm, right=20.5mm, left=40mm]{geometry}
+\usepackage{fancyhdr}
+\setcounter{tocdepth}{2}
+\usepackage{makecell}
+\usepackage[titles]{tocloft}
+
+\usepackage{afterpage}
+
+\begin{document}
+\raggedbottom
+
+\pagestyle{none}
+
+\input{includes/title.tex}
+\cleardoublepage
+
+\frontmatter
+\pagestyle{chapterstyle}  %set header-footer style for front matter
+  \begin{onehalfspace}  
+\input{abstract.tex}
+\clearpage
+\input{includes/acknowledgements.tex}
+\input{includes/dedication.tex}
+\input{includes/Dissemination}
+\end{onehalfspace}
+
+\begin{doublespace}
+    \tableofcontents
+\end{doublespace}
+\begin{onehalfspace}
+    \bgroup
+\cftsetpnumwidth{2.55em} \cftsetrmarg{3.55em} 
+      \addcontentsline{toc}{chapter}{\listfigurename}
+      \listoffigures
+      \addcontentsline{toc}{chapter} 
+      {\listtablename}\listoftables
+      \egroup
+     
+      \input{includes/Acronyms.tex}
+      %\addcontentsline{toc}{chapter}{\listtablename}\listoftables
+ \end{onehalfspace}
+\mainmatter
+% hereafter begins the meat of the thesis
+\pagestyle{normal} %set header-footer style rest of report
+%\include{thesis/chapters/introduction} 
+\onehalfspacing
+ 
+\include{Chapters/Chapter1/chapter1}
+\include{Chapters/Chapter2/chapter2}
+\include{Chapters/Chapter3/chapter3}
+\include{Chapters/Chapter4/chapter4}
+\include{Chapters/Chapter5/chapter5}
+\include{Chapters/Chapter6/chapter6}
+\include{Chapters/Chapter7/chapter7}
+\include{Chapters/Chapter8/chapter8}
+
+\begin{appendices}
+    \input{Chapters/appendix_specialties_hospitals.tex}
+    \input{Chapters/appendix-literature-review.tex}
+    \input{Chapters/appendix_analysis_chapter.tex}
+    \input{Chapters/appendix_linking_results.tex}
+
+\end{appendices}
+%\subfile{appendix1.tex}
+\clearpage
+\begin{singlespace}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{unsrt}
+\bibliography{includes/bibliography.bib}
+% \bibliographystyle{plain}
+% \bibliography{includes/bibliography.bib}
+
+\end{singlespace}
+%\addcontentsline{toc}{chapter}{Appendices}
+
+
+\end{document}

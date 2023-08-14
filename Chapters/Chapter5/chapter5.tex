@@ -1,0 +1,1928 @@
+\documentclass[../thesis.tex]{subfiles}
+\begin{document}
+
+\chapter{Experimental Analysis of the Predictive and Prescriptive Models}\label{chp:Experimental Analysis}
+\section{Introduction}
+The field of data science and OR has witnessed a significant evolution in recent years, with the development of predictive and prescriptive models emerging as an important aspect of the discipline. Predictive models aim to forecast future events or trends based on historical data, while prescriptive models focus on providing recommendations for actions to be taken based on the predictions made by predictive models. Both types of models have been widely adopted across various domains, including business, healthcare, and social media. This chapter discusses the experimental results for the predictive and prescriptive theory discussed in Chapters \ref{chp:predictive} and \ref{chp:presciptive} respectively.
+
+\begin{description}
+\item[\underline{Research Aim}] - This chapter will utilise the methods discussed in the previous two chapters to apply to data from ABUHB in order to answer the following two research questions:
+\begin{enumerate}
+    \item How do the clinical and demographical attributes of frail and elderly patients effect their length of stay within hospital? - Section \ref{sec:predictiveresults}
+    \item How best can specialties be organised among a network of hospitals to ensure staffing and bed costs are minimised whilst, whilst still meeting the demand for frail and elderly patients? - Section \ref{sec:prescriptiveresults}
+\end{enumerate}
+\end{description}
+
+The remainder of the Chapter is structured as follows: Section \ref{sec:dataintroduction} introduces three years' worth of data from ABUHB used within this research, highlighting key insights. Section \ref{sec:predictiveresults} applies predictive analytics to the ABUHB data, discussing linear and logistic regression and CART models. Section \ref{sec:prescriptiveresults} will develop the deterministic and two-stage stochastic models within Microsoft Excel OpenSolver and Python PuLP.
+
+\section{Data Introduction} \label{sec:dataintroduction}
+This section provides an overview of the data received from ABUHB, to gain a deeper understanding into the current practice and trends within ABUHB. Three years' worth of data was analysed ranging from April 2017 to March 2020, with two data sets being amalgamated to show an insight into the overall pathway. The first data set is from Myrddin \cite{WAO2018}, the patient administration system (PAS). Myrddin stores all patient contact details, outpatient appointments, generates letters for patients, and specifically for this research, inpatient information. The second data set is the Welsh Radiological Information System (RadIS), \cite{WAO2018}. The RadIS IT system records and keeps track of which patients have received scans as well as the data that is gathered in conjunction with this.
+
+Prior to any data analysis occurring, data cleansing was performed to ensure that all incorrect and incomplete entries were removed. Additionally, to make sure the patients were pertinent to the study, additional criteria were established. The following criteria were set:
+\begin{enumerate}
+    \item Only complete patient information files were included i.e., no missing entries. If a patient did not have an NHS number or they had a missing admission and or discharge date, these were removed as the patient could not be tracked across multiple attendances and LOS could not be calculated. Diagnosis was excluded from this, since patients could be admitted to hospital and discharged with no formal diagnosis.
+    \item Patients were only included if they were aged 65 and over, in accordance with our elderly definition \cite{OECD}.
+    \item For the RadIS data set, patients were required to be admitted within hospital.
+\end{enumerate}
+
+In total, 165,118 patients, having met the admission criteria, were included within the study. There were 15,483 scan records present from the admitted patients. Figure \ref{fig:FlowChartData} provides an overview of the data cleansing process for both data sets.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.75, transform shape,node distance=3.2cm]
+\node (pro1) [process, right of =pro3] {\parbox{2.5cm}{\centering 2019-2020 \\135,513} };
+\node (pro2) [process, left of =pro3] {\parbox{2.5cm}{\centering 2017-2018 \\131,896} };
+\node (pro3) [process, right of =pro2] {\parbox{2.5cm}{\centering 2018-2019 \\138,128} };
+
+\node (heading1) [heading, above of =pro3,node distance=1.8cm]{{\textbf{Myrddin Data}} };
+
+\node (pro4) [process, below of =pro3] {405,537};
+
+\node (pro5) [process, below of =pro4] {405,144};
+
+\node (pro6) [process, below of =pro5] {405,118};
+
+%\node (pro7) [process, below of =pro6] {165,055};
+\node (stop1) [startstop, below of =pro6] {\begin{tabular}{c} 165,118 Patients \\ in Admission Data
+\end{tabular}}; 
+
+\draw [arrow] (pro1) -- (pro4);
+\draw [arrow] (pro2) -- (pro4);
+\draw [arrow] (pro3) -- (pro4);
+\draw [arrow] (pro4) -- node [anchor=west]{\begin{tabular}{c} 393 Removed \\ No NHS Number
+\end{tabular}}  (pro5);
+\draw [arrow] (pro5) -- node [anchor=west]{\begin{tabular}{c} 73 Removed \\ No Admission/Discharge
+\end{tabular}}  (pro6);
+\draw [arrow] (pro6) -- node [anchor=west]{\begin{tabular}{c} 240,000 Removed \\ Under 65
+\end{tabular}}  (stop1);
+
+
+\node (pro10) [process, right of =pro1] {\parbox{2.5cm}{\centering 2017-2018 \\81,020}};
+\node (pro11) [process, right of =pro10] {\parbox{2.5cm}{\centering 2018-2019 \\83,109}};
+\node (pro12) [process, right of =pro11] {\parbox{2.5cm}{\centering 2019-2020 \\81,158}};
+
+\node (heading2) [heading, above of =pro11,node distance=1.8cm]{{\textbf{RadIS Data}} };
+
+\node (pro13) [process, below of =pro11] {245,287};
+\node (pro14) [process, below of =pro13] {244,869};
+\node (pro15) [process, below of =pro14] {140,509};
+
+\node (stop2) [startstop, below of =pro15]{\begin{tabular}{c} 15,483 Patients \\ in RadIS Data
+\end{tabular}}; 
+\draw [arrow] (pro10) -- (pro13);
+\draw [arrow] (pro11) -- (pro13);
+\draw [arrow] (pro12) -- (pro13);
+
+\draw [arrow] (pro13) -- node [anchor=west]{\begin{tabular}{c} 418 Removed \\ No NHS Number
+\end{tabular}}  (pro14);
+\draw [arrow] (pro14) -- node [anchor=west]{\begin{tabular}{c} 104,360 Removed \\ Under 65
+\end{tabular}}  (pro15);
+\draw [arrow] (pro15) -- node [anchor=west]{\begin{tabular}{c}  125,026 Removed \\ Not an inpatient
+\end{tabular}}  (stop2);
+\draw[arrow] (pro15) -- node [midway](LtoB){} (stop2);
+\draw[arrow] (stop1) -- node [above,sloped] {} (LtoB);
+\end{tikzpicture}
+\caption{Flow chart of data cleansing process resulting in 165,118 patient admissions and 15,483 patient scans within ABUHB for the period April 2017 to March 2020.}
+\label{fig:FlowChartData}
+\end{figure}
+
+Within the data there was a total of 24 different data headings Table \ref{tab:Datatypesdef} provides a brief definition of the column headings within the data. A full list of data items with data types and attributes can be found within Table \ref{app:secdata} of the appendix.
+
+\begin{table}[]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{lp{14.5cm}} \toprule
+       Data Item  & Definition \\ \midrule
+       Admission Date & The exact date on which a patient is formally admitted to a healthcare facility, marking the beginning of their stay for medical evaluation, treatment, or other necessary healthcare services. \\ \midrule
+       Admission Method & The process or means by which patients are admitted to a healthcare facility. These are national codes as defined in \cite{datadictionary1}. \\\midrule
+       Admission Source & The origin or specific location from which a patient comes to the healthcare facility. These are national codes as defined in \cite{datadictionary2}\\\midrule 
+       Admission Time &  The exact time of day when a patient is formally admitted to a healthcare facility.\\\midrule
+      Borough & The specific area within a region where a patient resides, providing geographical information that is relevant for healthcare planning, resource allocation, and demographic analysis.\\\midrule
+       Date of Birth & The date of birth of the patient. \\\midrule
+       Diagnosis & Categorisation of a patient's medical condition or illness, which is determined through medical examinations, tests, and evaluations carried out by healthcare professionals, enabling appropriate treatment and care planning. \\ \midrule      
+       Discharge Date &  The specific date on which a patient is formally released or discharged from a healthcare facility, marking the end of their stay. \\\midrule
+       Discharge Destination & The specific location or facility to which a patient is transferred or sent upon being formally discharged from a healthcare facility.\\\midrule
+       Discharge Time &  The exact time of day when a patient is formally discharged from a healthcare facility.\\\midrule
+       Hospital & The hospital in which a patient has been admitted to. \\\midrule
+       NHS Number  & A unique number which enables healthcare staff and service providers to identify you correctly and match your details to your health records. \\\midrule
+       Postcode &  The specific geographical area or location used to identify the patient's residential address.\\\midrule
+       Registered GP & The primary healthcare provider or family doctor with whom the patient is formally registered. \\\midrule
+       Registered GP Practice & The specific geographical area or location where the patient's primary healthcare provider or registered GP's practice is situated.\\\midrule
+       Scan Attendance Date & The specific date on which a patient undergoes a medical scan or diagnostic imaging procedure.\\\midrule
+       Scan Attendance Time &  The specific time of day when a patient undergoes a medical scan or diagnostic imaging procedure. \\\midrule
+       Scan Exam & The specific type of diagnostic imaging procedure to be performed and its corresponding location.\\\midrule
+       Scan Exam Code & A unique code assigned to a specific type of diagnostic imaging procedure to be performed.\\\midrule
+       Scan Location Name & The specific name of the healthcare facility or imaging centre where a medical scan or diagnostic imaging procedure was conducted. \\ \midrule
+       Scan Procedure Group & A categorisation or grouping of related diagnostic imaging procedures based on certain criteria, such as the body system or medical condition being investigated, the imaging technology used, or the purpose of the scan \\\midrule
+       Scan Requested Date & The specific date on which a medical scan or diagnostic imaging procedure is requested by a healthcare professional. \\\midrule    
+       Scan Specialty Code & The referring consultant's specialty which has requested the scan. \\\midrule
+       Specialty & The type of ward a patient is admitted to, referring to the specific area of medicine of the patient's medical condition or illness. These are national codes as defined in \cite{datadictionary3}.\\ \bottomrule 
+    \end{tabular}}
+    \caption{Definitions for each of the data items within the merged ABUHB data set.
+    }
+    \label{tab:Datatypesdef}
+\end{table}
+
+\subsection{Data Trends}\label{sec:datatrends}
+Three years' worth of data was analysed to gain an understanding as to the demands faced by the elderly population within ABUHB. Figure \ref{fig:AdmissionCount} displays the daily count of admissions into ABUHB over this time period. The fluctuations within the data suggest seasonality is present as is often found within healthcare data \cite{Upshur2005}. Analysis on a year-to-year basis (running from April to March, also known as the fiscal year), showed the number of patients remained fairly consistent over the three years:
+\begin{itemize}
+    \item 2017-2018: 53,256 (32.25\%)
+    \item 2018-2019: 56,050 (33.95\%)
+    \item 2019-2020: 55,812 (33.80\%)
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{Chapters/Chapter5/Figures/Admission each year.png}
+    \caption{Line graph showing the trend of the number of patients admitted per day into ABUHB, split by fiscal year.}
+    \label{fig:AdmissionCount}
+\end{figure}
+
+Due to the Covid-19 pandemic and the skewed effects it would have had on admission statistics, data from April 2020 was excluded from the study \cite{Venkatesan2020}. The effect of Covid-19 can be seen from March 2020, where admissions for patients aged 65 and older started to decrease.
+
+Within the data there were 66,289 unique NHS numbers, meaning 98,829 stays were either part of a care spell or independent admissions. The data did not give any indication regarding patient care spells, i.e., where they had been transferred between hospitals. Therefore, it was decided that if a patient had been discharged and subsequently readmitted on the same day, then this would fall into the `care spell’ category. In total, there were 8,826 care spell episodes. Table \ref{Tab:Spell} displays the breakdown of the number of transfers.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccccc}\toprule
+    \textbf{No. of Transfers} &\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7}   \\ \midrule
+\textbf{Total} & 8,435 & 313 & 50 & 22 & 4 & 1& 1\\ \bottomrule
+    \end{tabular}
+    \caption{The total number of readmissions/transfers for the 9,332 care spell episodes within the ABUHB data set. Number of patient transfers in ABUHB.}
+    \label{Tab:Spell}
+\end{table}
+
+The patient who underwent seven transfers and readmissions, spent a total of 219 days in hospital, primarily moving between Royal Gwent Hospital (RGH) and County Hospital before being discharged to a non-NHS care home. This is also known as step-up and step-down care.
+
+Within ABUHB there are 29 different specialties offered by the health board. The specialty relates to the ward a patient has been admitted to and is directly related to their treatment required. The most common specialty is general surgery with nearly 12\% of admissions (Table \ref{tab:admittingspec}). The top 11 specialties accounted for a total of 81.49\% of admissions. In order to account for at least 95\% of admissions, the top 15 specialties should be included.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}\toprule
+        Specialty  & Count & Proportion  \\\midrule
+        General Surgery  & 19,782 & 11.98\% \\
+        Care of the Elderly & 18,797 & 11.38\% \\
+        Gastroenterology	&16,499	&9.99\% \\
+        Trauma \& Orthopaedic&	16,471	&9.98\% \\
+        General Medicine &	12,913&	7.82\% \\
+        Urology &	12,574	&7.62\% \\
+        Ophthalmology & 	11,557 &	6.99\%\\
+        Dermatology & 	9,466 &	5.73\%\\
+        Rehabilitation & 	8,466 &	5.12\%\\
+        Respiratory & 	8,039 &	4.86\%\\\bottomrule
+    \end{tabular}
+    \caption{The top 11 admitting specialties by count within the ABUHB data set.}
+    \label{tab:admittingspec}
+\end{table}
+The age of patients had a lower bound of 65, with the oldest being 107 years old. The mean age was calculated to be 77 years with a standard deviation of eight years. Due to the 42 year age range, patients were also grouped into five-year age categories to determine if this would be a more accurate predictor (Figure \ref{fig:AgeGroup}). 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.6]{Chapters/Chapter5/Figures/Age group.pdf}
+    \caption{Bar chart showing the number of patients within the ABUHB data set, falling into each of the seven age groups.}
+    \label{fig:AgeGroup}
+\end{figure}
+
+The highest frequency of admissions occurred on a Tuesday (18.04\%), followed by a Thursday (17.84\%) (Figure \ref{fig:AdmissionTimes}). Patients who were admitted over a weekend accounted for 14.08\% of total admissions. Weekday admissions peaked between 7am and 10am, with a secondary peak between 12pm and 1pm.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{Chapters/Chapter5/Figures/AdmissionTimes.pdf}
+    \caption{Line graph showing the number of admissions per day by hourly interval, for the ABUHB data set.}
+    \label{fig:AdmissionTimes}
+\end{figure}
+
+The admission source of a patient determined where a patient was directly prior to admission. Although there are 25 different admission sources listed in total, the top six admission sources accounted for 98.63\% of admissions (Table \ref{tab:AdmissionSource}). If this were to be extended to include the top 10, 99.88\% of admissions would be accounted for. The top two admission sources, `Usual Place of Residence' and `Own Home' have a combined patient count of 147,294 (89.21\%).
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}\toprule
+    \textbf{Admission Source} & \textbf{Count} &\textbf{Proportion} \\ \midrule
+    Usual Place of Residence &	99,464 & 60.24\% \\
+Own Home&	47,830 & 28.97\%\\
+Same Trust-General or young phys.disabled&	7,711 &4.67\%\\
+Patient transfer within the same health board/trust	&4,350 &2.63\%\\
+Non NHS (other than L.A.) run res.care home&	1,755 &1.06\%\\
+Non NHS (other than L.A.) run nursing home&	1,314 &0.80\%\\
+ \bottomrule
+    \end{tabular}
+    \caption{The top six admitting methods by count within the ABUHB data set.}
+    \label{tab:AdmissionSource}
+\end{table}
+
+
+The admission method followed a similar trend to the admission source, with a small number of methods accounting for the majority of patients. Although there were 16 distinct methods, 99.23\% of patients were accounted for through the top seven (Table \ref{tab:AdmissionMethod}). `Elective - waiting list' was the most common admission method and is one that had been arranged in advance of admission. The patient had been admitted via a waiting list, where at the point of being put onto the waiting list, did not know their date of admission. The period in which the patient had to wait was dependant on the demand for hospital resources and facilities.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}\toprule
+    \textbf{Admission Method} & \textbf{Count} &\textbf{Proportion} \\ \midrule
+Elective - waiting list& 73,482 & 44.50\%\\
+Emergency - casualty&	39,437 &23.88\%\\
+Emergency - GP&  	28,169&17.06\%\\
+Other - transferred from another hospital  & 	13,460&8.15\%\\
+Elective - booked  &5,950 & 3.60\%\\
+Elective - planned&1,696 & 1.02\%\\
+Emergency - other means&1,658 & 1.04\%\\
+ \bottomrule
+    \end{tabular}
+    \caption{The top seven admission methods by count within the ABUHB data set.}
+    \label{tab:AdmissionMethod}
+\end{table}
+
+The LOS of the patient was determined by the time between admission and hospital discharge. There was a large range of LOS's, from 0 to 413 days. The LOS can be modelled in two ways, in hours or in days. The first method of calculating LOS, used the number of hours that patients had been admitted for. It was determined using the admission and discharge dates as well as specific times. The average LOS was calculated to be 155.23 hours (6.47 days). The second method of calculating LOS, meant that if a patient was admitted overnight, an additional day was added to their LOS i.e., if admitted Monday evening and discharged Tuesday morning, their LOS was one. Additional analysis of LOS in hours revealed the mean to be 6.47 days and a 75$^{th}$ percentile of seven days. The 90$^{th}$ percentile was 18 days increasing to 30 days with the 95$^{th}$ percentile. This implies that some long LOS's are skewing the mean. Patients were released from the hospital in 81,538 (49.38\%) cases within 24 hours and 114,015 (69.05\%) cases within five days. A LOS longer than 30 days was present in 5\% of patients.
+
+A patient's LOS changed depending on the day they were admitted (Table \ref{tab:DayLOS}). Again, patients who were admitted on a weekend have a different variation to those patients admitted during the week. If hospitalised on a weekend, the average LOS was at least an additional day longer.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}\toprule
+    \textbf{Day of week} & \textbf{Mean LOS} & \textbf{Standard Deviation}\\    \midrule
+    Monday & 6.22 & 12.77\\
+    Tuesday & 6.12 & 13.54\\
+    Wednesday &6.11 &13.25\\
+    Thursday &5.97 & 13.02\\
+    Friday &6.78  &12.97\\
+    Saturday & 7.88 & 13.78\\
+    Sunday & 8.10  &12.97\\ \bottomrule
+    \end{tabular}
+    \caption{The mean and standard deviation of patient LOS in hospital by the admission day.}
+    \label{tab:DayLOS}
+\end{table}
+
+As discussed in Section \ref{sec:elderlyfrail}, two approaches, each employing ICD10 codes, were used to determine the frailty score. Regarding the patient's diagnosis and the cause for admission, there were 2,758 unique codes in total. The average frailty score was 0.5, with a standard deviation of 0.98. The maximum score was 8.1, with the lowest score being zero.
+
+Depending on their health and course of treatment, patients who were admitted to the hospital may undergo a number of scans. In total, 12,350 patient scans were recorded, of which 9,863 patients had just one scan (Table \ref{Tab:Scan}). There were 2,487 patients who had at least two scans, of which 1,957 patients only had two scans. One patient had a total of eight scans. 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lccccccc}\toprule
+    \textbf{Scan Number} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{8}   \\ \midrule
+\textbf{Count} & 9,863 & 1,957 & 437 & 77 & 11 & 4& 1\\ \bottomrule
+    \end{tabular}
+    \caption{The total number of scans for patients who had a scan during their inpatient admission within the ABUHB data set.}
+    \label{Tab:Scan}
+\end{table}
+
+The data set comprised of a diverse range of scans, encompassing various modalities, including MRI and ultrasound. Figure \ref{fig:procedure} displays the frequency of each of the procedure codes, showing that X-ray (R) is the most common scan type, with 63.76\% of all scans. For patients who have multiple scans, there are duplications of the same scan in the same region, however, this can be due to different angles required to be taken. Additionally there are different scan types on the same body region as well as different scans on different body regions.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.75]{Chapters/Chapter5/Figures/Procedure Code.png}
+    \caption{Bar chart showing the number of patients undertaking each type of scan within the ABUHB data set.}
+    \label{fig:procedure}
+\end{figure}
+\subsection{Data Insights}
+The information from the merged data sets was comprised of 165,118 patient records over a three year period, with admissions remaining constant throughout this time. There were more arrivals from South East Wales' more populated towns and cities, like Caerphilly and Newport, than from the region's more rural parts. The acute hospitals with 24/7 services in the area, which are similarly situated in Caerphilly and Newport, tended to have greater patient attendance rates. Peak admissions occurred on a Tuesday, with admissions generally being greater during the week. For all arrivals, there were typically peaks in the late morning, early afternoon, and a smaller peak in the evening. The patient demographics were varied amongst all hospitals, however, the LOS varied by age and hospital attended. The trends indicated that shorter LOS were more typical in acute hospitals while longer LOS were more prevalent in community-based hospitals. The patients ages range widely, although the majority are between 65 and 85. The frailty scores of the patients provide some indication of the severity of the illness. Higher frailty scores were correlated with longer hospital stays and older patient populations in some hospitals. Among the admitted patients, there was a small subset who required at least one scan.
+
+
+\section{Predictive Analytics Results}\label{sec:predictiveresults}
+This section will examine how the patient data from ABUHB can be used to apply the notion of predictive analytics covered in Chapter \ref{chp:predictive} in order to ascertain how clinical and demographic factors affect hospital LOS.
+
+\subsection{Linear Regression}\label{sec:linregresults}
+Linear regression was performed on the 14 variables to determine the highest influence on LOS. The LOS was converted into how many nights the patient spent in hospital, for example, if admitted on 1$^{st}$ January 2020 and discharged on the 3$^{rd}$ January 2020, the LOS would be two. This produced a higher R$^{2}$ value for linear regression for all cases than using the continuous hourly LOS. The R$^{2}$ and adjusted R$^{2}$ values for each variable against this LOS are shown in Table \ref{Tab:ContinuousLOS-Lin}.
+
+
+\begin{table}[h!]
+\centering\scalebox{1}{
+\begin{tabular}{lcc}
+\toprule
+\textbf{Continuous Variables} & \textbf{R$^2$ Value}&\textbf{Adjusted R$^2$ Value} \\ \midrule 
+Age & 0.050 & 0.050 \\
+Frailty Score & 0.028 & 0.028 \\
+No. of Scans & 0.003 & 0.003 \\ \midrule
+\textbf{Categorical Variables} & \textbf{R$^2$ Value}&\textbf{Adjusted R$^2$ Value} \\ \midrule
+Age Group &  0.051 & 0.051 \\
+Admission Method & 0.282 & 0.282  \\
+Admission Source & 0.195 & 0.195 \\
+Day of Admission & 0.002& 0.002\\
+Diagnosis & 0.273 & 0.261\\
+Frailty Group & 0.028& 0.028\\
+Hospital & 0.182 & 0.181 \\
+ICD10 - First Letter & 0.092& 0.092\\
+Scan Y/N & 0.002 & 0.002 \\
+Month of Admission & 0.000& 0.000\\
+Specialty & 0.288 & 0.288\\\bottomrule
+\end{tabular}}
+\caption{The results for the linear regression when run against the continuous and categorical variables within the ABUHB data set. The $R^{2}$ and Adjusted $R^{2}$ values are given.}
+\label{Tab:ContinuousLOS-Lin}
+\end{table}
+
+The variables can be considered as two different data types, continuous and categorical. Within the continuous variables, age produced the highest R$^{2}$ value of 0.05. This means 5\% of the LOS variation is explained by age. The model can be denoted by: 
+\begin{equation}
+    Y = 0.375x - 22.635
+\end{equation}
+where $x$ is the age of the patient.
+Therefore, for each one year increment in age, the LOS will increase by 0.375 days. Table \ref{tab:appLinregcont} within the Appendix displays the equations for the three continuous variables.
+
+Similarly, we can calculate the linear regression model for categorical variables within Table \ref{Tab:ContinuousLOS-Lin}. The month of admission produced an R$^{2}$ value of zero, which indicates that the month does not account for any variation in the response data around its mean. Specialty provided the largest R$^{2}$ value of 0.288. There are 29 subcategories of different specialties within the specialty category. We can further analyse each variable to be able to forecast LOS. The corresponding linear regression values for specialty are shown in Table \ref{tab:linreg-specialty}. When one $x$ variable is selected, the corresponding value is the LOS. For instance, if the specialty of A\&E is chosen, the LOS will be 2.2673 days. This can be directly compared to other disciplines; for instance, the LOS in anaesthetics is 6.5 times greater than that in A\&E. The value column displays the variation in the average LOS between each of the specialties. For all categorical variables, excluding diagnosis, the coefficients can be seen in Table \ref{tab:appLinregcont} within the Appendix. Diagnosis was excluded due to the large number of variables.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc} \toprule
+      Specialty Type   & $x$ Variable & Value \\ \midrule
+      Accident \& Emergency (A\&E) & $x_{1}$ & 2.2673\\ 
+      Anaesthetics & $x_{2}$ & 14.9517 \\
+      Cardiology & $x_{3}$ & 4.6470\\
+      Care of the Elderly & $x_{4}$ & 12.1101 \\
+      Community Medicine & $x_{5}$ & 34.235\\
+      Dermatology & $x_{6}$ & 0.2616\\
+      Diabetes \& Endocrinology & $x_{7}$ & 11.6161\\
+      Ear, Nose \& Throat & $x_{8}$ &2.7500 \\
+      GP Other & $x_{9}$ & 39.2603\\
+      Gastroenterology & $x_{10}$ &2.1382 \\
+      General Medicine & $x_{11}$ & 8.4519\\
+      General Surgery & $x_{12}$ & 3.7149\\
+      Gynaecology & $x_{13}$ & 1.6536\\
+      Haematology & $x_{14}$ & 0.7974\\
+      Infectious Diseases & $x_{15}$ &11.6289 \\
+      Intermediate Care & $x_{16}$ &14.3725 \\
+      Maxillo-Facial & $x_{17}$ & 0.6018\\
+      Neurology & $x_{18}$ & 5.6131 \\
+      Ophthalmology & $x_{19}$ &0.1307 \\
+      Pain & $x_{20}$ & 0.0080\\
+      Plastic Surgery & $x_{21}$ & 0.1128\\
+      Radiology & $x_{22}$ & 0.3548\\
+      Radiotherapy \& Oncology & $x_{23}$ & 13.6667\\
+      Rehabilitation & $x_{24}$ & 28.7732\\
+      Respiratory & $x_{25}$ & 7.7985\\
+      Restorative Dentistry & $x_{26}$ & 0.0000\\
+      Rheumatology & $x_{27}$ & 2.3333\\
+      Trauma \& Orthopaedic & $x_{28}$ & 6.6658\\
+      Urology & $x_{29}$ &0.9932 \\\bottomrule
+    \end{tabular}
+    \caption{The linear regression results for the specialty variable, where each $x$ has a corresponding LOS value.}
+    \label{tab:linreg-specialty}
+\end{table}
+
+\newpage
+\subsection{Logistic Regression}\label{sec:logregresults}
+Logistic regression was performed to determine the effect of grouping LOS. Grouped LOS categories were determined by grouping patients into whether they were discharged on the same day as arrival or admitted overnight. This was investigated as it was a particular interest of managers within ABUHB, as they wanted to determine the characteristics of patients who should be discharged on the same day but ultimately required overnight admission. This resulted in 75,216 patients falling into the `0' category (45.55\%), where they were discharged the same day and 89,902 patients who fell into the `1' category (54.45\%) where their LOS was at least two days. This is beneficial for bed and staff planning to determine the turnaround time of patients. 
+
+Table \ref{Tab:ContinuousLOS-Log} displays the four scoring measures against each of the variables. In three cases, precision is given the value `N/A', this is due to both the TP and FP rates being zero (i.e., the model only predicted negative results). Therefore, a result cannot be calculated. Similarly, because the precision cannot be calculated, then the F1 score cannot be calculated.
+
+\begin{table}[h!]
+\centering\scalebox{1}{
+\begin{tabular}{lcccc}
+\toprule
+{\textbf{Continuous Variables}} &\textbf{Accuracy}& \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score}\\ \midrule
+Age  & 0.6037 &0.5721 & 0.5164 & 0.5428\\
+Frailty Score  & 0.5860 & 0.5283 & 0.8503 & 0.6517\\
+No. of Scans & 0.5445 & N/A & 0.0 & N/A\\
+\midrule
+{\textbf{Categorical Variables}} &\textbf{Accuracy}& \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score}\\ \midrule
+Admission Method & 0.8764 &0.8378 & 0.9036 & 0.8694 \\
+Admission Source & 0.5829 & 1.0 & 0.0844 & 0.1557 \\
+Age Group & 0.6037 & 0.5721 & 0.5164 & 0.5428\\
+Day of Admission & 0.5474 & 0.5085 & 0.1991 & 0.2862\\
+Diagnosis  & 0.8496 & 0.8360 & 0.8607 & 0.8481 \\
+Frailty Group  & 0.5871 &0.5291 & 0.8498 & 0.6522\\
+Hospital& 0.6171 & 0.6923 & 0.2871 & 0.4059 \\
+ICD10 - First Letter & 0.7554 & 0.7813 & 0.6430 & 0.7055 \\
+Scan Y/N & 0.4555 & N/A& 0.0 & N/A\\
+Month of Admission & 0.4555 & N/A& 0.0 & N/A \\
+Specialty & 0.8008 & 0.7645 & 0.8131 & 0.7881 \\\bottomrule
+\end{tabular}}
+\caption{The results for the logistic regression when run against the continuous and categorical variables within the ABUHB data set. The accuracy, precision, recall and F1 scores are given.}
+\label{Tab:ContinuousLOS-Log}
+\end{table}
+
+We can determine the likelihood of falling into one of the two LOS groupings using the logit function. Equation \eqref{eq:logit} displays the general formula using age, a continuous variable, as an example.
+\begin{equation}\label{eq:logit}
+    logit(\pi(x)) = \ln\left[ \frac{\pi(x)}{(1-\pi(x))}\right] = -5.0746 + (0.0681\times Age)
+\end{equation}
+If the age is set to be 80, then the conditional logit of being admitted overnight is:
+\begin{equation}
+    \ln\left[\frac{\pi(x)}{(1-\pi(x))}\right](Age =80) = -5.0746 + (0.0681\times80 )
+\end{equation}
+Then the effect of a one-unit increase in age can be examined. When the age of a patient is 81, the following is calculated:
+\begin{equation}
+    \ln\left[\frac{\pi(x)}{(1-\pi(x))}\right](Age = 81) = -5.0746 + (0.0681\times81)
+\end{equation}
+Taking the difference of the two equations, we are left with the following result:
+\begin{equation}
+\ln\left[\frac{\pi(x)}{(1-\pi(x))}\right](Age =81) - \ln\left[\frac{\pi(x)}{(1-\pi(x))}\right](Age = 80) = 0.1381
+\end{equation}
+Therefore, the coefficient for age is the difference in the log odds, and as such, for one unit increase in age, the expected change in log odds is 0.1381. Exponentiating both sides, results in a value of 1.1481:
+\begin{equation}
+    e^{\ln\left[\frac{\pi(x)}{(1-\pi(x))}\right](Age =81) - \ln\left[\frac{\pi(x)}{(1-\pi(x)}\right](Age = 80)} = e^{0.1381} = 1.1481
+\end{equation}
+
+Therefore, we can say for one-unit increase in age, there is a 14.81\% increase in the likelihood of being admitted overnight. The 14.81\% of increase is not dependent on the value age is held at. For the $logit(\pi(x))$ equations for all three continuous variables, see Table \ref{tab:applogregcont} in the Appendix.
+
+Similarly, we can calculate the log odds for a categorical variable, e.g., age group. Table \ref{tab:logisticregcat} describes the relationship between the LOS group and age group.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccc}\toprule
+    \textbf{Age Group} & \textbf{Log Odds Ratio} &\textbf{Odds compared to 65-69} \\ \midrule
+       Intercept  & -0.3582 & -\\
+       70-74 & 0.1263 & 13.46\%\\
+       75-79 & 0.4389 & 55.10\%\\
+       80-84 & 0.7609 &114.02\%\\
+       85-89 & 1.2366 & 244.39\%\\
+       90-94 & 1.8219& 518.36\%\\
+       95+ & 2.2298& 829.80\%\\ \bottomrule
+    \end{tabular}
+    \caption{The log odds ratios for age group category after running the logistic regression model. The odds compared to the 65-69 age group are also provided.}
+    \label{tab:logisticregcat}
+\end{table}
+The intercept is also known as the reference category, which in this instance is the age group `65-69'. If we compare the reference group to the `70-79' category and perform, $e^{0.1263}$, a result of 1.1346 is produced. This shows that patients in the `70-74' age group have a 13.46\% higher chance of being admitted overnight. There is an 829.80\% higher chance of 95+ year old patient being admitted compared to those aged between 65 and 69. Table \ref{tab:appLogregcat} in the Appendix contains the log odds ratios for all categorical variables with the exception of diagnosis due to the large number of variables.
+
+\subsection{Classification and Regression Trees}
+The variables analysed within subsections \ref{sec:linregresults} and \ref{sec:logregresults} can then be inputted into CART models to predict patients LOS within hospitals. Diagnosis will be used instead of the `ICD10 - first letter' since both linear and logistic regression results produced a higher result. Similarly, the number of scans rather than whether a person had a scan (Scan Y/N), will be used. Age and age group will be investigated for their impact on the CART model. To determine the effect of using a frailty measure, continuous and grouped frailty will be compared against not using a frailty score within the model.
+
+\subsubsection{Regression Trees}\label{sec:regressiontrees}
+This section will look at the development and results of the regression trees, analysing continuous LOS. A total of nine variables will be used within the model, listed as follows:
+\begin{multicols}{2}
+\begin{itemize}
+    \item Admission Method
+    \item Admission Source
+    \item Age (Continuous and Grouped)
+    \item Day
+    \item Diagnosis
+    \item Frailty (None, Continuous and Grouped)
+    \item Hospital
+    \item Number of Scans
+    \item Specialty
+\end{itemize}
+\end{multicols}
+
+Month was excluded from the regression model since in the linear regression model the R$^{2}$ was calculated to be zero and therefore did not account for any of the variability in patients LOS.
+
+A 20\% test set was used, meaning the data is trained on 80\% of the data. Using the Python algorithm discussed in Section \ref{sec:pythonreg}, Table \ref{tab:ParametersRegression} displays the parameters inputted into the model. The parameters `min\_samples\_leaf' and `max\_leaf\_nodes' will undergo testing to determine the trade off between R$^{2}$ score and computation time.
+
+\begin{table}[h!]
+    \centering\scalebox{0.85}{
+    \begin{tabular}{lc} \toprule
+        \textbf{Parameters} & \textbf{DecisionTreeRegressor} \\\midrule
+         criterion& ``squared\_error''\\
+         splitter & ``best'' \\
+         max\_depth & None \\
+         min\_samples\_split & 2 \\
+         min\_weight\_fraction\_leaf & 0 \\
+         max\_features & None \\
+         random\_state & None \\
+         min\_impurity\_decrease & 0 \\
+         ccp\_alpha & 0 \\\bottomrule
+    \end{tabular}}
+    \caption{The parameters used within the regression tree model using the `DecisionTreeRegressor' algorithm within Python.}
+    \label{tab:ParametersRegression}
+\end{table}
+
+Tables \ref{tab:regtree1a} - \ref{tab:regtree6c} display the R$^{2}$ score and computation time for a range of `max\_leaf\_nodes' and `min\_samples\_leaf' variables.  The variable `max\_leaf\_nodes' was evaluated on a range from five to 30 leaf nodes. Larger values were not selected to ensure a usable number of groups were identified. The variable `min\_samples\_leaf', was investigated from one sample to 500 samples. By having a minimum number of samples per leaf, in theory, will reduce the likelihood of overfitting. Computation time was also collected to determine if there was a trade off between R$^{2}$ and time to run the model.
+
+The highest R$^{2}$ score of 34.28\% was attained in the regression tree using grouped age and continuous frailty (Table \ref{tab:regtree5a}). This was achieved using 100 minimum samples per leaf and 30 maximum leaf nodes. However, in comparison to other models, it produced a longer computation run time of 26.9786 seconds (Table \ref{tab:regtree5c}). If analysing the grouped age and continuous frailty models, by reducing R$^{2}$ by 0.05\%, approximately 6.9 seconds can be saved by increasing the number of minimum samples per leaf to 200. 
+
+Within Table \ref{tab:regtree6a}, 30 maximum leaf nodes and 100 minimum samples per leaf also produced an R$^{2}$ score of 34.23\%, with a computational time of 18.5107 seconds. This combination was selected as the optimum and will be used going forward as it produces a large R$^{2}$ score with low computation time.
+
+The R$^{2}$ scores all range between 29.25\% to 34.28\%, due to the large range of LOS's within the data. The range of LOS was between zero days and 417 days, and an R$^{2}$ score of 34\%, shows 34\% of the time we are able to correctly assign patients to the correct node, despite this large range. These leaf nodes will be able to be used to group patients accordingly to LOS.
+
+
+\begin{landscape}
+
+\begin{table}[h!]
+\begin{subtable}{.45\linewidth}
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \g{0.2925}	&\g{0.2925} &\g{0.2925}&\g{0.2925} & \g{0.2925}&\g{0.2925} \\
+&\textbf{10}	& \g{0.3224}	&\g{0.3224} &\g{0.3224}&\g{0.3190} & \g{0.3190}&\g{0.3190} \\
+&\textbf{15}	& \g{0.3328}	&\g{0.3328} &\g{0.3328}&\g{0.3322} & \g{0.3322}&\g{0.3250} \\
+&\textbf{20}	& \g{0.3362}	&\g{0.3384} &\g{0.3384}&\g{0.3374} & \g{0.3374}&\g{0.3286} \\
+&\textbf{25}	& \g{0.3377}	&\g{0.3408} &\g{0.3408}&\g{0.3393} & \g{0.3392}&\g{0.3301} \\
+&\textbf{30}	& \g{0.3375}	&\g{0.3416} &\g{0.3410}&\g{0.3395} & \g{0.3407}&\g{0.3304} \\\bottomrule
+
+    \end{tabular}}
+    \caption{R$^{2}$ score.}
+    \label{tab:regtree1a}
+    \end{subtable}
+\begin{subtable}{.45\linewidth}
+
+    
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ga{9.5668} & \ga{9.8238} & \ga{9.7276} & \ga{8.5625} & \ga{8.5016} & \ga{8.8017}\\
+& \textbf{10} & \ga{13.9514} & \ga{12.0725} & \ga{11.9836} & \ga{11.9235} & \ga{13.9066} & \ga{12.6438} \\
+& \textbf{15} & \ga{14.4875} & \ga{14.2050} & \ga{16.7100} & \ga{14.2829} & \ga{14.5327} & \ga{14.8251} \\
+& \textbf{20} & \ga{16.7751} & \ga{17.9756} & \ga{16.5835} & \ga{15.8724} & \ga{15.6849} & \ga{14.9515} \\
+& \textbf{25} & \ga{17.8356} & \ga{18.2084} & \ga{16.8472} & \ga{16.8951} & \ga{17.8183} & \ga{18.5711} \\
+& \textbf{30} & \ga{19.5540} & \ga{19.1484} & \ga{19.1552} & \ga{18.5376} & \ga{19.4121} & \ga{19.6245} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s)..}
+    \label{tab:regtree1c}
+
+\end{subtable}
+\label{tab:regtree1}
+\caption{The regression tree results for the R$^{2}$ (a) and computational time (b) for continuous age and no frailty.}
+\end{table}
+
+
+
+
+\begin{table}[h!]
+\begin{subtable}{.45\linewidth}
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \g{0.2925}& \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} \\
+&\textbf{10} & \g{0.3224} & \g{0.3224} & \g{0.3224} & \g{0.3190} & \g{0.3190} & \g{0.3190}\\
+&\textbf{15} & \g{0.3328} & \g{0.3328} & \g{0.3328} & \g{0.3322} & \g{0.3322} & \g{0.3250}\\
+&\textbf{20} & \g{0.3362} & \g{0.3381} & \g{0.3381} & \g{0.3381} & \g{0.3381} & \g{0.3294}\\
+&\textbf{25} & \g{0.3389} & \g{0.3412} & \g{0.3412} & \g{0.3391} & \g{0.3396} & \g{0.3308}\\
+&\textbf{30} & \g{0.3383} & \g{0.3420} & \g{0.3422} & \g{0.3393} & \g{0.3410} & \g{0.3308}  \\\bottomrule
+
+    \end{tabular}}
+    \caption{R$^{2}$ score.}
+    \label{tab:regtree2a}
+    \end{subtable}
+\begin{subtable}{.45\linewidth}
+
+    
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ga{8.9660} & \ga{9.1705}	& \ga{8.7471} & \ga{8.4058}	& \ga{8.7663} & \ga{8.4657}\\
+& \textbf{10} & \ga{12.9853} & \ga{12.1247}	& \ga{11.7582}	& \ga{11.6642}	& \ga{15.0279}	& \ga{12.1618}\\
+& \textbf{15} & \ga{13.4786} & \ga{13.3782}	& \ga{16.3377}	& \ga{14.3459}	& \ga{15.3793}	& \ga{17.0997}\\
+& \textbf{20} & \ga{16.8013} & \ga{18.5770}	& \ga{17.1018}	& \ga{15.8003}	& \ga{16.1066}	& \ga{20.7639}\\
+& \textbf{25} & \ga{18.3142} & \ga{17.3414}	& \ga{17.3936}	& \ga{17.6433}	& \ga{25.1619}	& \ga{17.0871}\\
+& \textbf{30} & \ga{19.5150} & \ga{18.2041}	& \ga{19.6589}	& \ga{18.7183}	& \ga{20.5239}	& \ga{19.4184}\\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:regtree2c}
+
+\end{subtable}
+\label{tab:regtree2}
+\caption{The regression tree results for the R$^{2}$ (a) and computational time (b) for continuous age and continuous frailty.}
+\end{table}
+
+
+\begin{table}[h!]
+\begin{subtable}{.45\linewidth}
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} \\
+&\textbf{10} & \g{0.3224} & \g{0.3224} & \g{0.3224} & \g{0.3190} & \g{0.3190} & \g{0.3190}\\
+&\textbf{15} & \g{0.3328} & \g{0.3328} & \g{0.3328} & \g{0.3322} & \g{0.3322} & \g{0.3250} \\
+&\textbf{20} & \g{0.3362} & \g{0.3384} & \g{0.3384} & \g{0.3379} & \g{0.3379} & \g{0.3291}\\
+&\textbf{25} & \g{0.3387} & \g{0.3409} & \g{0.3409} & \g{0.3394} & \g{0.3393} & \g{0.3305} \\
+&\textbf{30} & \g{0.3380} & \g{0.3416} & \g{0.3421} & \g{0.3395} & \g{0.3408} & \g{0.3306} \\\bottomrule
+
+    \end{tabular}}
+    \caption{R$^{2}$ score.}
+    \label{tab:regtree3a}
+    \end{subtable}
+\begin{subtable}{.45\linewidth}
+
+    
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5} & \ga{9.5461} & \ga{13.3577} & \ga{10.0347} & \ga{14.3069} & \ga{15.3515} & \ga{10.3998}\\
+& \textbf{10} & \ga{12.8929} & \ga{17.2952} & \ga{13.9642} & \ga{13.3573} & \ga{19.6081} & \ga{17.3906}\\
+& \textbf{15} & \ga{15.0100} & \ga{20.8186} & \ga{15.0045} & \ga{14.3649} & \ga{17.6949} & \ga{19.1605} \\
+& \textbf{20} & \ga{18.6414} & \ga{17.8904} & \ga{17.3192} & \ga{18.0861} & \ga{18.5902} & \ga{15.8897} \\
+& \textbf{25} & \ga{24.3819} & \ga{19.3318} & \ga{18.1902} & \ga{19.8152} & \ga{19.1655} & \ga{17.1851} \\
+& \textbf{30} & \ga{30.6406} & \ga{24.9834} & \ga{19.9453} & \ga{27.4008} & \ga{24.1919} & \ga{19.1556}\\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:regtree3c}
+
+\end{subtable}
+\label{tab:regtree3}
+\caption{The regression tree results for the R$^{2}$ (a) and computational time (b) for continuous age and grouped frailty.}
+\end{table}
+
+\begin{table}[h!]
+\begin{subtable}{.45\linewidth}
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} \\
+&\textbf{10} & \g{0.3208} & \g{0.3208} & \g{0.3208} & \g{0.3194} & \g{0.3194} & \g{0.3194} \\
+&\textbf{15} & \g{0.3320} & \g{0.3208} & \g{0.3320} & \g{0.3320} & \g{0.3320} & \g{0.3236}  \\
+&\textbf{20} & \g{0.3347} & \g{0.3379} & \g{0.3379} & \g{0.3369} & \g{0.3369} & \g{0.3292} \\
+&\textbf{25} & \g{0.3360} & \g{0.3407} & \g{0.3407} & \g{0.3392} & \g{0.3388} & \g{0.3297} \\
+&\textbf{30} & \g{0.3364} & \g{0.3418} & \g{0.3420} & \g{0.3403} & \g{0.3400} & \g{0.3309} \\\bottomrule
+
+    \end{tabular}}
+    \caption{R$^{2}$ score.}
+    \label{tab:regtree4a}
+    \end{subtable}
+\begin{subtable}{.45\linewidth}
+
+    
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5} &\ga{11.6459} & \ga{10.0844} & \ga{12.8503} & \ga{11.3010} & \ga{12.5443} & \ga{9.3685} \\
+& \textbf{10} & \ga{14.0654} & \ga{17.3290} & \ga{12.4793} & \ga{17.8037} & \ga{17.7200} & \ga{14.2252} \\
+& \textbf{15} & \ga{15.5847} & \ga{19.5658} & \ga{13.5358} & \ga{19.3913} & \ga{15.1067} & \ga{18.1730} \\
+& \textbf{20} & \ga{22.4814} & \ga{27.2284} & \ga{20.0218} & \ga{24.0735} & \ga{19.1546} & \ga{19.2974}\\
+& \textbf{25} & \ga{20.0251} & \ga{22.6745} & \ga{23.6449} & \ga{23.4709} & \ga{24.0338} & \ga{22.2256}\\
+& \textbf{30} & \ga{23.8315} & \ga{24.2733} & \ga{23.7499} & \ga{26.3434} & \ga{20.2900} & \ga{23.4050}\\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:regtree4c}
+
+\end{subtable}
+\label{tab:regtree4}
+\caption{The regression tree results for the R$^{2}$ (a) and computational time (b) for grouped age and no frailty.}
+\end{table}
+
+\begin{table}[h!]
+\begin{subtable}{.45\linewidth}
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccccccc}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	&\g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} \\
+&\textbf{10} & \g{0.3208} & \g{0.3208} & \g{0.3208} & \g{0.3194} & \g{0.3194} & \g{0.3194} \\
+&\textbf{15} & \g{0.3320} & \g{0.3208} & \g{0.3320} & \g{0.3320} & \g{0.3320} & \g{0.3236} \\
+&\textbf{20} & \g{0.3286} & \g{0.3384} & \g{0.3384} & \g{0.3377} & \g{0.3377} & \g{0.3294} \\
+&\textbf{25} & \g{0.3321} & \g{0.3417} & \g{0.3417} & \g{0.3403} & \g{0.3397} & \g{0.3309} \\
+&\textbf{30} & \g{0.3314} & \g{0.3428} & \g{0.3423} & \g{0.3402} & \g{0.3409} & \g{0.3322} \\\bottomrule
+
+    \end{tabular}}
+    \caption{R$^{2}$ score.}
+    \label{tab:regtree5a}
+    \end{subtable}
+\begin{subtable}{.45\linewidth}
+
+    
+    \centering\scalebox{0.8}{
+    \begin{tabular}{@{}cccccccc@{}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ga{10.3076} & \ga{13.7601} & \ga{13.3941} & \ga{10.3015} & \ga{10.1157} & \ga{10.4414}\\
+& \textbf{10} & \ga{18.1097} & \ga{18.2357} & \ga{20.2272} & \ga{21.7858} & \ga{12.6390} & \ga{13.9807}\\
+& \textbf{15} & \ga{21.0192} & \ga{23.0711} & \ga{22.7380} & \ga{18.9120} & \ga{17.9297} & \ga{23.8506}\\
+& \textbf{20} & \ga{21.2881} & \ga{28.4333} & \ga{23.5638} & \ga{18.9010} & \ga{20.4316} & \ga{25.3724} \\
+& \textbf{25} & \ga{22.5401} & \ga{25.8047} & \ga{25.5739} & \ga{22.0894} & \ga{20.1581} & \ga{23.0146}\\
+& \textbf{30} & \ga{28.5686} & \ga{26.9786} & \ga{20.1018} & \ga{20.8679} & \ga{22.5167} & \ga{25.4133}\\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:regtree5c}
+
+\end{subtable}
+\label{tab:regtree5}
+\caption{The regression tree results for the R$^{2}$ (a) and computational time (b) for grouped age and continuous frailty.}
+\end{table}
+
+\begin{table}[h!]
+\begin{subtable}{.45\linewidth}
+    \centering\scalebox{0.8}{
+    \begin{tabular}{@{}cccccccc@{}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	&\g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} & \g{0.2925} \\
+&\textbf{10}	& \g{0.3208} & \g{0.3208} & \g{0.3208} & \g{0.3194} & \g{0.3194} & \g{0.3194} \\
+&\textbf{15}	& \g{0.3320} & \g{0.3208} & \g{0.3320} & \g{0.3320} & \g{0.3320} & \g{0.3236} \\
+&\textbf{20}	& \g{0.3342} & \g{0.3381} & \g{0.3381} & \g{0.3374} & \g{0.3374} & \g{0.3291} \\
+&\textbf{25}	& \g{0.3318} & \g{0.3414} & \g{0.3414} & \g{0.3399} & \g{0.3393} & \g{0.3306} \\
+&\textbf{30}	& \g{0.3311} & \g{0.3423} & \g{0.3421} & \g{0.3401} & \g{0.3405} & \g{0.3313} \\\bottomrule
+
+    \end{tabular}}
+    \caption{R$^{2}$ score.}
+    \label{tab:regtree6a}
+    \end{subtable}
+\begin{subtable}{.45\linewidth}
+
+    
+    \centering\scalebox{0.8}{
+    \begin{tabular}{@{}cccccccc@{}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ga{11.4307}	& \ga{16.4057}	& \ga{12.4373}	& \ga{15.8219}	& \ga{15.7179}	& \ga{9.3838}
+
+\\
+& \textbf{10} & \ga{13.6344} & \ga{18.4423}	& \ga{24.6463} & \ga{12.5033} & \ga{19.6957} & \ga{18.3607}\\
+& \textbf{15} & \ga{16.6546} & \ga{19.4606} & \ga{20.0820} & \ga{13.6390} & \ga{19.6694} & \ga{15.4206}\\
+& \textbf{20} & \ga{18.2777} & \ga{22.8429}	& \ga{23.1844} & \ga{16.9840} & \ga{25.4143} & \ga{16.9038}\\
+& \textbf{25} & \ga{20.9142} & \ga{19.2554}	& \ga{24.9062} & \ga{18.5972} & \ga{20.5371} & \ga{17.8328} \\
+& \textbf{30} & \ga{25.1081} & \ga{18.5107}	& \ga{27.9524} & \ga{26.3307} & \ga{20.3707} & \ga{23.5998}  \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:regtree6c}
+
+\end{subtable}
+\label{tab:regtree6}
+\caption{The regression tree results for the R$^{2}$ (a) and computational time (b) for grouped age and grouped frailty.}
+\end{table}
+
+\end{landscape}
+
+Figure \ref{fig:finalregtree} displays the regression tree visualisation with R$^{2}$ of 34.23\%. The results display the most important determination of LOS is `admission\_method\_Other - transferred from another hospital'. Due to the one-hot encoding of variables, if this value is zero, the patient had a different admission method and the reader would move to the left hand side of the tree. The `value' on the nodes denotes the predicted LOS in days.
+
+The model produced a total of 30 leaf nodes and therefore contains 30 groupings of patients with different LOS's. The LOS's are given in days, with the number of samples that fall into this category. The average demand can then be calculated using Equation \eqref{eq:demand}:
+
+\begin{equation}\label{eq:demand}
+    \text{Average daily bed demand} = \frac{\text{Average LOS} \times \text{count}}{\text{Total number of days}}
+\end{equation}
+
+For example, if we take the patients who have the admission method of being transferred from another hospital and are admitted to NHH. To determine how a patient's LOS varies, the specialty rehabilitation results in a difference of 17.835 days. Using Equation \eqref{eq:demand}, an average of 6.2 beds should be available per day. For the remaining specialties offered by NHH, 5.94 beds should be planned in total per day. This highlights the small but important difference in bed numbers. It should be noted that additional beds will be added to NHH, through the left hand side of the tree. However, adding these individual nodes together will create a more precise picture of the actual demands faced by the health board.
+
+
+\begin{landscape}
+    \begin{figure}[h!]
+        \centering
+    \includegraphics[scale=0.72]{Chapters/Chapter5/Figuresnew/CorrectionsRegressionTree.pdf}
+        \caption{Regression tree with an $R^{2}$ of 34.23\% for predicting continuous LOS for patients within ABUHB, consisting of 30 terminal nodes.}
+        \label{fig:finalregtree}
+    \end{figure}
+\end{landscape}
+
+\subsubsection{Classification Trees}
+This section discusses the development and results of the classification trees, analysing grouped LOS into patients who are discharged on the same day as arrival and those who are admitted overnight. A total of 10 variables will be used within the model, listed as follows:
+\begin{multicols}{2}
+    \begin{itemize}
+        \item Admission Method
+        \item Admission Source
+        \item Age (Continuous and Grouped)
+        \item Day
+        \item Diagnosis
+        \item Frailty (None, Continuous and Grouped)
+        \item Hospital
+        \item Month
+        \item Number of Scans
+        \item Specialty
+    \end{itemize}
+\end{multicols}
+
+Unlike regression trees, the month was included within the model as the accuracy score produced was greater than zero and could provide some benefit in being used within the model. 
+
+Again, an 80\% training set and a 20\% test set were used to build and develop the model. Using the `DecisionTreeClassifier' algorithm within Python as discussed in Section \ref{sec:pythonclass}, the following parameters were selected for the model (Table \ref{tab:paramforclass}). The parameters `min\_samples\_leaf' and `max\_leaf\_nodes' will be investigated to determine the combination which yields the highest accuracy, precision and recall scores against the computational time.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lc}\toprule
+      \textbf{Parameters}   & \textbf{DecisionTreeClassifier} \\\midrule
+       criterion  & ``gini'' \\
+       splitter & ``best'' \\
+       max\_depth & None \\
+       min\_samples\_split & 2 \\
+       min\_weight\_fraction\_leaf & 0\\
+       max\_features & None \\
+       random\_state & None \\
+       min\_impurity\_decrease & 0\\
+       class\_weight & None \\
+       ccp\_alpha &0\\ \bottomrule
+    \end{tabular}
+    \caption{The parameters used within the classification tree using the `DecisionTreeClassifier' algorithm within Python.}
+    \label{tab:paramforclass}
+\end{table}
+
+The accuracy scores for each of the six experiments range from 88.46\% to 89.89\%, a difference between 1.43\% (Tables \ref{tab:classtree1a} - \ref{tab:classtree6d}). This shows regardless of frailty and age classification, the difference is minimal between a range of different minimum samples per leaf and the maximum number of leaf nodes. The precision has a range of 4.41\%, from 84.75\% to 89.16\%. Comparing the accuracy to precision result, the highest values for each do not occur in the same `min\_samples\_leaf' and `max\_leaf\_nodes' combination. For example, comparing Table \ref{tab:classtree1a} with Table \ref{tab:classtree1b}, accuracy yielded the highest result with one minimum sample per leaf and 30 maximum leaf nodes. The highest precision results were recorded with 15 maximum leaf nodes and either 400 or 500 minimum samples per leaf. The recall scores produced the largest result in the same combination as the accuracy scores (largest maximum leaf nodes and smallest minimum samples per leaf), however, it produced the lowest score in the same location as the precision. Comparing the 400 minimum samples per leaf and 15 maximum leaf nodes suggests that FN $>$ FP. In terms of healthcare, this means patients are predicted to have short LOS's whereas, in reality, they have longer LOS's. Therefore, even though more costly as extra resources will be planned, it is beneficial to plan beds and not require them. This means the optimal solution should prioritise the recall score over the precision.
+
+The optimum combination was selected to be one minimum sample per leaf with 30 maximum leaf nodes, using continuous age and continuous frailty (Tables \ref{tab:classtree2a} - \ref{tab:classtree2d}). This produced the highest accuracy and recall score, whilst also producing the lowest computational time out of the combination.
+
+\begin{table}[h!]
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ac{0.8846}	& \ac{0.8846} & \ac{0.8846}& \ac{0.8846} & \ac{0.8846} & \ac{0.8846} \\
+&\textbf{10}	& \ac{0.8913}	&\ac{0.8913} &\ac{0.8913}&\ac{0.8913} & \ac{0.8913}&\ac{0.8913} \\
+&\textbf{15}	& \ac{0.8950}	&\ac{0.8950} &\ac{0.8950}&\ac{0.8950} &\ac{0.8925}&\ac{0.8925} \\
+&\textbf{20}	& \ac{0.8956}	&\ac{0.8956} &\ac{0.8950}&\ac{0.8950} & \ac{0.8936}&\ac{0.8936} \\
+&\textbf{25}	& \ac{0.8977}	&\ac{0.8976} &\ac{0.8962}&\ac{0.8963} & \ac{0.8936}&\ac{0.8939} \\
+&\textbf{30}	& \ac{0.8989}	&\ac{0.8987} &\ac{0.8968}&\ac{0.8968} & \ac{0.8939}&\ac{0.8937} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Accuracy score.}
+    \label{tab:classtree1a}
+    \end{subtable}
+\begin{subtable}{.5\linewidth}
+  
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475}\\
+& \textbf{10} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} \\
+& \textbf{15} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{20} & \pa{0.8641} & \pa{0.8641} & \pa{0.8643} & \pa{0.8643} & \pa{0.8844} & \pa{0.8844} \\
+& \textbf{25} & \pa{0.8637} & \pa{0.8617} & \pa{0.8598} & \pa{0.8594} & \pa{0.8844} & \pa{0.8804} \\
+& \textbf{30} & \pa{0.8570} & \pa{0.8617} & \pa{0.8611} & \pa{0.8635} & \pa{0.8804} & \pa{0.8731} \\\bottomrule
+    \end{tabular}}
+    \caption{Precision score.}
+    \label{tab:classtree1b}
+
+\end{subtable}
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \re{0.8944}	& \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} \\
+&\textbf{10}	& \re{0.8941}	&\re{0.8941} &\re{0.8941}&\re{0.8941} & \re{0.8941}& \re{0.8941} \\
+&\textbf{15}	& \re{0.8941}	&\re{0.9019} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{20}	& \re{0.9033}	&\re{0.9033} &\re{0.9019}&\re{0.9019} & \re{0.8829}& \re{0.8829} \\
+&\textbf{25}	& \re{0.9080}	&\re{0.9094} &\re{0.9081}&\re{0.9088} & \re{0.8829}& \re{0.8865} \\
+&\textbf{30}	& \re{0.9163}	&\re{0.9117} &\re{0.9083}&\re{0.9061} & \re{0.8865}& \re{0.8919} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Recall score.}
+    \label{tab:classtree1c}
+    \end{subtable}\hspace{-0.3cm}
+\begin{subtable}{.49\linewidth}
+
+    
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ti{9.1109} & \ti{8.3105} & \ti{8.2769} & \ti{8.7439} & \ti{13.1439} & \ti{10.0509}\\
+& \textbf{10} & \ti{11.5346} & \ti{11.6610} & \ti{11.6360} & \ti{12.0482} & \ti{18.4817} & \ti{13.7823} \\
+& \textbf{15} & \ti{14.8981} & \ti{13.3688} & \ti{14.2424} & \ti{14.0589} & \ti{16.0018} & \ti{17.7209} \\
+& \textbf{20} & \ti{17.1809} & \ti{16.0233} & \ti{16.2691} & \ti{21.6318} & \ti{18.7793} & \ti{19.5191} \\
+& \textbf{25} & \ti{17.3070} & \ti{17.6209} & \ti{17.1829} & \ti{22.8581} & \ti{21.2422} & \ti{20.4255} \\
+& \textbf{30} & \ti{18.0397} & \ti{17.7756} & \ti{18.9454} & \ti{21.1663} & \ti{21.4531} & \ti{22.0665} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:classtree1d}
+
+\end{subtable}
+
+
+\label{tab:classtree1}
+\caption{The classification tree results for accuracy score (a), precision score (b), recall score (c) and computational time (d) for continuous age and no frailty.}
+\end{table}
+
+
+
+
+\begin{table}[h!]
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ac{0.8846}	& \ac{0.8846} & \ac{0.8846}& \ac{0.8846} & \ac{0.8846} & \ac{0.8846} \\
+&\textbf{10}	& \ac{0.8913}	&\ac{0.8913} &\ac{0.8913}&\ac{0.8913} & \ac{0.8913}&\ac{0.8913} \\
+&\textbf{15}	& \ac{0.8950}	&\ac{0.8950} &\ac{0.8950}&\ac{0.8950} &\ac{0.8925}&\ac{0.8925} \\
+&\textbf{20}	& \ac{0.8956}	&\ac{0.8956} &\ac{0.8950}&\ac{0.8950} & \ac{0.8925}&\ac{0.8925} \\
+&\textbf{25}	& \ac{0.8977}	&\ac{0.8976} &\ac{0.8962}&\ac{0.8963} & \ac{0.8936}&\ac{0.8939} \\
+&\textbf{30}	& \ac{0.8989}	&\ac{0.8987} &\ac{0.8968}&\ac{0.8968} & \ac{0.8941}&\ac{0.8939} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Accuracy score.}
+    \label{tab:classtree2a}
+    \end{subtable}
+\begin{subtable}{.5\linewidth}
+  
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475}\\
+& \textbf{10} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} \\
+& \textbf{15} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{20} & \pa{0.8641} & \pa{0.8641} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{25} & \pa{0.8637} & \pa{0.8617} & \pa{0.8598} & \pa{0.8594} & \pa{0.8844} & \pa{0.8804} \\
+& \textbf{30} & \pa{0.8570} & \pa{0.8617} & \pa{0.8611} & \pa{0.8635} & \pa{0.8812} & \pa{0.8804} \\\bottomrule
+    \end{tabular}}
+    \caption{Precision score.}
+    \label{tab:classtree2b}
+
+\end{subtable}
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \re{0.8944}	& \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} \\
+&\textbf{10}	& \re{0.8941}	&\re{0.8941} &\re{0.8941}&\re{0.8941} & \re{0.8941}& \re{0.8941} \\
+&\textbf{15}	& \re{0.9019}	&\re{0.9019} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{20}	& \re{0.9033}	&\re{0.9033} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{25}	& \re{0.9080}	&\re{0.9094} &\re{0.9081}&\re{0.9088} & \re{0.8829}& \re{0.8865} \\
+&\textbf{30}	& \re{0.9163}	&\re{0.9117} &\re{0.9083}&\re{0.9061} & \re{0.8863}& \re{0.8865} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Recall score.}
+    \label{tab:classtree2c}
+    \end{subtable}
+    \hspace{-0.3cm}
+\begin{subtable}{.49\linewidth}
+
+    
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ti{7.8660} & \ti{7.8724} & \ti{7.9036} & \ti{10.9756} & \ti{7.9045} & \ti{8.0315}\\
+& \textbf{10} & \ti{10.7175} & \ti{11.0817} & \ti{10.9410} & \ti{13.6632} & \ti{11.7000} & \ti{11.1358} \\
+& \textbf{15} & \ti{12.9169} & \ti{12.8437} & \ti{12.6717} & \ti{16.5188} & \ti{13.4148} & \ti{12.7473} \\
+& \textbf{20} & \ti{15.1352} & \ti{14.7659} & \ti{14.7613} & \ti{16.1299} & \ti{15.6667} & \ti{14.9961} \\
+& \textbf{25} & \ti{16.1773} & \ti{15.0654} & \ti{15.7308} & \ti{16.7057} & \ti{18.3250} & \ti{16.5215}  \\
+& \textbf{30} & \ti{16.7448} & \ti{16.9692} & \ti{17.1850} & \ti{17.7688} & \ti{16.7887} & \ti{17.6103} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:classtree2d}
+\end{subtable}
+\label{tab:classtree2}
+\caption{The classification tree results for accuracy score (a), precision score (b), recall score (c) and computational time (d) for continuous age and continuous frailty.}
+\end{table}
+
+
+
+\begin{table}[h!]
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ac{0.8846}	& \ac{0.8846} & \ac{0.8846}& \ac{0.8846} & \ac{0.8846} & \ac{0.8846} \\
+&\textbf{10}	& \ac{0.8913}	&\ac{0.8913} &\ac{0.8913}&\ac{0.8913} & \ac{0.8913}&\ac{0.8913} \\
+&\textbf{15}	& \ac{0.8950}	&\ac{0.8950} &\ac{0.8950}&\ac{0.8950} &\ac{0.8925}&\ac{0.8925} \\
+&\textbf{20}	& \ac{0.8956}	&\ac{0.8956} &\ac{0.8950}&\ac{0.8950} & \ac{0.8925}&\ac{0.8925} \\
+&\textbf{25}	& \ac{0.8977}	&\ac{0.8976} &\ac{0.8962}&\ac{0.8963} & \ac{0.8936}&\ac{0.8936} \\
+&\textbf{30}	& \ac{0.8989}	&\ac{0.8987} &\ac{0.8968}&\ac{0.8968} & \ac{0.8941}&\ac{0.8941} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Accuracy score.}
+    \label{tab:classtree3a}
+    \end{subtable}
+\begin{subtable}{.5\linewidth}
+  
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475}\\
+& \textbf{10} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} \\
+& \textbf{15} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{20} & \pa{0.8641} & \pa{0.8641} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{25} & \pa{0.8637} & \pa{0.8617} & \pa{0.8598} & \pa{0.8594} & \pa{0.8844} & \pa{0.8844} \\
+& \textbf{30} & \pa{0.8570} & \pa{0.8617} & \pa{0.8611} & \pa{0.8635} & \pa{0.8810} & \pa{0.8844} \\\bottomrule
+    \end{tabular}}
+    \caption{Precision score.}
+    \label{tab:classtree3b}
+
+\end{subtable}
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \re{0.8944}	& \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} \\
+&\textbf{10}	& \re{0.8941}	&\re{0.8941} &\re{0.8941}&\re{0.8941} & \re{0.8941}& \re{0.8941} \\
+&\textbf{15}	& \re{0.9019}	&\re{0.9019} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{20}	& \re{0.9033}	&\re{0.9033} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{25}	& \re{0.9080}	&\re{0.9094} &\re{0.9081}&\re{0.9088} & \re{0.8829}& \re{0.8829} \\
+&\textbf{30}	& \re{0.9163}	&\re{0.9117} &\re{0.9083}&\re{0.9061} & \re{0.8865}& \re{0.8829} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Recall score.}
+    \label{tab:classtree3c}
+    \end{subtable}\hspace{-0.3cm}
+\begin{subtable}{.49\linewidth}
+
+    
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ti{8.3217} & \ti{8.5695} & \ti{8.8101} & \ti{8.8153} & \ti{11.3366} & \ti{25.3592}\\
+& \textbf{10} & \ti{11.3205} & \ti{11.6050} & \ti{11.8029} & \ti{12.3844} & \ti{14.7207} & \ti{17.2309} \\
+& \textbf{15} & \ti{13.5908} & \ti{13.5596} & \ti{13.6742} & \ti{13.7826} & \ti{20.0681} & \ti{16.4461} \\
+& \textbf{20} & \ti{15.5900} & \ti{15.6141} & \ti{15.9532} & \ti{15.9093} & \ti{20.6382} & \ti{20.5908} \\
+& \textbf{25} & \ti{16.5625} & \ti{16.1451} & \ti{16.9353} & \ti{17.2625} & \ti{19.2398} & \ti{19.6446}  \\
+& \textbf{30} & \ti{17.8176} & \ti{17.5732} & \ti{18.1772} & \ti{19.2464} & \ti{25.3592} & \ti{22.3077} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:classtree3d}
+
+\end{subtable}
+
+\label{tab:classtree3}
+\caption{The classification tree results for accuracy score (a), precision score (b), recall score (c) and computational time (d) for continuous age and grouped frailty.}
+\end{table}
+
+
+
+\begin{table}[h!]
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ac{0.8846}	& \ac{0.8846} & \ac{0.8846}& \ac{0.8846} & \ac{0.8846} & \ac{0.8846} \\
+&\textbf{10}	& \ac{0.8913}	&\ac{0.8913} &\ac{0.8913}&\ac{0.8913} & \ac{0.8913}&\ac{0.8913} \\
+&\textbf{15}	& \ac{0.8950}	&\ac{0.8950} &\ac{0.8950}&\ac{0.8950} &\ac{0.8925}&\ac{0.8925} \\
+&\textbf{20}	& \ac{0.8956}	&\ac{0.8956} &\ac{0.8956}&\ac{0.8956} & \ac{0.8936}&\ac{0.8939} \\
+&\textbf{25}	& \ac{0.8977}	&\ac{0.8976} &\ac{0.8962}&\ac{0.8963} & \ac{0.8936}&\ac{0.8939} \\
+&\textbf{30}	& \ac{0.8989}	&\ac{0.8987} &\ac{0.8968}&\ac{0.8968} & \ac{0.8939}&\ac{0.8937} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Accuracy score.}
+    \label{tab:classtree4a}
+    \end{subtable}
+\begin{subtable}{.5\linewidth}
+  
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475}\\
+& \textbf{10} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} \\
+& \textbf{15} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{20} & \pa{0.8641} & \pa{0.8641} & \pa{0.8643} & \pa{0.8643} & \pa{0.8944} & \pa{0.8944} \\
+& \textbf{25} & \pa{0.8637} & \pa{0.8617} & \pa{0.8598} & \pa{0.8594} & \pa{0.8844} & \pa{0.8804} \\
+& \textbf{30} & \pa{0.8570} & \pa{0.8617} & \pa{0.8611} & \pa{0.8635} & \pa{0.8804} & \pa{0.8731} \\\bottomrule
+    \end{tabular}}
+    \caption{Precision score.}
+    \label{tab:classtree4b}
+
+\end{subtable}
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \re{0.8944}	& \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} \\
+&\textbf{10}	& \re{0.8941}	&\re{0.8941} &\re{0.8941}&\re{0.8941} & \re{0.8941}& \re{0.8941} \\
+&\textbf{15}	& \re{0.9019}	&\re{0.9019} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{20}	& \re{0.9033}	&\re{0.9033} &\re{0.9019}&\re{0.9019} & \re{0.8829}& \re{0.8829} \\
+&\textbf{25}	& \re{0.9080}	&\re{0.9094} &\re{0.9081}&\re{0.9088} & \re{0.8829}& \re{0.8865} \\
+&\textbf{30}	& \re{0.9163}	&\re{0.9117} &\re{0.9083}&\re{0.9061} & \re{0.8865}& \re{0.8819} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Recall score.}
+    \label{tab:classtree4c}
+    \end{subtable}\hspace{-0.3cm}
+\begin{subtable}{.49\linewidth}
+
+    
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ti{9.0003} & \ti{9.1338} & \ti{8.0463} & \ti{7.9693} & \ti{8.0229} & \ti{7.9960}\\
+& \textbf{10} & \ti{11.8935} & \ti{12.6970} & \ti{11.2224} & \ti{11.1074} & \ti{11.3092} & \ti{11.2887} \\
+& \textbf{15} & \ti{13.8198} & \ti{13.0589} & \ti{13.0067} & \ti{13.5755} & \ti{13.3384} & \ti{13.1068} \\
+& \textbf{20} & \ti{16.3988} & \ti{15.6034} & \ti{14.9843} & \ti{15.0497} & \ti{15.4588} & \ti{15.3504} \\
+& \textbf{25} & \ti{20.8890} & \ti{15.9613} & \ti{16.0429} & \ti{17.0717} & \ti{16.3030} & \ti{16.8512}  \\
+& \textbf{30} & \ti{24.0505} & \ti{18.3618} & \ti{17.5238} & \ti{17.6762} & \ti{17.7605} & \ti{17.3051} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:classtree4d}
+
+\end{subtable}
+
+\label{tab:classtree4}
+\caption{The classification tree results for accuracy score (a), precision score (b), recall score (c) and computational time (d) for grouped age and no frailty.}
+\end{table}
+
+
+\begin{table}[h!]
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ac{0.8846}	& \ac{0.8846} & \ac{0.8846}& \ac{0.8846} & \ac{0.8846} & \ac{0.8846} \\
+&\textbf{10}	& \ac{0.8913}	&\ac{0.8913} &\ac{0.8913}&\ac{0.8913} & \ac{0.8913}&\ac{0.8913} \\
+&\textbf{15}	& \ac{0.8950}	&\ac{0.8950} &\ac{0.8950}&\ac{0.8950} &\ac{0.8925}&\ac{0.8925} \\
+&\textbf{20}	& \ac{0.8956}	&\ac{0.8956} &\ac{0.8950}&\ac{0.8950} & \ac{0.8925}&\ac{0.8925} \\
+&\textbf{25}	& \ac{0.8977}	&\ac{0.8976} &\ac{0.8962}&\ac{0.8963} & \ac{0.8936}&\ac{0.8939} \\
+&\textbf{30}	& \ac{0.8989}	&\ac{0.8987} &\ac{0.8968}&\ac{0.8968} & \ac{0.8941}&\ac{0.8939} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Accuracy score.}
+    \label{tab:classtree5a}
+    \end{subtable}
+\begin{subtable}{.5\linewidth}
+  
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475}\\
+& \textbf{10} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} \\
+& \textbf{15} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{20} & \pa{0.8641} & \pa{0.8641} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{25} & \pa{0.8637} & \pa{0.8617} & \pa{0.8598} & \pa{0.8594} & \pa{0.8844} & \pa{0.8804} \\
+& \textbf{30} & \pa{0.8570} & \pa{0.8617} & \pa{0.8611} & \pa{0.8635} & \pa{0.8812} & \pa{0.8804} \\\bottomrule
+    \end{tabular}}
+    \caption{Precision score.}
+    \label{tab:classtree5b}
+
+\end{subtable}
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \re{0.8944}	& \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} \\
+&\textbf{10}	& \re{0.8941}	&\re{0.8941} &\re{0.8941}&\re{0.8941} & \re{0.8941}& \re{0.8941} \\
+&\textbf{15}	& \re{0.9019}	&\re{0.9019} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{20}	& \re{0.9033}	&\re{0.9033} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{25}	& \re{0.9080}	&\re{0.9094} &\re{0.9081}&\re{0.9088} & \re{0.8829}& \re{0.8865} \\
+&\textbf{30}	& \re{0.9163}	&\re{0.9117} &\re{0.9083}&\re{0.9061} & \re{0.8863}& \re{0.8865} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Recall score.}
+    \label{tab:classtree5c}
+    \end{subtable}\hspace{-0.3cm}
+\begin{subtable}{.49\linewidth}
+
+    
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ti{9.0269} & \ti{8.7352} & \ti{9.0878} & \ti{8.5125} & \ti{8.1122} & \ti{8.6958}\\
+& \textbf{10} & \ti{12.0635} & \ti{12.2949} & \ti{12.1766} & \ti{11.5033} & \ti{12.1410} & \ti{12.7141} \\
+& \textbf{15} & \ti{13.8758} & \ti{14.2554} & \ti{14.4314} & \ti{13.3940} & \ti{14.7385} & \ti{15.0438} \\
+& \textbf{20} & \ti{16.0829} & \ti{15.9826} & \ti{15.1769} & \ti{15.3548} & \ti{17.0093} & \ti{17.0980} \\
+& \textbf{25} & \ti{16.9550} & \ti{17.4665} & \ti{16.3701} & \ti{16.8606} & \ti{18.1321} & \ti{20.0174}  \\
+& \textbf{30} & \ti{18.0005} & \ti{18.0719} & \ti{18.6015} & \ti{18.0826} & \ti{18.6726} & \ti{19.3604} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:classtree5d}
+
+\end{subtable}
+
+\label{tab:classtree5}
+\caption{The classification tree results for accuracy score (a), precision score (b), recall score (c) and computational time (d) for grouped age and continuous frailty.}
+\end{table}
+
+
+\begin{table}[h!]
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ac{0.8846}	& \ac{0.8846} & \ac{0.8846}& \ac{0.8846} & \ac{0.8846} & \ac{0.8846} \\
+&\textbf{10}	& \ac{0.8913}	&\ac{0.8913} &\ac{0.8913}&\ac{0.8913} & \ac{0.8913}&\ac{0.8913} \\
+&\textbf{15}	& \ac{0.8950}	&\ac{0.8950} &\ac{0.8950}&\ac{0.8950} &\ac{0.8925}&\ac{0.8925} \\
+&\textbf{20}	& \ac{0.8956}	&\ac{0.8956} &\ac{0.8950}&\ac{0.8950} & \ac{0.8925}&\ac{0.8925} \\
+&\textbf{25}	& \ac{0.8977}	&\ac{0.8976} &\ac{0.8962}&\ac{0.8963} & \ac{0.8936}&\ac{0.8936} \\
+&\textbf{30}	& \ac{0.8989}	&\ac{0.8987} &\ac{0.8968}&\ac{0.8968} & \ac{0.8941}&\ac{0.8936} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Accuracy score.}
+    \label{tab:classtree6a}
+    \end{subtable}
+\begin{subtable}{.5\linewidth}
+  
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475} & \pa{0.8475}\\
+& \textbf{10} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} & \pa{0.8645} \\
+& \textbf{15} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{20} & \pa{0.8641} & \pa{0.8641} & \pa{0.8643} & \pa{0.8643} & \pa{0.8916} & \pa{0.8916} \\
+& \textbf{25} & \pa{0.8637} & \pa{0.8617} & \pa{0.8598} & \pa{0.8594} & \pa{0.8844} & \pa{0.8844} \\
+& \textbf{30} & \pa{0.8570} & \pa{0.8617} & \pa{0.8611} & \pa{0.8635} & \pa{0.8810} & \pa{0.8844} \\\bottomrule
+    \end{tabular}}
+    \caption{Precision score.}
+    \label{tab:classtree6b}
+
+\end{subtable}
+\begin{subtable}{.49\linewidth}
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}x{1.4cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \re{0.8944}	& \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} & \re{0.8944} \\
+&\textbf{10}	& \re{0.8941}	&\re{0.8941} &\re{0.8941}&\re{0.8941} & \re{0.8941}& \re{0.8941} \\
+&\textbf{15}	& \re{0.9019}	&\re{0.9019} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{20}	& \re{0.9033}	&\re{0.9033} &\re{0.9019}&\re{0.9019} & \re{0.8755}& \re{0.8755} \\
+&\textbf{25}	& \re{0.9080}	&\re{0.9094} &\re{0.9081}&\re{0.9088} & \re{0.8829}& \re{0.8829} \\
+&\textbf{30}	& \re{0.9163}	&\re{0.9117} &\re{0.9083}&\re{0.9061} & \re{0.8865}& \re{0.8829} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Recall score.}
+    \label{tab:classtree6c}
+    \end{subtable}\hspace{-0.3cm}
+\begin{subtable}{.49\linewidth}
+
+    
+    \centering\scalebox{0.55}{
+    \begin{tabular}{ccx{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}x{1.6cm}}\toprule
+    & \multicolumn{7}{c}{\textbf{min\_samples\_leaf}}\\
+	&&\textbf{1} &	\textbf{100}	&\textbf{200}&	\textbf{300}&	\textbf{400}&	\textbf{500}\\\midrule
+\parbox[t]{2mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{\textbf{max\_leaf\_nodes}}}} & \textbf{5}	& \ti{8.9117} & \ti{8.9096} & \ti{10.8248} & \ti{9.9785} & \ti{8.8351} & \ti{10.1257}\\
+& \textbf{10} & \ti{12.1086} & \ti{12.1666} & \ti{13.6021} & \ti{14.9230} & \ti{12.3419} & \ti{12.3234} \\
+& \textbf{15} & \ti{14.0532} & \ti{17.2649} & \ti{16.1410} & \ti{16.0983} & \ti{14.5993} & \ti{13.8329} \\
+& \textbf{20} & \ti{16.5178} & \ti{17.3444} & \ti{21.1871} & \ti{17.1917} & \ti{17.0247} & \ti{15.6259} \\
+& \textbf{25} & \ti{17.5062} & \ti{19.6158} & \ti{19.7483} & \ti{17.1917} & \ti{17.5036} & \ti{16.7736}  \\
+& \textbf{30} & \ti{17.9821} & \ti{20.0913} & \ti{19.3814} & \ti{19.3519} & \ti{18.2937} & \ti{17.5289} \\\bottomrule
+
+    \end{tabular}}
+    \caption{Computational time in seconds (s).}
+    \label{tab:classtree6d}
+
+\end{subtable}
+
+\label{tab:classtree5}
+\caption{The classification tree results for accuracy score (a), precision score (b), recall score (c) and computational time (d) for grouped age and grouped frailty.}
+\end{table}
+
+Figure \ref{fig:finalclasstree} displays the classification tree visualisation with an accuracy score of 89.89\%, a precision score of 85.70\% and a recall score of 91.63\%. The tree shows the most important factor to determine whether a patient will be admitted overnight is the `admission\_method\_elective - waiting list'. If a patient was admitted via this method, then they are more likely to be discharged on the same day. The class displayed on the node represents the highest quantity of patients. The colours of the node symbolise the weighting within the group, with the darkest orange representing discharge on the same day ($<$1) and the darkest blue representing admittance overnight ($\geq$1). There are 16 leaf nodes representing the `$\geq1$' class, with one node generating a gini of zero, and therefore is a perfect classification.
+
+The model produced 30 leaf nodes, displaying the class of patient, the majority fall into. The user is then able to analyse the individual results within the nodes to determine the average LOS's. They are able to achieve this by taking the individual patient clusters from the nodes and analysing them separately. Additionally, when new patients are admitted to a ward, they are able to determine at the point of arrival with their characteristics, what their expected LOS should be. This is also beneficial to determine where targets of being discharged on the same day of admission are not being met, for example, surgical cases. It also displays influencing factors in LOS. For example, a patient who is admitted through the elective waiting list to the specialty gynaecology, will have their LOS dependent on the day they are admitted. If they are admitted on a Monday, they fall into the `$\geq1$' class, otherwise, they fall into the `$<1$' class. This can be used to help practitioners plan elective admission and when they should be admitted in order to reduce unexpected and prolonged LOS's.
+
+
+\begin{landscape}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.62]{Chapters/Chapter5/Figuresnew/CorrectionsClassificationTree.pdf}
+        \caption{Classification tree with an accuracy score of 89.89\% for predicting grouped LOS for patients within ABUHB, consisting of 30 terminal nodes.}
+        \label{fig:finalclasstree}
+    \end{figure}
+\end{landscape}
+
+
+\subsubsection{Random Forests}
+
+The CART model parameters that yielded the best results, were then implemented into a random forest model to determine if there was an improvement in these scores. The highest scoring CART model parameters were used, as these CART models will be used for the remainder of the research and therefore a direct comparison could be made in terms of accuracy and computational time.
+
+\begin{table}[h!]
+    \centering\scalebox{0.9}{
+    \begin{tabular}{lcc}\toprule
+     \textbf{Parameter}    &\textbf{RandomForestRegressor} & \textbf{RandomForestClassifier}  \\\midrule
+       criterion  & ``squared\_error'' & ``gini'' \\
+       max\_depth & None & None \\
+       min\_samples\_split & 2 & 2 \\
+       min\_samples\_leaf & 100 & 1\\
+       min\_weight\_fraction\_leaf & 0 & 0 \\
+       max\_features & None & None \\
+       random\_state & None & None \\
+       max\_leaf\_nodes & 30 & 30 \\
+       min\_impurity\_decrease & 0 & 0 \\
+       bootstrap & True & True\\
+       oob\_score & False & False \\
+       n\_jobs & None & None \\
+       warm\_start & False & False \\
+       ccp\_alpha & 0 & 0 \\
+       max\_samples & None & None \\
+       class\_weight & N/A & None \\\bottomrule
+    \end{tabular}}
+    \caption{The parameters used within the random forests using the `RandomForestRegressor' and `RandomForestClassifier' algorithms within Python.}
+    \label{tab:randomforest}
+\end{table}
+
+The variable `n\_estimators' underwent hyperparameter tuning to determine the value that produced the highest scores. This variable determines the number of trees to be used within the model. Typically in random forests, the larger the number of trees, the better the result produced, however, the higher the computational cost \cite{Pillai2020}. A range from 10 to 50 estimators were investigated, in increments of 10, to determine R$^{2}$ and accuracy against computational time.
+
+\begin{table}[h!]
+    \centering\scalebox{0.8}{
+    \begin{tabular}{ccccccccc}\toprule
+       & \textbf{n\_estimators} &  10 & 20 & 30 & 40 & 50 \\\midrule
+       \multirow{2}{*}{Regression} & R$^{2}$ Score &  0.342912 & 0.342917 & 0.343148 & 0.343291 &  0.343171\\
+      &  Computational Time (s) &130.80 & 260.13 & 390.63 & 535.95 & 655.92\\ \midrule
+        \multirow{2}{*}{Classification} & Accuracy & 0.883539 & 0.887809 & 0.8892296 & 0.890443 & 0.890928 \\
+        & Computational Time (s) & 16.58 & 19.37 & 27.72& 36.87& 37.88\\\bottomrule
+        
+    \end{tabular}}
+    \caption{The accuracy and $R^{2}$ score for the regression and classification random forest models, measured against the n$\_$estimator parameter, respectively. Each model's computational runtime was additionally provided.}
+    \label{tab:RandomForestResults}
+\end{table}
+
+Table \ref{tab:RandomForestResults} displays the random forest results for the regression and classification experiments. The regression random forest increased the regression tree R$^{2}$ by 0.0491\% from 34.28\%. This was achieved by setting `n\_estimators' to 40, in a computational time of 535.95 seconds. Since there is only an increase of 0.0491\% and a computational increase of 508.9714 seconds, the trade off is not worth the additional increase in accuracy.
+
+Additionally, the classification random forest did not improve the accuracy of the model compared to the classification tree. There is a difference of 0.8\% in accuracy levels. One explanation for this phenomenon could be the optimal parameters for the random forest are not the same as those for the classification tree. 
+
+\subsection{Predictive Analytics Summary}
+This section has discussed the application of predictive analytics to data within ABUHB. Linear and logistic regressions were firstly performed, detailing the influence of a variable for the variability in the LOS. Admission method, diagnosis and specialty categories were the most influencing factors in the LOS.
+
+Regression trees were developed to identify groupings of patients in order to predict continuous LOS. Figure \ref{fig:finalregtree} displays the different groupings and classifications of patients LOS, with the average LOS for each group. A total of 30 groups were identified due to the `max\_leaf\_nodes' being equal to 30. This resulted in an R$^{2}$ value of 34.23\%.
+
+Classification trees were then built with the groupings of discharged on the day of arrival or admitted overnight (Figure \ref{fig:finalclasstree}). The best trade off solution between accuracy, precision, recall and computational time, was 30 `max\_leaf\_nodes' and one `min\_samples\_leaf', yielding an accuracy score of 89.89\%. Comparing the classification to regression trees showed there to be a 55.66\% improvement by grouping LOS into two groups.
+
+CART models excel in face validity and usefulness, primarily due to their interpretability compared to other prediction methods \cite{Harper2005, Harper2005b}. The tree structure allows straightforward visualisation of decision-making pathways, making it easier for healthcare practitioners and managers to comprehend and trust the model's output. Furthermore, CART offers the advantage of forced splits, allowing collaboration with healthcare practitioners to jointly determine clinical and statistically meaningful groupings. This ensures the model aligns with real-world scenarios and policy levers. Another benefit of CART is the ability to create targeted groupings, providing valuable insights into specific demographics. If the user wanted fewer numbers of patient groupings to work with, the technique of pruning could be used to selectively remove branches or nodes from the initial tree to simplify its structure.
+
+CART was utilised as a predictive tool by applying it solely to historical data. In this context, the model was designed to predict outcomes based on patterns and relationships found within the past data. By using the historical data as the training set, the CART model identified decision rules and splits that best separated different groups or categories, enabling it to make predictions of LOS for new instances in the future. This approach ensured that the CART model served as a valuable predictive tool for understanding and anticipating events based on past trends. Chapter \ref{chp:Linking} will involve future scenario analysis, where the CART LOS prediction tool will be utilised to assess the impact of potential increases in certain patient grouping demands on LOS, bed requirements, and staffing. By applying the CART model to project future patient groupings and LOS, the study aims to evaluate how changing demands could influence resource needs within the healthcare system.
+
+The consideration of runtime in building a CART model is justified by the need for computational efficiency, especially when the model is intended for frequent use or real-time decision-making scenarios. By prioritising faster run times, organisations can obtain timely predictions and optimise resource allocation efficiently, which is crucial in time-sensitive applications, such as healthcare. The runtime of a CART model can be compared to more complex models, i.e., random forests. While random forests can often achieve higher accuracy due to their ensemble nature, they come at the cost of increased computational requirements. Random forests consist of multiple decision trees, and the process of building and combining these trees can be computationally intensive, particularly for large data sets. This computational issue has the implication that they are less suitable for real-time or repeated use applications. The random forests performed in this section were both computationally heavier in performance time and did not cause a large enough increase in the overall accuracy and R$^{2}$ scores, compared to the CART models.
+
+The CART models showed improvement in the simple linear and logistic regressions and therefore highlighted the benefits of using these techniques to predict patient classifications. The CART models will be linked with the prescriptive models (introduced in Section \ref{sec:prescriptiveresults}), in Chapter \ref{chp:Linking}. Here, an evaluation will take place into the benefits of using CART models over traditional averages. 
+
+
+\section{Prescriptive Analytics Results}\label{sec:prescriptiveresults}
+This section will look at the deterministic and two-stage stochastic models developed in Chapter \ref{chp:presciptive}. The demographics of ABUHB will be used in order to determine the most efficient way to organise specialties and nursing staff amongst a network of hospitals.
+
+
+\subsection{Model Data}
+The deterministic and two-stage stochastic models require user inputs to generate results. In total, the deterministic model requires 11 variables, whereas the two-stage stochastic model requires 17 variables. The collaboration with senior and clinical partners within ABUHB has provided justification around the assumptions and values used within these examples. Discussion around the selection of these variables will take place in Sections \ref{subsec:hospandregions} to \ref{sec:ABUHBstaffing}. A complete list of the variables used within the models can be found in Table \ref{tab:appdetermpa} for the deterministic model and Table \ref{tab:appstochpa} for the two-stage stochastic model in the Appendix.
+
+\subsubsection{Hospitals and Regions}\label{subsec:hospandregions}
+Within ABUHB, there are 10 hospitals located within the five regions as discussed in Section \ref{sec:ABUHB}. In addition, the data contained an additional four medical sites where patients receive treatment. It is important to include patients attending these sites within the model to ensure the entire demand is included and sufficient beds and staff are planned. Table \ref{tab:ABUHBregionhospitals} displays the six regions included in the model and their associated hospitals.
+\begin{table}[h!]
+    \centering\scalebox{0.8}{
+    \begin{tabular}{ll}\toprule
+       \textbf{Region}  &  \textbf{Hospitals}\\\midrule
+       \multirow{2}{*}{Region 1 (Newport) } & Royal Gwent Hospital (RGH), St Woolos Acute Hospital (STWAH), \\ & St Woolos Community Hospital (STWCH)\\ 
+       \multirow{2}{*}{Region 2 (Caerphilly)} & Ysbyty Ystrad Fawr (YYF), \\ & Rhymney Integrated Health and Social Care Centre (RIHSC)\\
+       Region 3 (Blaenau Gwent) & Ysbyty Aneurin Bevan (YAB)\\
+       Region 4 (Torfaen)& County Hospital (CH)\\
+       \multirow{2}{*}{Region 5 (Monmouthshire)}& Nevill Hall Hospital (NHH), Chepstow Community Hospital (CCH), \\
+       &Monnow Vale Integrated Health and Social Care Centre (MVHSCF)\\
+       Other & University Hospital of Wales, Offsite, Outsource, Outsource - CareUK\\\bottomrule
+    \end{tabular}}
+    \caption{List of the 14 care locations within ABUHB and their associated regions.}
+    \label{tab:ABUHBregionhospitals}
+\end{table}
+
+The parameter UB$_{h}^{\textnormal{max, bed, 1st}}$ was determined from online publicly available data recorded by the Welsh Government \cite{StatsWales2021}. The Welsh Government record, over a year period, the average daily beds available for each specialty in each hospital. Within the 10 main hospitals, a total of 1,704 beds were available per day to the entire population. Therefore, the maximum number of beds available will be scaled to represent the proportion of elderly admitted. For the four additional hospitals, which are either not at a hospital site or outside the trust, a fixed value of 20 was given. For the second stage maximum number of beds,  UB$_{h}^{\textnormal{max, bed, 2nd}}$, an additional 10\% of beds will be able to be made available, either by opening additional wards, transferring patients to other hospitals in the region, or to temporarily have patients waiting in corridors for permanent beds.
+
+\subsubsection{Hospitals and Specialties}
+ABUHB provides 29 different specialties among the 14 hospital and care locations, resulting in a combination of 406 unique hospital and specialty combinations. However, in practice, there are 90 combinations of hospital and specialty locations, as shown in Figure \ref{fig:hospspec} and Appendix \ref{App:Hospitals}. These locations will determine the value of $K_{s,h}$. If a specialty is able to open in a hospital, then the value will be equal to the UB$_{h}^{\textnormal{max,bed}}$, otherwise the value is zero. This therefore has the assumption that if a specialty can open, the hospital can choose to open all their beds to that specialty. This assumption was derived from the current practice within certain ABUHB hospitals. For example, the hospitals, Rhymney Integrated Health and Social Care (RIHSC) and Monnow Vale Health and Social Care Facility (MVHSCF), only provide beds for the specialty `GP Other'. Looking forward, the health board could consider an innovative approach to enhance its services by consolidating the locations where they offer care, leading to the establishment of specialty-focused hospitals. This strategic revamp would enable them to streamline their resources and provide more targeted and specialised medical care to the community. Within the specialties, some may not conventionally be viewed as distinct ones. However, within ABUHB, these areas are recognised as having their unique capacity to admit patients and provide dedicated care with their own dedicated beds and staff, e.g., GP and anaesthetics \cite{StatsWales2021}, and therefore will be included in the overall list of 29 specialties.
+
+Online publicly available data was used for the costings per specialty from Public Health Scotland. This data can be viewed within `Table 3: Hospital cost breakdown R040 - Specialty costs and activity - inpatients in all specialties (excluding long stay), by specialty (Excel file, 269KB)' \cite{PHS2021}. Within the Excel spreadsheet, the `Direct Cost per Case' is given, and to make this comparable to all entries, only the `Medical and Dental' costs will be included. The assumption was made that this was the daily cost per specialty. It has been assumed that the cost of scans required whilst an inpatient has been absorbed into these costs. For pain specialty, a different data set was utilised from Public Health Scotland, namely, `Table 3: Hospital cost breakdown R040LS - Specialty costs and activity - day cases, by specialty (Excel file, 201KB)' \cite{PHS2021}. The cost is listed as the `Direct Cost per Case' and the same `Medical and Dental' column was taken. As this file specifically mentions daycases, it is assumed that this is the daily specialty cost.
+The Scottish population follows a similar demographic to those in Wales and has similar operational running costs within hospitals. Additionally, the health boards in Scotland contain a variety of community and acute hospitals. Table \ref{tab:PHSCostsPerSpecialty} displays the minimum, maximum and weighted average cost for each specialty in the 2019-2020 financial year. In order to determine similar costings for hospitals within ABUHB, specialty cost values per hospital were randomly generated within the range of the Scottish data. Additionally, the values produced the same weighted average as the Scottish data. One limitation of using the Scottish data over Welsh data is that it is not representative of the current practice within ABUHB. Scottish data was chosen because it is located within the UK and costing values are expected to be similar. The availability of more specific data tailored to ABUHB could potentially yield more reliable and accurate results. There is a large range of costs between hospitals potentially due to a number of reasons such as the type of diagnosis and care required \cite{Street2014}. Our objective is to introduce variation into ABUHB by utilising randomly generated values within the range of minimum and maximum costs observed in the NHS Scotland data. This approach enables us to capture diverse scenarios and account for potential fluctuations in costs within ABUHB's context while maintaining the same average cost as observed in the NHS Scotland data. In general in the NHS, there is no fixed tariff for bed days for specific specialties. Some specialties in ABUHB did not overlap with the Scottish data, and therefore the category, `Medical Other', was selected for these specialties (anaesthetics, community medicine, diabetes and endocrinology and radiology). To determine the second stage hospital costs, c$_{s,h}^{\textnormal{bed, 2nd}}$, an additional 20\% was added to each of the c$_{s,h}^{\textnormal{bed, 1st}}$ values. This percentage was fixed across all specialties and hospitals and was selected to provide a significant penalty for not having sufficient demand.
+
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{lrrr}\toprule
+        \textbf{Specialty} & \textbf{Minimum Cost ($\pounds$)} & \textbf{Weighted Average ($\pounds$)} & \textbf{Maximum Cost ($\pounds$)} \\\midrule
+        Accident \& Emergency & 22 &247 &924 \\
+        Anaesthetics & 34 & 1,021 & 2,370\\
+        Cardiology & 4 & 614 & 1,513 \\
+        Care of the Elderly & 131 & 577 & 6,021 \\
+        Community Medicine & 34 & 1021 & 2,370\\
+        Dermatology & 203 & 1,381 &2,446 \\
+        Diabetes \& Endocrinology & 34 & 1,021 & 2,370\\
+        Ear, Nose \& Throat & 77 & 491 & 1,436 \\
+        Gastroenterology & 112 & 656 & 1,472 \\
+        General Medicine & 2 & 290 & 1,418\\
+        General Surgery & 11 & 541 & 1,517\\
+        GP Other & 6& 325 & 1,117\\
+        Gynaecology & 180 & 517 & 2,526 \\
+        Haematology & 411 & 1,208 & 5,214 \\
+        Infectious Diseases & 438 &711 & 1,188 \\
+        Intermediate Care & 0 & 118 & 361 \\
+        Maxillo-Facial & 96 & 1,410 & 8,637 \\
+        Neurology & 620 & 1,273 & 3,260 \\
+        Ophthalmology & 166 & 729 & 10,895 \\
+        Pain &6 & 128 & 865 \\
+        Plastic Surgery & 179 & 902 & 1,399 \\
+        Radiology & 34 & 1,021 & 2,370\\
+        Radiotherapy and Oncology & 48 & 1,089 & 2,182 \\ 
+        Rehabilitation & 58 & 1,455 & 30,305 \\
+        Respiratory & 75 & 448 & 1,818 \\
+        Restorative Dentistry & 1 & 140 & 178 \\
+        Rheumatology & 155 & 596 & 1,256 \\
+        Trauma and Orthopaedic & 4 & 703 & 1,633 \\
+        Urology & 77 & 379 & 17,899 \\ \bottomrule
+    \end{tabular}}
+    \caption{Specialty cost data displaying the minimum, weighted average and the maximum daily bed cost per specialty, taken from NHS Scotland \cite{PHS2021}.}
+    \label{tab:PHSCostsPerSpecialty}
+\end{table}
+
+\subsubsection{Staffing}\label{sec:ABUHBstaffing}
+Within the NHS, there are different levels of experience among nursing staff \cite{NHS2022}. Typically on a ward, there will be a mixture of different bands of nurses to make up the team of nurses. It is also important to ensure there is a mixture of different skill sets on a ward at a time \cite{Jones2015}. Within the NHS there are different nurse to patient ratios, ranging from 1:1 to 1:10 \cite{UHS}. The most critical patients require more direct care from nurses, i.e., intensive care units often have required ratios of one nurse to either one or two patients \cite{Kean2013}. Within general inpatient wards this ratio varies. The ratio of nurses to patients will vary between different specialties, with the more acute specialties requiring more nurses to patients. It was decided for more low-need based wards, e.g., community medicine, a ratio of 1:10 would be required. For more acute wards, a ratio of 1:4 would be necessary, e.g., A\&E. Finally, the remaining wards would be assigned a required ratio of 1:8. It will be assumed that an equal number of nurses across the bands will be required on the wards, with each band required to meet a given ratio.
+
+After discussion with the senior staff in the health board, two NHS nursing bands would be considered since this is their core members of staff required on a ward, namely bands five and six nurses \cite{East2014}. These nursing bands are crucial in ensuring efficient and quality patient care, making them a priority for staffing considerations. The hourly pay for each band varies with experience, with Table \ref{tab:nhsbands} displaying the intermediate salary \cite{NHSEmployers2021}. When there are insufficient staffing levels, bank or agency staff are required. These nurses have a higher hourly wage, due to the unreliability of shifts \cite{OHNFT2023}. 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccc}\toprule
+         & \textbf{Band 5} & \textbf{Band 6} \\\midrule
+       c$^{\textnormal{staff,1st}}_{b}$  & $\pounds$14.21 & $\pounds$17.48\\
+         c$^{\textnormal{staff,2nd}}_{b}$ & $\pounds$18.95 & $\pounds$23.36 \\ \bottomrule
+    \end{tabular}
+    \caption{Hourly nursing staffing costs per nursing band level within the NHS~\cite{NHSEmployers2021,OHNFT2023}.}
+    \label{tab:nhsbands}
+\end{table}
+
+As of June 2022, ABUHB employed approximately 1,935 registered adult and general nurses \cite{StatsWales2022}. This value includes all bands of nurses across all specialties. For the purpose of the model, it will be assumed that 400 nurses are available, 200 for each band. Similarly, for the variable UB$^\textnormal{max, staff, 2nd}_b$, it will be assumed that up to 200 additional nurses for each can be requested from the bank for each band.
+
+\subsection{Model Development}
+These variables will be implemented into models developed in both Microsoft Excel using the OpenSolver add-in and Python using the PuLP packages as a solver. Microsoft Excel was selected as a primary tool since it is familiar with the health board and open-source. The OpenSolver add-in was used over the built in Excel solver, due to the limitations on the number of decision variables and constraints. OpenSolver has previously been used within healthcare planning for both bed planning \cite{Lal2015} and staff allocation \cite{Respicio2018}. A Python tool was additionally developed as it allows for flexibility within the number of hospitals, specialties and band levels of nurses. This adaptability ensures the model is dynamic to the changing needs and demographics of the health board. Python is also open-source, adaptable and easy to learn \cite{Ranum2006}, which will enable future development by senior staff at ABUHB. 
+
+Two optimiser engines were used within the project: COIN-OR (Computational Infrastructure for Operations Research) and Gurobi. COIN-OR is a project managed by the COIN-OR Foundation with the aim to provide an ``open-source community for operations research software'' \cite{COF2016, LougeeHeimer2003}. The COIN-OR project consists of numerous smaller initiatives, including the development of various software for a variety of problems, methods, and coding languages. The COIN-OR community has developed two main linear programming solvers: CLP (COIN-OR Linear Programming), which primarily uses the simplex method as its core algorithm, and CBC (COIN-OR Branch and Cut), a mixed integer linear program-based (MILP) branch and cut library that also makes use of CLP. Although both of these solvers are designed in C++, they can be used with different languages through readily available packages such as PuLP. Since the deterministic and two-stage stochastic models developed require the decision variables to be integer, the CBC solver is the most suitable choice.
+
+COIN-OR solvers are free and open source which is vital for ABUHB as the minimisation of cost is a necessity for the organisation. There exists more advanced commercial software including CPLEX \cite{IBM} and Gurobi \cite{GurobiOptimization}. Gurobi is a widely used optimization solver that provides powerful tools for solving various mathematical optimization problems. The Gurobi Optimization, Inc. company focuses on delivering high-performance solvers for a range of applications in operations research and related fields. One of the distinguishing features of Gurobi is its ability to handle complex optimization models with speed and precision. Gurobi's interface supports multiple programming languages, including Python, C++, Java, and MATLAB, making it accessible to a broad audience of developers and researchers. A free academic license was obtained for Gurobi and provided us with unrestricted access to the solver's optimisation tools. This enabled the model to be solved quickly and efficiently, whilst also validating the CBC results.
+
+Within both the OpenSolver and implementations offer the flexibility to adjust specific parameters, enabling users to enhance accuracy and control the execution time of their models. The first is the maximum length of time in which the programme is allowed to run before the model is stopped. Within Excel, this is denoted as `Maximum Solution Time (seconds)' and within Python as `maxSeconds'. Prior to applying any restrictions, these models would execute indefinitely until the optimal solution was discovered. However, by setting the appropriate value, users can now limit the runtime of the program, ensuring efficient execution and timely results while still achieving the best possible solution. For the purpose of this research, no restriction on runtime was set. The second option is the relative gap tolerance for the solver to stop, i.e., the solver will stop if it has found a feasible integer solution whose objective function is within the given percentage of the true integer optimal solution. In Excel, this is denoted as the `Branch and Bound Tolerance (\%)' and the `fracGap' value in Python. In order to reach optimal values, this was set to 0, and the solvers will always reach the optimal values. Within Excel, there is the option to change the maximum number of iterations, which determines how many iterations the solver will use, however, this was left unbounded. The PuLP package does not have this built in as default.
+
+The Microsoft Excel OpenSolver and the Python PuLP tools have been provided on Github \cite{Williams2023}, to allow the models to be usable by other researchers and healthcare specialists. As the parameters previously discussed are consistent between the Excel and Python models, the same objective function and decision variables are achieved. As a result, users have the flexibility to opt for either implementation as the same results will be achieved. This aspect highlights the interchangeability of the models, empowering users to utilise the most suitable platform while achieving identical outcomes.
+
+\subsection{Results}
+The following subsection will look at implementing the ABUHB data into the deterministic and two-stage stochastic optimisation models. Either Microsoft Excel or Python implementations can be used. Traditionally, the health board plan using averages, and therefore the deterministic model is meant to replicate their current planning process within ABUHB.
+
+
+\subsubsection{Experiment 1 - Three Years' Worth of Data}
+The first experiment examined the entire three years' worth of data from April 2017 to March 2020, to determine the daily average number of beds and staff required.
+
+Recall the following equations discussed in Chapter \ref{chp:presciptive}, which were used to calculate the daily demand for each region. 
+
+\begin{equation}\footnotesize{
+     \text{Average daily bed demand}_{s,h} &= \text{Average LOS}_{s,h} \times \text{Average daily number of admissions}_{s,h} } \tag{\ref{eq:averagebeds1} revisited}\\
+ \end{equation}
+\begin{equation}\footnotesize{
+    D_{s,r} = \text{Average daily bed demand}_{s,r} &= \sum_{h \in \mathcal{R}} \text{Average daily bed demand}_{s,h} } \tag{\ref{eq:averagebeds2} revisited}
+\end{equation}
+
+Using these equations against the whole data set, resulted in Table \ref{tab:regionaldemands1} which displayed the average daily demand for each specialty in each of the six regions. The demands were rounded to four decimal places, however, since beds have to be integer, the model would round these to the nearest integer.
+
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{lcccccc}\toprule
+     \textbf{Specialty}    & \textbf{Region 1} & \textbf{Region 2} & \textbf{Region 3} & \textbf{Region 4} & \textbf{Region 5} & \textbf{Region 6}  \\ \midrule
+Accident \& Emergency	& 2.1081& 	0& 	0& 	0& 	9.1846	& 0 \\
+Anaesthetics & 	4.6079	& 0& 	0& 	0& 	0& 	0 \\
+Cardiology & 	16.0947	& 0& 	0& 	0& 	9.8809& 	0.0002 \\
+Care of the Elderly	& 94.5387	& 57.7380	& 0.7489& 	8.7416	& 46.4786	& 0\\
+Community Medicine& 	0& 	6.9952&	0& 	0.3121& 	12.9756	& 0\\
+Dermatology& 	2.4192	& 0& 	0& 	0& 	0& 	0\\
+Diabetes \& Endocrinology& 14.5635	& 21.2838	& 0& 	0& 	17.2387& 0\\
+Ear Nose \& Throat	& 3.2480	& 0.0041	& 0	& 0	& 0	& 0\\
+Gastroenterology& 	13.0208	& 0.6065	& 0	& 0& 	20.1331& 	0.0725\\
+General Medicine& 	84.9712& 	0.9846	& 0.0115	& 0& 	14.1695& 	0\\
+General Surgery& 	46.5808& 	0.5390	& 0& 	0& 	21.8943& 	0.0006 \\
+GP Other& 	0& 	9.8734&0& 	0& 	15.2880& 	0\\
+Gynaecology& 	2.1194	& 0.1222	& 0& 	0& 	1.1716& 	0.0002\\
+Haematology& 	3.0718	& 0.0320	& 0& 	0& 	1.8339& 	0.0002\\
+Infectious Diseases	& 7.1817& 	0& 	0& 	0& 	0& 	0\\
+Intermediate Care& 	0& 	0& 	0.3426	& 0.3248	& 0 & 	0 \\
+Maxillo-Facial	& 1.1831	& 0& 	0& 	0& 	0.0243& 	0\\
+Neurology	& 1.5828	& 0	& 0	& 0& 	0	&0\\
+Ophthalmology& 	2.5538& 	0.0028& 	0& 	0& 	0.1968	& 0.5232\\
+Pain& 	0.0586& 	0.0055& 	0& 	0.0037& 	0.0131& 	0 \\
+Plastic Surgery	& 0& 	0& 	0& 	0	& 0.0336	& 0.0002\\
+Radiology& 	0.0146	& 0& 	0& 	0 & 	0.0026	& 0\\
+Radiotherapy \& Oncology& 	0.2265& 	0& 	0& 	0& 	0& 0\\
+Rehabilitation	& 62.8610	& 32.9653	& 68.9710& 	31.9917	& 24.4659	& 0 \\
+Respiratory& 	29.8010& 	0& 	0& 	0& 	27.8372	& 0 \\
+Restorative Dentistry& 	0.0001	& 0& 	0& 	0& 	0& 	0\\
+Rheumatology& 	0.0004& 	0.001& 5	0& 	0& 	0.0128& 	0\\
+Trauma \& Orthopaedic	& 60.3126& 	0.6665	& 0& 	0& 	41.5186& 	0\\
+Urology& 	12.3397& 	0.0521	& 0& 	0& 	0.2034& 	0.0702\\
+\bottomrule
+    \end{tabular}}
+    \caption{The daily bed demands for each specialty grouped by regions within ABUHB for three years' worth of patient admissions, rounded to four decimal places.}
+    \label{tab:regionaldemands1}
+\end{table}
+
+\subsubsubsection{Deterministic Model}
+In order to meet the demand and satisfy the constraints, the deterministic model utilised the first stage variables only (Table \ref{tab:appdetermpa}). The results yielded a daily cost of $\pounds$904,280.80. In total, 1,026 beds across the health board were deployed with Figure \ref{fig:detHeatmap1} displaying the precise locations of these beds. In order to satisfy demand a total of 414 NHS nurses across a 24 hour period were required. The maximum total number of beds available to deploy across the health board is 1,510, showing that the elderly and frail patients would be running at a 68\% occupancy level, with the demand level being 974.78 beds. The number of staff deployed is larger than the maximum 1:4 ratio of nurses to patients. This is due to the requirement of an integer number of nursing staff and therefore the model is rounding up.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{Chapters/Chapter5/Figuresnew/Determin.png}
+    \caption{Heatmap of bed locations for each specialty within each hospital for the deterministic model for Experiment 1. Note that a darker colour indicates a larger number of beds are deployed.}
+    \label{fig:detHeatmap1}
+\end{figure}
+
+\subsubsubsection{Two-Stage Stochastic Model}
+The two-stage stochastic model was considered with three different scenarios. Table \ref{tab:scenarios1} displays each of the three scenarios and their associated probabilities. The average of all scenarios is equal to the deterministic daily demands (Table \ref{tab:regionaldemands1}). The variable values can be seen within Table \ref{tab:appstochpa}. 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}cc@{}}\toprule
+       \textbf{Scenario}  &\textbf{Probability}  \\\midrule
+       Demand remains the same & 33.3$\dot{3}$\% \\ 
+       Demand increases by 20\% & 33.3$\dot{3}$\% \\
+       Demand decreases by 20\% & 33.3$\dot{3}$\% \\\bottomrule
+    \end{tabular}
+    \caption{The three scenarios and their associated probabilities of occurring which will be used within the two-stage stochastic model.}
+    \label{tab:scenarios1}
+\end{table}
+
+
+Table \ref{tab:dettwostageresults1} compares the results for the deterministic and two-stage stochastic models. 
+
+The two-stage stochastic model deployed an additional 197 beds compared to the deterministic model, deploying 862 in the first stage and a maximum of 361 in the second stage. Similarly, 70 additional nurses were deployed. The objective value increased by 4.56\%, to a daily cost of $\pounds$945,500.48.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccl}\toprule
+ & \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+      Deterministic & 1,026 & - &  414 & - & 904,280.80 =  EV \\ \midrule
+      Stochastic &862  & 361&348& 136& 945,500.48 = RP\\ \bottomrule
+    \end{tabular}
+    \caption{The EV and RP values for the $x^\textnormal{bed}$, $x^\textnormal{staff}$, $u^\textnormal{bed}$ and $u^\textnormal{staff}$ decision variables and the objective function value for Experiment 1.}
+    \label{tab:dettwostageresults1}
+\end{table}
+
+The location of each of the 1,223 beds can be seen within Figure \ref{fig:stocHeatmap1}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{Chapters/Chapter5/Figuresnew/Stoc.png}
+    \caption{Heatmap of bed locations for each specialty within each hospital for the two-stage stochastic model for Experiment 1. Note that a darker colour indicates a larger number of beds are deployed.}
+    \label{fig:stocHeatmap1}
+\end{figure}
+
+\subsubsubsection{Test A}
+The first test as discussed in Section \ref{sec:TestA} involved using the results from the deterministic model and fixing these as the first stage variables in the two-stage stochastic model. Table \ref{tab:eevdettwostageresults1} displays the results for the VSS. 
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccl}\toprule
+ & \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+       Deterministic & 1,026 & - &  414 & - & 904,280.80 =  EV \\ \midrule
+      Stochastic & 862 & 361  & 348 & 136 & 945,500.48 = RP\\ \midrule
+      Test A & 1,026 & 194 & 414&  98 &  977,456.72 = EEV \\\bottomrule
+    \end{tabular}
+    \caption{The EV, RP and EEV values for the $x^\textnormal{bed}$, $x^\textnormal{staff}$, $u^\textnormal{bed}$ and $u^\textnormal{staff}$ decision variables and the objective function value for Experiment 1.}
+    \label{tab:eevdettwostageresults1}
+\end{table}
+
+The VSS can be calculated to be 3.38\%, equating to $\pounds$31,956.24 per day. Whilst a value of 3.38\% is low, the saving over a year period equates to $\pounds$11,664,027.60. This showed that there is a benefit in using the stochastic solution over the deterministic solution.
+
+To understand why the deterministic solution was performing poorly, we calculated the LUSS and LUDS values. This would determine whether the model was too optimistic or the locations of beds and staff were incorrect.
+
+
+\subsubsubsection{Test B}
+The second test discussed in Section \ref{sec:TestB}, involved fixing the first stage variables which are at zero or the lower bound in the deterministic problem, and then to compute in the stochastic programme. In this case, there were hospitals, which even though beds could be deployed, the value was zero. This would determine if the deterministic model produced the correct, non-zero variables.
+
+Recalling Equation \eqref{eq:LUSS}, the RP result can then be compared to the ESSV.
+
+\begin{equation}
+    LUSS = ESSV - RP\tag{\ref{eq:LUSS} revisited}
+\end{equation}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccl}\toprule
+ & \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+       Deterministic & 1,026 & - &  414 & - & 904,280.80 =  EV \\ \midrule
+      Stochastic & 862 & 361  & 348 & 136 & 945,500.48 = RP\\ \midrule
+      Test A & 1,026 & 194 & 414&  98 &  977,456.72 = EEV \\\midrule
+      Test B & 862 & 361  & 348 & 136 & 945,500.48 = ESSV\\ \bottomrule
+    \end{tabular}
+    \caption{The EV, RP, EEV and ESSV values for the $x^\textnormal{bed}$, $x^\textnormal{staff}$, $u^\textnormal{bed}$ and $u^\textnormal{staff}$ decision variables and the objective function value for Experiment 1.}
+    \label{tab:eesveevdettwostageresults1}
+\end{table}
+
+The results in Table \ref{tab:eesveevdettwostageresults1} show that LUSS value was calculated to be $\pounds$0 since the ESSV and RP values are equal. Therefore this equates to the perfect skeleton solution and suggests the variables selected by the first stage of the solution are robust.
+
+\subsubsubsection{Test C}
+The final test determined the upgradeability of the model by adding the number of beds and staff deployed in the deterministic model as a constraint, for the stochastic model (Section \ref{sec:TestC}). 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccl}\toprule
+ & \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+       Deterministic & 1,026 & - &  414 & - & 904,280.80 =  EV \\ \midrule
+      Stochastic & 862 & 361  & 348 & 136 & 945,500.48 = RP\\ \midrule
+      Test A & 1,026 & 194 & 414&  98 &  977,456.72 = EEV \\\midrule
+      Test B & 862 & 361  & 348 & 136 & 945,500.48 = ESSV\\\midrule
+      Test C & 1,035 & 185 &  414  & 84 &  976,601.16 = EIV \\\bottomrule
+    \end{tabular}
+    \caption{The EV, RP, EEV, ESSV and EIV values for the $x^\textnormal{bed}$, $x^\textnormal{staff}$, $u^\textnormal{bed}$ and $u^\textnormal{staff}$ decision variables and the objective function value for Experiment 1.}
+    \label{tab:eiveesveevdettwostageresults1}
+\end{table}
+
+The LUDS value was calculated by the difference between EIV and RP, which using Table \ref{tab:eiveesveevdettwostageresults1}, determined this value to be $\pounds$31,100.68. Since LUDS $<$ VSS, this demonstrated partial upgradeability and additional beds and staff were deployed in the first stage compared to the deterministic solution.
+
+\subsubsubsection{Experiment 1 Summary}
+This section has analysed bed and staffing requirements based on three years' worth of data, using the daily demand average. The VSS has shown that there is a 3.38\% saving per day using costings from NHS Scotland \cite{PHS2021}, equalling $\pounds$7,681,877.60 per year. Any additional potential benefits that can be utilised by the NHS are critically important. 
+
+In conclusion, the deterministic solution did not perform well in a stochastic environment because too few beds and staff were deployed (1,026 beds and 414 staff compared to 1,223 beds and 484 staff). As the LUSS was equal to zero meaning the deterministic solution has the perfect skeleton solution, but plans on deploying too many beds and staff for the demand. Within ABUHB, planning currently takes place based on averages, i.e., the deterministic model. Although ABUHB costing figures have not been used, the differences between the deterministic and two-stage stochastic model have been shown, with the VSS being calculated to demonstrate the benefit of the second method. Therefore, this has shown there is evidence for the NHS to move away from simply planning on averages and use more sophisticated techniques. 
+
+
+\subsubsection{Experiment 2}
+The second experiment analysed the beds on a year-to-year basis, to determine if there were yearly differences in the number of beds and staff that should be deployed. Since the yearly demand of patients contained little variation (Section \ref{sec:datatrends}), from a high level, it could be assumed that the beds and staff required would contain little variation. This experiment would therefore determine if there was a need to plan on a smaller scale horizon. 
+
+Tables \ref{tab:regionaldemandsexp2a} and \ref{tab:regionaldemandsexp2b} display the regional demands for each specialty for each year. The same first stage (Table \ref{tab:appdetermpa}) and second stage (Table \ref{tab:appstochpa}) variables would be used as those in Experiment 1 to allow direct comparisons.
+
+\begin{landscape}
+
+\begin{table}[h!]
+    \centering\scalebox{0.8}{
+    \begin{tabular}{lcccccccccccccccccc}\toprule
+\multirow{2}{*}{\textbf{Specialty}}& \multicolumn{3}{c}{\textbf{Region 1}} & \multicolumn{3}{c}{\textbf{Region 2}}& \multicolumn{3}{c}{\textbf{Region 3}}\\\cmidrule(lr){2-4} \cmidrule(lr){5-7}\cmidrule(lr){8-10}
+& \textbf{2017-2018} & \textbf{2018-2019} & \textbf{2019-2020} & \textbf{2017-2018} & \textbf{2018-2019} & \textbf{2019-2020} & \textbf{2017-2018} & \textbf{2018-2019} & \textbf{2019-2020} \\\midrule
+Accident \& Emergency &2.2703&	2.2025&	1.8524&	0&	0&	0&	0&	0&	0\\
+Anaesthetics&4.5049&	4.4998&	4.8186	&0	&0&	0&	0&	0&	0	\\
+Cardiology&17.2662&	14.6579&	16.3594&	0&0	&0&	0	&0&	0	\\
+Care of the Elderly&76.9707	&88.5761&	118.0052&	55.7326&	58.4843	&58.9937&	0	&0.3977&	1.8461\\
+Community Medicine&0	&0&	0&	7.1593&	6.0895&	7.7349&	0&	0	&0\\
+Dermatology&2.8287	&2.1355&	2.2939&	0&	0	&0&	0&	0	\\
+Diabetes \& Endocrinology&16.7264&	11.5043	&15.4574	&24.7432	&19.8417&19.2722	&0	&0	&0	\\
+Ear, Nose \& Throat&3.0791	&3.7301&	2.9358	&0.0084	&0.0027&	0.0013	&0	&0&	0		\\
+Gastroenterology&12.1823	&10.4803	&16.3906	&0.6416&	0.5303&	0.6478	&0	&0&	0	\\
+General Medicine&106.1909	&96.5455&	52.2668&	0.2873	&1.1528&	1.5126&	0	&0	&0.0344	0\\
+General Surgery&48.8745&46.5117&	44.3624	&0.4163&	0.521	&0.6794	&0	&0	&0\\
+GP Other&0	&0	&0	&9.6797	&10.1153	&9.8254	&0&	0&	0\\
+Gynaecology&2.5425&	1.8482&	1.968&	0.1391&	0.1231&	0.1046&	0	&0	&0\\
+Haematology&3.4524&	2.6894&	3.0736&	0	&0	&0.0959&	0	&0	&0\\
+Infectious Diseases&8.1529&	6.4296&	6.9635&	0&	0	&0	&0	&0	&0	\\
+Intermediate Care&0	&0&	0&	0&	0	&0&	0	&0.0078&	1.0184\\
+Maxillo-Facial&1.2256	&1.0697	&1.2539&	0	&0	&0	&0&	0	&0\\
+Neurology&1.4497	&1.565	&1.7336&	0&	0	&0&	0	&0	&0	\\
+Ophthalmology  &2.5831	&2.4957	&2.5828&	0&	0	&0.0086	&0	&0&	0\\
+Pain &0.0555	&0.066	&0.0545&	0&	0.0118	&0.0047	&0&	0	&0\\
+Plastic Surgery&0	&0	&0	&0	&0&	0&	0	&0	&0\\
+Radiology&0.0102	&0.0196	&0.0142	&0&	0&	0	&0	&0&	0\\
+ Radiotherapy \& Oncology&0.0031	&0.0023	&0.673	&0	0	&0	&0	&0	&0\\
+Rehabilitation&64.5703&	62.9902	&61.0276	&34.7587&	34.72&	29.427	&69.5287&	64.8741&	72.5009	\\
+Respiratory&30.1523	&30.7641&	28.4902&	0	&0	&0	&0	&0	&0\\
+Restorative Dentistry&0.0002	&0	&0.0002&	0	&0	&0	&0	&0	&0\\
+Rheumatology&0	&0&	0.0011&	0	&0.0044&0	&0	&0	&0\\
+Trauma \& Orthopaedic&57.1547	&61.7714&	62.0072&	0.7173	&0.6536&	0.6288&	0&	0	&0\\
+Urology&11.4221	&13.5649&	12.033&	0.057	&0.0541&	0.0455&	0&	0	&0\\ \bottomrule
+
+    \end{tabular}}
+    \caption{The daily bed demands for each specialty within regions one, two and three of ABUHB for three individual years' worth of patient admissions, rounded to four decimal places.}
+    \label{tab:regionaldemandsexp2a}
+\end{table}
+
+\begin{table}[h! ]
+    \centering\scalebox{0.8}{
+    \begin{tabular}{lcccccccccccccccccc}\toprule
+\multirow{2}{*}{\textbf{Specialty}}& \multicolumn{3}{c}{\textbf{Region 4}}& \multicolumn{3}{c}{\textbf{Region 5}}& \multicolumn{3}{c}{\textbf{Region 6}}\\\cmidrule(lr){2-4} \cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}\cmidrule(lr){14-16}\cmidrule(lr){17-19}
+& \textbf{2017-2018} & \textbf{2018-2019} & \textbf{2019-2020} & \textbf{2017-2018} & \textbf{2018-2019} & \textbf{2019-2020} & \textbf{2017-2018} & \textbf{2018-2019} & \textbf{2019-2020}  \\\midrule
+
+Accident \& Emergency&0	&0&	0	&8.5642	&10.0826	&8.9078&	0	&0	&0\\
+Anaesthetics&0	&0&	0&	0.423&	0.7812	&1.1152&	0&	0&0\\
+Cardiology&0	&0&	0&	10.7899	&10.2858&	8.5707	&0&	0&	0.0008\\
+Care of the Elderly&12.3557	&6.4882&	7.3849	&53.7813&44.1656	&41.5028&	0&	0	&0\\
+Community Medicine	&0.3653	&0.1386&	0.4321	&16.6726	&13.9982&	8.2691	&0&	0&	0\\
+Dermatology	&0&	0	&0&	0&	0&	0	&0&0	&0\\
+Diabetes \& Endocrinology	&0&	0	&0	&17.8653	&18.4154&	15.4405&	0&	0	&0\\
+Ear, Nose \& Throat&0	&0&	0	&0	&0	&0	&0	&0	&0\\
+Gastroenterology&0	&0	&0	&18.3652&	21.7402	&20.2937&	0.0006	&0	&0.0008\\
+General Medicine&0	&0	&0	&12.0771	&11.8051	&18.6143&	0&	0&	0\\
+General Surgery	&0&	0	&0	&21.656	&23.1851	&20.8447&	0.0003	&0.0003&	0.0008\\
+GP Other	0	&0	&0&	14.7579&	13.86&	17.2409&	0	&0	&0\\
+Gynaecology	&0	&0	&0	&1.2598&	1.5459&	0.7105	&0&	0&	0.0008\\
+Haematology	&0	&0	&0	&1.8601	&1.7505&	1.8911	&0.0003&	0	&0\\
+Infectious Diseases	&0	&0	&0	&0	&0	&0&	0&	0	&0\\
+Intermediate Care&	0	&0.6014&	0.3729&	0&	0&	0&	0	&0&	0\\
+Maxillo-Facial	&0	&0	&0&	0.0271&	0.0141	&0.0319	&0	&0	&0\\
+Neurology	&0	&0	&0	&0&	0	&0	&0	&0	&0\\
+Ophthalmology &0	&0	&0	&0.1748&	0.2065	&0.2093	&0	&0.0003	&0.0012\\
+Pain &0.0086	&0.0008&	0.0016	&0.0145	&0.0156	&0.0094	&0&	0	&0\\
+Plastic Surgery&	0	&0&	0	&0.0212&	0.0199	&0.06&	0	&0&	0.0008\\
+Radiology&0	&0	&0	&0.006	&0.0003	&0.0017&	0&	0&	0\\
+ Radiotherapy \& Oncology&	0&	0	&0&	0&	0&	0&	0&	0	&0\\
+Rehabilitation&29.5590	&32.9368&	33.4754	&18.3286	&25.2346	&29.8199&	0&	0&	0\\
+Respiratory&	0	&0	&0&	30.7903&29.5149	&23.2192	&0&	0	&0\\
+Restorative Dentistry	&0&	0	&0	&0&	0&	0&	0&	0&	0\\
+Rheumatology&0&	0&	0	&0	&0.0386&	0	&0	&0	&0\\
+Trauma \& Orthopaedic&0	&0&	0	&42.5161	&41.2805&	40.7614&	0&	0&	0\\
+Urology&0	&0&	0&	0.1685&	0.1933&	0.2485	&0.0028	&0.0027&	0.0035\\ \bottomrule
+
+    \end{tabular}}
+    \caption{The daily bed demands for each specialty within regions four, five and six of ABUHB for three individual years' worth of patient admissions, rounded to four decimal places.}
+    \label{tab:regionaldemandsexp2b}
+\end{table}
+\end{landscape}
+\FloatBarrier
+\subsubsubsection{Deterministic Model}
+Using the average daily demands as the minimum number of beds that were required to be met, the deterministic model ran on each of the three years investigated. Table \ref{tab:detresults2} displays the number of beds and staff required each year with the expected daily cost per year. The years 2017-2018, had the largest expected cost, planning the largest number of beds and staff. By planning year-by-year, this had the potential for up to $\pounds$13,312.60 to be saved per day. 
+
+
+\begin{table}[h!]
+    \centering\scalebox{0.95}{
+    \begin{tabular}{ccccccl}\toprule
+ & \multirow{2}{*}{\textbf{Year}}& \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){3-4} \cmidrule(lr){5-6}
+&& $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+     \multirow{3}{*}{Deterministic} & 2017-2018 &1,031 & - & 396 & - &  898,254.20 =  EV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & - & 396 & - & 890,968.20 =  EV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & - & 396  & - & 893,712.20 =  EV$_{19-20}$\\ \midrule
+    \end{tabular}}
+    \caption{The EV values for the $x^\textnormal{bed}$, $u^\textnormal{bed}$, $x^\textnormal{staff}$ and $u^\textnormal{staff}$ decision variables and the objective function value per year for Experiment 2.}
+    \label{tab:detresults2}
+\end{table}
+\FloatBarrier
+In order to visualise how these beds should be planned, Figure \ref{fig:detexp2} displays each of the three heatmaps for hospital and specialty locations. For the majority of locations, if hospital beds are opened then in the following years the beds remain open. The results also display, the number of patients who are required to be transferred to other non NHS site locations or hospitals in other health boards through the ``Other'' category. Therefore if hospital managers wanted to limit the number of patients falling into the ``Other' category, they could determine how much additional demand they need to make available. In all three cases, a maximum of one additional bed was required per day for three to six specialties.
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[h!]{0.8\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Chapters/Chapter5/Figures/2017DET.png}
+         \caption{2017-2018}
+         \label{fig:detexp2a}
+     \end{subfigure}
+\hfill
+     \begin{subfigure}{0.8\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Chapters/Chapter5/Figures/2018DET.png}
+         \caption{2018-2019}
+         \label{fig:detexp2b}
+     \end{subfigure}
+     \end{figure}
+\hfill
+\begin{figure}\ContinuedFloat
+     \begin{subfigure}{0.8\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Chapters/Chapter5/Figures/2019DET.png}
+         \caption{2019-2020}
+         \label{fig:detexp2c}
+     \end{subfigure}
+        \caption{Heatmaps of bed locations for each specialty within each hospital for the deterministic model for the years 2017-2018 (a), 2018-2019 (b) and 2019-2020 (c), for Experiment 2. Note that a darker colour indicates a larger number of beds are deployed.}
+        \label{fig:detexp2}
+\end{figure}
+\FloatBarrier
+    
+\subsubsubsection{Two-Stage Stochastic Model}
+The two-stage stochastic model was considered with the same four scenarios as in Table \ref{tab:scenarios1}. Table \ref{tab:detstocresults2} shows that in the first stage, fewer beds and staff were deployed compared to the deterministic result for all three years. This in turn, increased the objective value ranging from 4.64\% to 4.97\%, with a maximum of 218 and 72 additional beds and staff deployed respectively. 
+
+\begin{table}[h!]
+    \centering\scalebox{0.9}{
+    \begin{tabular}{ccccccl}\toprule
+ & \multirow{2}{*}{\textbf{Year}}& \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){3-4} \cmidrule(lr){5-6}
+&& $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+     \multirow{3}{*}{Deterministic} & 2017-2018 &1,031 & - & 396 & - &  898,254.20 =  EV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & - & 396 & - & 890,968.20 =  EV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & - & 396  & - & 893,712.20 =  EV$_{19-20}$\\ \midrule
+     \multirow{3}{*}{Stochastic} & 2017-2018 & 849 & 379 & 326 & 142 & 941,764.64 = RP$_{17-18}$ \\ 
+      & 2018-2019 & 847 & 362 & 330 & 136 & 935,335.28 =  RP$_{18-19}$ \\
+      & 2019-2020 & 852 & 350 & 336 & 134 & 935,171.84 =  RP$_{19-20}$\\ \bottomrule      
+    \end{tabular}}
+    \caption{The EV and RP values for the $x^\textnormal{bed}$, $u^\textnormal{bed}$, $x^\textnormal{staff}$ and $u^\textnormal{staff}$ decision variables and the objective function value per year for Experiment 2.}
+    \label{tab:detstocresults2}
+\end{table}
+\FloatBarrier
+Figure \ref{fig:stocexp2} presents the locations of bed deployment for each specialty in each year. The largest differences can be seen when planning beds for RGH in the COTE and general medicine wards. A total of 93 and 107 beds are each planned for COTE wards in 2017-2018 and 2018-2019 respectively, however, the daily demand increased to 142 beds in the 2019-2020 period. Conversely, the general medicine daily bed requirement decreased from 128 and 116 in 2017-2018 and 2018-2019 respectively, to 63 in 2019-2020.
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[h!]{0.8\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Chapters/Chapter5/Figuresnew/18stoc.png}
+         \caption{2017-2018}
+         \label{fig:stocexp2a}
+     \end{subfigure}
+\hfill
+     \begin{subfigure}[h!]{0.8\textwidth}\ContinuedFloat
+         \centering
+         \includegraphics[width=\textwidth]{Chapters/Chapter5/Figuresnew/19stoc.png}
+         \caption{2018-2019}
+         \label{fig:stocexp2b}
+     \end{subfigure}
+     \end{figure}
+\hfill
+\begin{figure}\ContinuedFloat
+     \begin{subfigure}[h!]{0.8\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Chapters/Chapter5/Figuresnew/20stoc.png}
+         \caption{2019-2020}
+         \label{fig:stocexp2c}
+     \end{subfigure}
+        \caption{Heatmaps of bed locations for each specialty within each hospital for the two-stage stochastic model for the years 2017-2018 (a), 2018-2019 (b) and 2019-2020 (c), for Experiment 2. Note that a darker colour indicates a larger number of beds are deployed.}
+        \label{fig:stocexp2}
+\end{figure}
+
+\FloatBarrier
+
+
+\subsubsubsection{Test A}
+Test A calculates the VSS to determine the benefit of using the stochastic solution over the deterministic solution. Table \ref{tab:eevdetstocresults2} displays the EEV, for each year. By fixing the deterministic variables, the stochastic nature of healthcare can be realised and the model can determine the additional number of beds that would be required if the deterministic values were used.
+
+
+\begin{table}
+    \centering\scalebox{0.85}{
+    \begin{tabular}{ccccccl}\toprule
+ & \multirow{2}{*}{\textbf{Year}}& \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){3-4} \cmidrule(lr){5-6}
+&& $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+     \multirow{3}{*}{Deterministic} & 2017-2018 &1,031 & - & 396 & - &  898,254.20 =  EV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & - & 396 & - & 890,968.20 =  EV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & - & 396  & - & 893,712.20 =  EV$_{19-20}$\\ \midrule
+     \multirow{3}{*}{Stochastic} & 2017-2018 & 849 & 379 & 326 & 142 & 941,764.64 = RP$_{17-18}$ \\ 
+      & 2018-2019 & 847 & 362 & 330 & 136 & 935,335.28 =  RP$_{18-19}$ \\
+      & 2019-2020 & 852 & 350 & 336 & 134 & 935,171.84 =  RP$_{19-20}$\\ \midrule    
+     \multirow{3}{*}{Test A} & 2017-2018 & 1,031 & 197 & 396 & 106 & 973,265.64 =  EEV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & 190 & 396 & 92 & 964,969.40 =  EEV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & 192 & 396 & 104 & 968,081.36 =  EEV$_{19-20}$\\  \bottomrule       
+    \end{tabular}}
+    \caption{The EV, RP and EEV values for the $x^\textnormal{bed}$, $u^\textnormal{bed}$, $x^\textnormal{staff}$ and $u^\textnormal{staff}$ decision variables and the objective function value per year for Experiment 2.}
+    \label{tab:eevdetstocresults2}
+\end{table}
+\FloatBarrier
+
+The VSS ranges from between 3.17\% to 3.52\%, showing that the total cost is increasing by up to 3.52\% by implementing the deterministic solution.
+\begin{align}
+    \text{VSS}_{17-18} &= \text{EEV}_{17-18} - \text{RP}_{17-18} = \pounds31,501.00 \ (3.34\%) \\
+    \text{VSS}_{18-19} &= \text{EEV}_{18-19} - \text{RP}_{18-19} = \pounds29,634.12  \ (3.17\%)  \\
+    \text{VSS}_{19-20} &= \text{EEV}_{19-20} - \text{RP}_{19-20} = \pounds32,909.52 \ (3.52\%)  
+\end{align}
+
+There were a number of reasons why the deterministic solution was considered poor. The model may be too optimistic on the randomness leading to insufficient beds and staff being deployed or the model could be planning the wrong beds and staff. This could be determined by calculating the LUSS and LUDS values.
+
+\subsubsubsection{Test B}
+The ESSV was calculated by fixing the zero variables produced in the deterministic result and allowing the stochastic model to run. After performing the experiments, it was determined that the ESSV was equal to the EEV in all cases (Table \ref{tab:eesveevdetstocresults2}).
+
+\begin{table}[h!]
+    \centering\scalebox{0.85}{
+    \begin{tabular}{ccccccl}\toprule
+ & \multirow{2}{*}{\textbf{Year}}& \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){3-4} \cmidrule(lr){5-6}
+&& $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+     \multirow{3}{*}{Deterministic} & 2017-2018 &1,031 & - & 396 & - &  898,254.20 =  EV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & - & 396 & - & 890,968.20 =  EV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & - & 396  & - & 893,712.20 =  EV$_{19-20}$\\ \midrule
+     \multirow{3}{*}{Stochastic} & 2017-2018 & 849 & 379 & 326 & 142 & 941,764.64 = RP$_{17-18}$ \\ 
+      & 2018-2019 & 847 & 362 & 330 & 136 & 935,335.28 =  RP$_{18-19}$ \\
+      & 2019-2020 & 852 & 350 & 336 & 134 & 935,171.84 =  RP$_{19-20}$\\ \midrule    
+     \multirow{3}{*}{Test A} & 2017-2018 & 1,031 & 197 & 396 & 106 & 973,265.64 =  EEV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & 190 & 396 & 92 & 964,969.40 =  EEV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & 192 & 396 & 104 & 968,081.36 =  EEV$_{19-20}$\\  \midrule    
+      
+     \multirow{3}{*}{Test B} &  2017-2018 & 849 & 379 & 326 & 142 & 941,764.64 = ESSV$_{17-18}$ \\ 
+      & 2018-2019 &847 & 362 & 330 & 136 & 935,335.28 =   ESSV$_{18-19}$ \\
+      & 2019-2020 & 852 & 355 & 336 & 134 & 935,171.84 =   ESSV$_{19-20}$\\\bottomrule   
+    \end{tabular}}
+    \caption{The EV, RP, EEV and ESSV values for the $x^\textnormal{bed}$, $u^\textnormal{bed}$, $x^\textnormal{staff}$ and $u^\textnormal{staff}$ decision variables and the objective function value per year for Experiment 2.}
+    \label{tab:eesveevdetstocresults2}
+\end{table}
+The LUSS was calculated to be $\pounds$0 for all three cases. The LUSS was equal to the RP and therefore corresponded to the perfect skeleton solution. This suggested that the variables selected by the first stage variables of the solution are robust. 
+\begin{align}
+    \text{LUSS}_{17-18} &= \text{ESSV}_{17-18} - \text{RP}_{17-18} = \pounds0 \\
+    \text{LUSS}_{18-19} &= \text{ESSV}_{18-19} - \text{RP}_{18-19} = \pounds0  \\
+    \text{LUSS}_{19-20} &= \text{ESSV}_{19-20} - \text{RP}_{19-20} = \pounds0
+\end{align}
+
+\subsubsubsection{Test C}
+The final test involved taking the decision variables determined by deterministic solution and adding this as a minimum constraint. These results can be seen within Table \ref{tab:eiveesveevdetstocresults2}. 
+
+
+\begin{table}[h!]
+    \centering\scalebox{0.85}{
+    \begin{tabular}{ccccccl}\toprule
+ & \multirow{2}{*}{\textbf{Year}}& \multicolumn{2}{l}{\textbf{Total Beds}} & \multicolumn{2}{c}{\textbf{Total Staff}} & \multirow{2}{*}{\textbf{Objective Function Value ($\pounds$)}}\\ \cmidrule(lr){3-4} \cmidrule(lr){5-6}
+&& $x^\textnormal{bed}$           & $u^\textnormal{bed}$          & $x^\textnormal{staff}$         & $u^\textnormal{staff}$         \\ \midrule
+     \multirow{3}{*}{Deterministic} & 2017-2018 &1,031 & - & 396 & - &  898,254.20 =  EV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & - & 396 & - & 890,968.20 =  EV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & - & 396  & - & 893,712.20 =  EV$_{19-20}$\\ \midrule
+     \multirow{3}{*}{Stochastic} & 2017-2018 & 849 & 379 & 326 & 142 & 941,764.64 = RP$_{17-18}$ \\ 
+      & 2018-2019 & 847 & 362 & 330 & 136 & 935,335.28 =  RP$_{18-19}$ \\
+      & 2019-2020 & 852 & 350 & 336 & 134 & 935,171.84 =  RP$_{19-20}$\\ \midrule    
+     \multirow{3}{*}{Test A} & 2017-2018 & 1,031 & 197 & 396 & 106 & 973,265.64 =  EEV$_{17-18}$ \\ 
+      & 2018-2019 & 1,015 & 190 & 396 & 92 & 964,969.40 =  EEV$_{18-19}$ \\
+      & 2019-2020 & 1,010 & 192 & 396 & 104 & 968,081.36 =  EEV$_{19-20}$\\  \midrule    
+     \multirow{3}{*}{Test B} &  2017-2018 & 849 & 379 & 326 & 142 & 941,764.64 = ESSV$_{17-18}$ \\ 
+      & 2018-2019 &847 & 362 & 330 & 136 & 935,335.28 =   ESSV$_{18-19}$ \\
+      & 2019-2020 & 852 & 355 & 336 & 134 & 935,171.84 =   ESSV$_{19-20}$\\\midrule 
+     \multirow{3}{*}{Test C} & 2017-2018 & 1,038 & 190 & 396 & 96 & 972,719.84 =  EIV$_{17-18}$ \\ 
+      & 2018-2019 & 1,019 & 190 & 396 & 92 & 964,786.08  =  EIV$_{18-19}$ \\
+      & 2019-2020 & 1,021 & 181 & 396 & 86 & 967,397.44 =  EIV$_{19-20}$\\\bottomrule
+    \end{tabular}}
+    \caption{The EV, RP, EEV, ESSV and EIV values for the $x^\textnormal{bed}$, $u^\textnormal{bed}$, $x^\textnormal{staff}$ and $u^\textnormal{staff}$ decision variables and the objective function value per year for Experiment 2.}
+    \label{tab:eiveesveevdetstocresults2}
+\end{table}
+
+\begin{align}
+    \text{LUDS}_{17-18} &= \text{EIV}_{17-18} - \text{RP}_{17-18} = \pounds31,006.24 \\
+    \text{LUDS}_{18-19} &= \text{EIV}_{18-19} - \text{RP}_{18-19} = \pounds29,450.80  \\
+    \text{LUDS}_{19-20} &= \text{EIV}_{19-20} - \text{RP}_{19-20} = \pounds32,225.60
+\end{align}
+
+Therefore, $EEV-EV \geq VSS \geq LUDS \geq 0$ is satisfied. This result corresponds to partial upgradeability, where the deterministic results are upgraded in first stage results by the stochastic model.
+
+\subsubsubsection{Experiment 2 Summary}
+This section has analysed the bed and staffing requirements based on a year-to-year basis and determined where there was variation in the system. The largest VSS of 3.52\% showed the benefit of using the two-stage stochastic model for planning in the first instance rather than using the deterministic implementation. Similar to the previous experiment, the deterministic solution did not perform well in a stochastic environment since insufficient beds and staff were deployed across all three years. This showed the deterministic model was too optimistic in terms of the demand.
+
+\subsubsection{Prescriptive Analytics Summary}
+Microsoft Excel OpenSolver and Python PuLP are two optimisation tools generated for this research, both of which have been able to be applied to generate the given results.
+
+The results from the two experiments can be compared to determine whether ABUHB should plan on a year-to-year basis, or plan on a three-year horizon. Although the Public Health Scotland data are not accurate to ABUHB, the values given will still provide insight into the potential savings that could be made. Table \ref{tab:vsscomparisons} presents the VSS results per year and the total savings if implemented over the three years. The third year (2019-2020), was a leap year with 366 days and therefore impacts the difference in VSS. 
+The findings indicate minimal variation in VSS, suggesting that planning on a year-to-year basis might not be necessary. Instead, it may be more beneficial to focus on longer-term horizons for planning purposes.
+
+\begin{table}[h!]
+    \centering\scalebox{0.95}{
+    \begin{tabular}{ccc}\toprule
+    & \multicolumn{1}{c}{\textbf{Experiment 1}}& \multicolumn{1}{c}{\textbf{Experiment 2}} \\\midrule
+         Year 1& $\pounds$11,664,027.60& $\pounds$11,497,865.00\\
+         Year 2& $\pounds$11,664,027.60& $\pounds$10,816,453.80\\
+         Year 3& $\pounds$11,695,983.84 &$\pounds$12,044,884.32\\\midrule
+        Total Saving & $\pounds$35,024,039.04 &   $\pounds$34,359,203.12\\\bottomrule
+    \end{tabular}}
+    \caption{The total yearly VSS values for each of the three years by experiment. Note that year 3 was a leap year and therefore contains 366 days which accounts for the variation between years.}
+    \label{tab:vsscomparisons}
+\end{table}
+
+This section has discussed the research aims, `How best can specialties be organised among a network of hospitals to ensure
+staffing and bed costs are minimised, whilst still meeting the demand for frail and elderly patients?'. The heatmaps produced visualised the number of beds to locate across different specialties in order to minimise costs. The models also determined the number of staff to deploy based on the number of beds. These models work under the assumption of current hospital locations, where a hospital cannot open wards if they do not have the resources for these specialties. The models perform by deploying beds to the least expensive location first, determining the trade off between different combinations. Traditionally, ABUHB has planned on averages (deterministic solution), using historic data to determine the locality and quantity of these beds. By implementing a two-stage stochastic model, with different levels of demand, it provides savings for the NHS from approximately 3.52\% per day. This saving has the potential to impact patient care by reallocating this money to additional resources, more staff training or improving community care schemes to reduce the pressures on hospitals. Whilst costing figures from ABUHB were not available, the model's utility and ability to provide cost savings have been demonstrated using NHS Scotland values \cite{PHS2021}.
+
+
+\section{Summary}
+This section has presented the findings of the predictive and prescriptive analytical models. Section \ref{sec:dataintroduction} provided an overview of the current data and trends within ABUHB and within the frail and elderly community. Section \ref{sec:predictiveresults} has considered the improved results by using CART models over traditional linear and logistic regression methods. These CART models have also enabled patient groupings of similar attributes to be generated, as shown in Appendices \ref{app:secregression} and \ref{app:secclassification}. Section \ref{sec:prescriptiveresults} has applied the deterministic and two-stage stochastic models generated in Chapter \ref{chp:presciptive} to ABUHB data determining how beds should be organised and staff deployed based on figures from Public Health Scotland.
+
+Predictive and prescriptive models are increasingly being used in healthcare to improve patient outcomes and optimise resource utilisation. Predictive models can be used to identify patients who are at high risk of longer LOS and put in place appropriate interventions to reduce this. Prescriptive models can be used to determine capacity planning and staff requirements in order to reduce the likelihood of not having sufficient capacity. By applying predictive and prescriptive models, healthcare organisations can improve patient outcomes while also maximising the value of healthcare resources. The following chapter will discuss the ability to link the predictive and prescriptive methods together.
+\end{document}

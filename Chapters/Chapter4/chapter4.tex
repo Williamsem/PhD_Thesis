@@ -1,0 +1,761 @@
+\documentclass[../thesis.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Prescriptive Analytics to Support Capacity Planning for Frail and Elderly Patients}\label{chp:presciptive}
+
+\section{Introduction}
+
+Data analytics is categorised into three main paradigms, each with a correspondingly varying degree of complexity: descriptive analytics, predictive analytics and prescriptive analytics. In both industry and healthcare analytics, the first two stages have been extensively studied and documented. The third paradigm, prescriptive analytics, eliminates the planning risk by bridging the gap between the data that an organisation has and the consequences of implementing new policy. Decision-makers can gain a deeper understanding of how to seize an opportunity or alleviate a problem in the future as a result. As the related work section revealed, there are research gaps in the prescriptive healthcare analytics work which is concerned with mathematical modelling of healthcare services. Literature reviews in this area of OR have only recently been published, making it a relatively new and developing discipline \cite{Islam2018,Lopes2020,Lepenioti2019}. In all three articles, the application of prescriptive analytics is discussed, with Lopes et al. \cite{Lopes2020} arguing that successful optimisation of current healthcare resources will, in turn, decrease existing waiting lines and allow a greater ability to treat individuals in need effectively. Islam et al. \cite{Islam2018} discovered that just 9\% of the publications analysed within their review focused on prescriptive analytics, demonstrating that this is a new and emerging area of healthcare research.
+
+
+\begin{description}
+\item[\underline{Research Aim}] - This chapter will present the theory in order to address two of the research's objectives: `How best can specialties be organised among a network of hospitals to ensure staffing and bed costs are minimised whilst, whilst still meeting the demand for frail and elderly patients?' and `How can deterministic and two-stage stochastic models be used to plan hospital services for frail and elderly patients?'. These research aims will be answered in Chapter \ref{chp:Experimental Analysis}.
+\end{description}
+
+This research project was funded and carried out in collaboration with Clinical Futures in ABUHB \cite{UniAneurinBevanHealthBoard2018}. The organisation are restructuring and organising hospital services in order to improve patient care. One of their primary issues is determining the number of beds required to meet the existing demands for their frail and elderly population. Wards in the UK have minimal staff to patient ratios that are typically computed based on ward bed counts. We can extend this model to incorporate workforce planning and the number of nursing staff the health board should have available by determining the number of beds for each specialty within each hospital to fulfil demand. Hospital admissions are the most utilised resources by frail and elderly, with many inpatient services such as surgical theatres, relying on sufficient hospital beds to be planned. 
+
+Two-stage stochastic programming lends itself well to this type of problem because bed numbers and staff must be planned in advance. Only when the demand for both elective and emergency patients is known can it be established whether sufficient beds and staff have been planned. If not, additional beds and staff are needed to meet this demand safely. Because this is not planned in advance, there are typically additional charges, such as relocating patients to different hospitals, opening new wards, and contacting agency and bank personnel. Before deciding on two-stage stochastic modelling for this project, a variety of other stochastic models were considered, However, due to the nature of the problem, this method was found to be the most suitable.
+
+To identify the most cost-effective way to arrange specialised beds and nurses in hospitals, deterministic and two-stage stochastic modelling can be used. The health board has historically planned the number of beds and nursing staff using averages (deterministic). Due to emergency admissions, cancellations, and fluctuating admission LOS's, bed planning can be challenging. Stochastic modelling can help overcome this challenge and provide more informed outcomes. We present a two-stage stochastic model that takes system unpredictability into consideration when scheduling nursing staff and beds. Similar to the chapter on predictive analytics, a worked example will be provided to show how each method operates. Recall the worked example from Chapter \ref{chp:predictive}, where 15 patients with various attributes attended one of two hospitals in South East Wales. Following is a table of these patients:
+
+\begin{table}[h!]
+    \centering
+    \begin{adjustbox}{width=\columnwidth}
+    \begin{tabular}{cccccccc}\toprule
+       \textbf{Patient Number}  & \textbf{Age} & \textbf{Hospital} & \textbf{LOS} & \textbf{Specialty} &\textbf{Admission Method} & \textbf{Admission Source} & \textbf{Frailty Source} \\\midrule
+        Patient 1 & 95 & RGH & 5 & COTE & Emergency & Own Home & 3 \\ 
+        Patient 2 & 82 & RGH & 3 & COTE & Emergency & Own Home & 2 \\
+        Patient 3 & 89 & RGH & 4& T\&O & Emergency & Own Home & 2 \\
+        Patient 4 & 87 & RGH & 4 & T\&O & Elective & Own Home & 2 \\
+        Patient 5 & 85 & NHH & 3 & COTE & Elective & Transferred & 1 \\
+        Patient 6 & 76 & NHH & 1 & COTE & Elective & Transferred & 1\\
+        Patient 7 & 71 & NHH & 1 & T\&O & Emergency & Transferred & 1 \\
+        Patient 8 & 96 & RGH & 5 & T\&O & Emergency & Own Home & 3 \\
+        Patient 9 & 70 & NHH & 1 & COTE & Emergency & Transferred & 1\\
+        Patient 10 & 67 & NHH & 1 & T\&O & Elective & Own Home & 1\\
+        Patient 11 & 89 & RGH & 4 & COTE & Elective & Transferred & 3\\
+        Patient 12 & 70 & NHH & 1 & COTE & Elective & Own Home & 2\\
+        Patient 13 & 75 & NHH & 4 & T\&O & Elective & Transferred & 3\\
+        Patient 14 & 72 & NHH & 2 & COTE & Elective & Transferred & 3\\
+        Patient 15 & 87 & RGH & 5 & COTE & Emergency & Own Home & 2\\\bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Data set of 10 patients that will be used for the worked example.}
+    \label{tab:tablefour1}
+\end{table}
+
+To ascertain whether there is a benefit to employing the two-stage stochastic model as opposed to the deterministic counterpart, the work by Maggioni and Wallace \cite{Maggioni2010} will be utilised. Within their paper, the authors discuss the quality of the expected value solution in stochastic programming and apply their models to four case studies: A single-sink transportation problem, a production problem, a location routing (network design) problem and a mobile ad-hoc network problem. The authors outline four experiments in which they determine the factors that contributed to the expected value solution. Their work will be expanded upon by applying the theory to a different case study of bed and resource planning. Three of the four experiments (due to relevancy), will be applied to healthcare services for frail and elderly patients. This in turn will determine the factors that contribute to the expected value solution. 
+
+Using the deterministic and two-stage stochastic optimisation paradigms this chapter will examine how to effectively organise bed and staffing resources for hospitals. With these models, a user can modify the model to account for the number of hospitals and medical specialisations involved in their particular case. The remainder of the chapter is set out as follows:  The prescriptive methods employed in this research and their current use in healthcare are covered in Section \ref{sec:prescriptive}. The development of the deterministic model is shown in Section \ref{sec:DeterministicModel}, whereas Section \ref{sec:twostagestochasticmodel} provides a similar analysis using a two-stage stochastic model. The two approaches are combined in Section \ref{sec:evalofmeasures} to assess the performance of the stochastic or deterministic models. Throughout the chapter, a condensed practical example will be given.
+
+\section{Prescriptive Techniques} \label{sec:prescriptive}
+
+Prescriptive analytics is the process of using data and applying it to determine an optimal course of action. It builds upon the work of descriptive and predictive analytics and can be broken down into three approaches:
+\begin{itemize}
+    \item Bridging the gap between potential and recommend outcomes
+    \item Turning data into practical strategies
+    \item Providing a clear path forward even with messy data
+\end{itemize}
+
+Prescriptive analytics incorporates large amounts of structured and unstructured data to determine the consequences of making decisions and how the future would be impacted. Furthermore, it can measure the repercussions of a decision based on different possible future scenarios. Organisations will increasingly need to find ways to take advantage of their data, especially as it continues to grow. Prescriptive analytics benefits organisations by allowing them to get the most out of their data and automate key procedures.
+
+Utilising prescriptive analytics allows the user to make more informed, data-driven decisions and eliminates prejudice. It can also determine the likelihood of an organisation's chances of success, which will in turn lower risk and boost productivity. Worst-case scenarios can also be predicted more accurately, enabling organisations to plan accordingly. Implementing these strategies, though, may be challenging and necessitates that organisations have a clear understanding of both the questions to ask and how to respond. If the input assumptions are incorrect, the results will not be reliable. Additionally, prescriptive analytics may be expensive in terms of both time and financial commitment.
+
+
+\subsection{Basic Notation}
+Birge and Louveaux \cite{Birge2011} provide a comprehensive introduction to stochastic programming. The authors cover a wide range of topics including the formulation of stochastic programming problems, the theory of stochastic optimisation, and algorithms for solving stochastic programmes. It also includes case studies and applications in finance, inventory management, transportation, and energy systems. Two-stage stochastic modelling has been applied to the area of healthcare previously, with Mestre et al.'s \cite{Mestre2015} research into location-allocation strategies for hospital network planning, given the uncertain nature of factors such as demand, capacity, and cost. More recently, Maggioni and Wallace \cite{Maggioni2010} evaluated the traditional methods with a series of experiments to demonstrate the effectiveness of their approach. This research will follow the framework as used by Mestre et al. \cite{Mestre2015} and Maggioni and Wallace's \cite{Maggioni2010}. The following notation and theory are taken from Maggioni and Wallace \cite{Maggioni2010}.
+
+Two-stage stochastic modelling uses two stages in order to optimise a solution. Within the first stage, a decision is made without knowledge of what the future is to bring. The second stage sees the realisation of the stochastic elements of the problem. However, we are able to make further decisions to avoid the constraints of the problem becoming infeasible. In other words, to maintain feasibility in the second stage, we have recourse to a further degree of flexibility but at a cost. The second stage decisions will be dependent upon the stochastic elements observed, which can be implemented in standard notation form.
+
+As previously discussed, a decision must be made about some random events prior to the experiment (without complete information). These are referred to as the first stage decision and are denoted by the vector $x$. Subsequently, we receive the experiment's results after taking into account some random factors $\xi(\omega)$, where $\omega$ is the outcome of an uncertain random experiment. The second stage decisions can then be calculated using the vector $y(\omega)$, which assumes that both $x$ and $\xi(\omega)$ are fixed \cite{AndrasPrekopa1995,Birge2011,Ruszczynski2003}. The remainder of this thesis will refer to $\xi(\omega)$ as $\boldsymbol{\xi}$.
+
+
+Let us define the two-stage stochastic problem, where a decision maker takes the decision $x$ of solution space X to minimise expected costs:
+\begin{equation}\label{eq:firststage}
+    \min _{x \in X} E_{\boldsymbol{\xi}} z(x, \boldsymbol{\xi})=\min _{x \in X}\left\{f_1(x)+E_{\boldsymbol{\xi}}\left[h_2(x, \boldsymbol{\xi})\right]\right\}
+\end{equation}
+where $x$ is the first-stage decision variable which is restricted to the set $X \subset \mathbb{R}^n$ and $f_{1}(x)$ is the value of the first stage problem. $E_{\boldsymbol{\xi}}$ indicates the expectation with respect to a random vector denoted $\boldsymbol{\xi}$ defined on the probability space $(\Omega, \mathscr{A}, p)$, where $\Omega \in \mathbb{R}^{n}$ and probability distribution p on the $\sigma$-algebra $\mathscr{A}$.
+
+The function $h_2(x, \xi)$ is the value function of the second stage of the stochastic problem, defined as follows:
+\begin{equation}\label{eq:secondstage}
+    h_{2}(x,\xi) = \min_{y\in Y (x,\xi)} f_{2}(y:x,\xi)
+\end{equation}
+where $y$ is the second-stage solution which is restricted to the set $Y \in \mathbb{R}^{n}$. 
+
+Equation \eqref{eq:secondstage} reflects the costs associated with the information being revealed through the realisation of $\xi$ from the random vector $\boldsymbol{\xi}$. The term $\left[h_2(x, \boldsymbol{\xi})\right]$, is known as the recourse function. 
+
+The solution obtained is defined as the `here and now solution' (RP) and is the optimal value of the objective function:
+\begin{equation}
+    RP = E_{\boldsymbol{\xi}} z(x^{*},\boldsymbol{\xi})
+\end{equation}
+
+Equation \eqref{eq:firststage} can be considered where the decision maker replaces the random variables with their expected values and in turn, solves a deterministic model. This is also known as the expected value problem.
+\begin{equation}\label{eq:deterministic}
+    EV = \min_{x\in X} z(x, \bar\xi)
+\end{equation}
+where $\bar \xi = E(\boldsymbol{\xi})$, which is the expected value of the random vector $\xi$ and $z$ is the objective value.
+
+\subsection{Evaluation of Measures}
+Within prescriptive analytics, it is widely recognised that the expected value solution (EV) can behave poorly in the stochastic domain. Traditional evaluation tests can be carried out in order to determine how each of the EV, RP and EEV performs and determine their robustness. Maggioni and Wallace \cite{Maggioni2010} set out four tests in their research to determine the success of their models. Within this research, only the first three tests will be considered, since the fourth test is a generalisation of the second and does not provide any additional benefits. Similar to the previous subsection, the following notation is taken from Maggioni and Wallace \cite{Maggioni2010}.
+
+\subsubsection{Test A}\label{sec:TestA}
+The first traditional evaluation measure is to determine the value of the stochastic solution (VSS).
+
+If we let $\bar x (\bar\xi)$ be the optimal solution to Equation \eqref{eq:deterministic}, we can take values and fix these as the first stage, and then allow the second stage of the stochastic model to be performed.
+
+\begin{equation}\label{eq:EEV}
+    EEV = E_{\boldsymbol{\xi}} (z(\bar x (\bar \xi),\boldsymbol{\xi}))
+\end{equation}
+
+To determine the VSS, the difference between the EEV and RP can be calculated, measuring the expected increase in value from solving the stochastic solution to the simple deterministic one:
+\begin{equation}\label{eq:VSS}
+    VSS = EEV - RP
+\end{equation}
+
+The VSS measures expected loss when using the deterministic solution. If we have hard constraints, the expected cost of the deterministic solution is often $\infty$. Whereas if we use soft constraints we can make the expected cost using the deterministic solution arbitrarily bad by setting penalties high. If the VSS is large, this could mean the wrong choice of variables have been chosen or the wrong values have been entered.
+
+\subsubsection{Test B}\label{sec:TestB}
+The second test involves fixing the first stage variables which are at zero (or at their lower bound) to zero (or their lower bound) in the EV problem and then solving the stochastic programme. This will determine if the deterministic model produced the correct non-zero variables.
+
+If the original problem is a linear programme, then Test B leads to solving a linear programme but one that is of smaller size. If it is a mixed binary programme, the test calls for fixing all the binary variables to either zero or one, and solving an easier linear programme. When a mixed integer programme (MIP) is involved, a smaller dimension MIP is solved. 
+
+Let $\mathcal{J}$ be the set of indices for which the components of the expected value solution $\bar x(\bar\xi)$ are at zero or at their lower bound. Then let $\hat x$ be the solution of:
+\vspace{-.5cm}
+\begin{align}
+    \min_{x\in X}\enspace\enspace & E_{\boldsymbol{\xi}}z(x,\boldsymbol{\xi}) \notag\\
+    \text{s.t. } \enspace & x_{j} =\bar x_{j}(\bar \xi), \enspace \enspace j \in \mathcal{J}
+\end{align}
+
+We can then compute the expected skeleton solution value (ESSV):
+\vspace{-.1cm}
+\begin{equation}\label{eq:ESSV}
+    ESSV = E_{\boldsymbol{\xi}}(z(\hat x, \boldsymbol{\xi}))
+\end{equation}
+
+This can then be compared to the RP by means of loss using skeleton solution (LUSS):
+\vspace{-0.1cm}
+\begin{equation}\label{eq:LUSS}
+    LUSS = ESSV - RP
+\end{equation}
+
+If the LUSS value is close to zero this means that the variables selected by the deterministic solution are good, however their values may be off. Therefore, we have:
+\begin{equation}
+    RP \leq ESSV \leq EEV
+\end{equation}
+and as a result the following is true:
+\begin{equation}
+    EEV - EV \geq VSS \geq LUSS \geq 0
+\end{equation}
+In the case where LUSS = 0 (i.e., ESSV = RP), this corresponds to the perfect skeleton solution as the condition $x_{j} = \bar x_{j} (\bar \xi), \enspace j \in \mathcal{J}$, is satisfied by the stochastic solution $x^{*}$ even without being enforced by a constraint (i.e., $\hat x = x^{*}$). However, if there exists $j \in \mathcal{J}$ such that $x^{*}_{j}$ then $0 < LUSS < VSS$. LUSS = VSS occurs if the stochastic programme, when not allowed to use the variables in $\mathcal{J}$, chooses not to change the value of any of the remaining variables, i.e., $\hat x = \bar x (\bar \xi)$.
+
+\subsubsection{Test C}\label{sec:TestC}
+The third test involves taking the EV solution ($\bar x(\bar \xi)$) as a starting point to the stochastic model \eqref{eq:firststage} and then comparing, in terms of the objective functions, to Equation \eqref{eq:firststage} without such input. This determines whether the EV solution is upgradeable to become good (if not optimal) in the stochastic setting. This is equivalent to adding in an additional constraint, $x \geq \bar x (\bar \xi)
+$, to Equation \eqref{eq:firststage}. As a result, the following problem is solved with solution $\Tilde{x}$:
+\vspace{-.5cm}
+\begin{align}
+    \min_{x\in X}\enspace\enspace &E_{\boldsymbol{\xi}} z(x,\boldsymbol{\xi}) \\
+    \text{s.t. } \enspace&x \geq \bar x(\bar \xi)
+\end{align}
+Then the expected input value (EIV) can be calculated:
+\begin{equation}\label{eq:EIV}
+    EIV = E_{\boldsymbol{\xi}}(z(\Tilde{x},\boldsymbol{\xi}))
+\end{equation}
+This is then compared to the RP, by means of the loss of upgrading the deterministic solution (LUDS):
+\begin{equation}\label{eq:LUDS}
+    LUDS = EIV - RP
+\end{equation}
+Therefore,
+\begin{equation}
+    RP \leq EIV \leq EEV
+\end{equation}
+and the following is true:
+\begin{equation}
+    EEV - EV \geq VSS \geq LUDS \geq 0
+\end{equation}
+
+In the case where LUDS = 0, and hence EIV = RP, this corresponds to perfect upgradeability of the deterministic solution. This occurs when the conditions $x \geq \bar x (\bar \xi)$ are satisfied by the stochastic solution $x^{*}$ without the need to be enforced by the constraints, $\Tilde{x} = x^{*}$, (under the assumptions that the stochastic first-stage decision is unique). If there exists a component $i \in \{1, .., n\}$ such that $x_{i}^{*} < \bar x_{i}$, then $\Tilde{x}_{i} = \bar x_{i}$ (case of partial upgradeability) and therefore, $0 < LUDS < VSS$. When LUDS = VSS, this corresponds to the non-upgradeability, in which the condition $x \geq \bar x (\bar \xi)$ is no longer satisfied by any of the components of the solution $x^{*}$ and then $\Tilde{x} = \bar x (\bar \xi)$ (i.e., EIV = EEV).
+
+
+\section{Deterministic Model Development}\label{sec:DeterministicModel}
+Within this section, the deterministic version of the model will be developed. The aim is to determine the number of beds and nursing staff required to satisfy a given demand, across different specialties within hospitals. 
+All hospital beds and staffing resources are planned based on a fixed demand. If the number of beds within the hospital are insufficient to satisfy the demand and there is no option to open wards or transfer patients to other hospitals, then this results in a non optimal solution given. The number of beds in total must not exceed the bed capacity for that hospital and additionally, satisfactory levels of staff must be deployed to sufficiently open beds.
+
+\subsection{Sets}
+Within the deterministic model, we have four sets as given in Table \ref{tab:detmodset}.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccl}\toprule
+        \textbf{Set} & \textbf{Range} &\textbf{Definition} \\\midrule
+       $\mathcal{B}$ & b = 1,..., B & \text{Set of nursing bands}\\
+        $\mathcal{S}$ & s = 1,..., S & \text{Set of specialties} \\
+    $\mathcal{H}$ & h = 1,..., H & \text{Set of hospitals} \\
+    $\mathcal{R}$ & r = 1,..., R & \text{Set of regions}\\\bottomrule
+    \end{tabular}
+    \caption{The sets used within the deterministic model where (B, S, H, R) represent the maximum number of nursing bands, specialties, hospitals and regions, respectively.}
+    \label{tab:detmodset}
+\end{table}
+
+Each of the specialties must appear in at least one of the hospitals ($\mathcal{S} \in \mathcal{H}$). Similarly, each of the hospitals must appear in one of the regions ($\mathcal{H} \in \mathcal{R}$). Therefore $ |\mathcal{H}| \leq |\mathcal{R}|$ is true. The set of nursing bands correspond to different skill levels and experience of nurses \cite{NHS2022}.
+
+\subsection{Parameters}
+Table \ref{tab:detmodpar} denotes the eight parameters used within the deterministic formulation, along with a brief definition.
+\begin{table}[h!]
+    \centering\scalebox{0.9}{
+    \begin{tabular}{cl}\toprule
+        \textbf{Parameter} & \textbf{Definition} \\\midrule
+  c^\textnormal{bed}_{s,h}& \text{Cost of bed per day for specialty $s\in\mathcal{S}$, in hospital $h\in\mathcal{H}$}\\ [0.2cm]
+    c^\textnormal{staff}_{b}& \text{Cost of nursing staff per day of band $b\in\mathcal{B}$}\\ [0.2cm]
+     D_{s,r} & \text{Average daily bed demand for each specialty $s\in\mathcal{S}$}, \\ [0.2cm]
+     &\text{arriving from region $r\in\mathcal{R}$}\\ [0.2cm]
+    R_{s,b} &\text{Ratio of nursing staff of band $b\in\mathcal{B}$ to patient for specialty $s\in\mathcal{S}$}\\ [0.2cm]
+    $K_{s,h}$ & \text{Maximum number of beds available to open in each specialty $s \in \mathcal{S}$,}\\ [0.2cm]
+    & \text{in hospital $h \in \mathcal{H}$} \\ [0.2cm]
+    UB^\textnormal{max, bed}_h & \text{Upper bound of the number of beds that are able to be deployed in}\\ [0.2cm]
+    &\text{hospital $h\in\mathcal{H}$}\\ [0.2cm]
+    UB^\textnormal{max, staff}_b & \text{Upper bound of the number of staff that can be deployed}\\\bottomrule
+    \end{tabular}}
+    \caption{The parameters used within the deterministic model where \(b,s,h,r\) represent the variable number of nursing bands, specialties, hospitals and regions, respectively.}
+    \label{tab:detmodpar}
+\end{table}  
+
+\subsection{Decision Variables}
+There are two decision variables for the model to calculate, as shown in Table \ref{tab:dmdv}.
+\begin{table}[h!]
+    \centering\scalebox{0.9}{
+    \begin{tabular}{cl}\toprule
+        \textbf{Decision Variable} & \textbf{Definition}  \\\midrule
+        x^\textnormal{bed}_{s,h} \in \mathbb{N} & \text{Number of beds planned for specialty $s\in\mathcal{S}$, in hospital $h\in\mathcal{H}$} \\ [0.2cm]
+        x^\textnormal{staff}_{s,b,h} \in \mathbb{N} &\text{Number of staff planned for band $b\in\mathcal{B}$, for specialty $s\in\mathcal{S}$,}\\ &\small{in hospital $h\in\mathcal{H}$} \\\bottomrule       
+    \end{tabular}}
+    \caption{The decision variables used within the deterministic model where \(b,s,h\) represent the variable number of nursing bands, specialties and hospitals, respectively.}
+    \label{tab:dmdv}
+\end{table}
+
+
+The first decision variable determines the number of hospital beds to be planned for each specialty within each hospital. The second decision variable determines the number of staff required of each band for each specialty within each hospital.
+
+\subsection{Model}\label{sec:deterministicmodel}
+These sets, parameters and decision variables can be utilised within the following deterministic model with the objective function given in Equation \eqref{eq:det_objective} and the constraints listed between Equations \eqref{eq:det_con1} to \eqref{eq:det_con5}.
+
+
+\begin{equation}\label{eq:det_objective}
+    \text{min} \sum_{h\in\mathcal{H}}\sum_{s\in\mathcal{S}}(c^\textnormal{bed}_{s,h}x^\textnormal{bed}_{s,h} + \sum_{b\in\mathcal{B}}c^\textnormal{staff}_{b}x^\textnormal{staff}_{s,b,h})
+\end{equation}
+
+
+subject to:
+\begin{align}
+    \sum_{h\in\mathcal{H}} x^\textnormal{bed}_{s,h}&\geq D_{s,r} & & \forall  s \in \mathcal{S}, r \in \mathcal{R} \label{eq:det_con1}\\
+    %\textcolor{red}{\sum\limits_{b\in\mathcal{B}} x^\textnormal{staff}_{s,b,h}  \geq \textnormal{Min}^\textnormal{staff}_{s,h}& & \forall s \in \mathcal{S}, h \in \mathcal{H} }\label{eq:det_con2}\\ 
+    \sum\limits_{b'\in\mathcal{B}: b'\geq b} x^\textnormal{staff}_{s,b',h} &\geq R_{s,b} \cdot x^\textnormal{bed}_{s,h} & & \forall s \in \mathcal{S}, b \in \mathcal{B}, h \in \mathcal{H}\label{eq:det_con3}\\
+     {x_{s,h}^\textnormal{bed}} &\leq K_{s,h} & & \forall s \in \mathcal{S}, h \in \mathcal{H}\label{eq:det_con2}\\
+   0 \leq \sum_{s\in\mathcal{S}}{x_{s,h}^\textnormal{bed}} &\leq {UB_h^\textnormal{max, bed}} & & \forall h \in \mathcal{H}\label{eq:det_con4}\\
+    0 \leq \sum_{s\in\mathcal{S}}\sum_{h\in\mathcal{H}}{x_{s,b,h}^\textnormal{staff}} &\leq UB^\textnormal{max, staff}_{b}& & \forall b \in \mathcal{B} \label{eq:det_con5}
+\end{align}
+
+The first constraint \eqref{eq:det_con1}, ensures the demand for each specialty and region is met by the number of hospital beds deployed. Constraint \eqref{eq:det_con3} ensures the staff to patient bed ratio is met. Constraint \ref{eq:det_con2} requires the number of beds to be deployed to each specialty within each hospital to not exceed the capacity for that specialty and hospital. Equations \eqref{eq:det_con4} and \eqref{eq:det_con5} define the bounds for the decision variables of the problem.   
+
+\subsection{Worked Example}
+Using the matrix defined earlier in the chapter (Table \ref{tab:tablefour1}), we can use these parameters. Recall there are two hospitals within an area, each serving the same two specialties. There is only one region in which patients can arrive from, and each specialty bed in each hospital has a different cost. We assume there are two nursing staff band levels required on the wards for the specialties, with differing staff/bed ratios depending on the specialty. Table \ref{tab:DeterministicWorkedExample} displays the values of the parameters used within the illustrative example.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ll}\toprule
+       \textbf{Parameters}  & \textbf{Values} \\\midrule
+        Bed Costs ($c^\textnormal{bed}_{s,h}$) & $\begin{bmatrix} 20 & 30 \\ 30 & 40 \end{bmatrix}$\\ [0.5cm]
+        Ratio ($R_{s,b}$) &$\begin{bmatrix}0.29&0.14\\ 
+         0.14&0.29\end{bmatrix}$\\ [0.5cm]
+         Maximum Specialty Capacity ($K_{s,h}$) &$\begin{bmatrix}
+         20&25 \\
+         20&25\\
+         \end{bmatrix}$\\ [0.5cm]
+         Staff Costs ($c^\textnormal{staff}_{b}$) &[$\pounds50, \pounds60$] \\ [0.25cm]
+        Upper bed limit ($UB^\textnormal{max,bed}_{h}$) &  [20,25]\\[0.25cm]
+         Upper staff limit ($UB^\textnormal{max,staff}_{b}$)& [15,25]\\\bottomrule
+    \end{tabular}
+    \caption{The parameter values that will be used within the deterministic model specifically for the worked example.}
+    \label{tab:DeterministicWorkedExample}
+\end{table}
+The matrices are stored in row-major order. The first index of the parameter refers to the row of the matrix.  For the parameter $c^{\textnormal{bed}}_{s,h}$, specialty one corresponds to row one, i.e., [20 30], while specialty two corresponds to the second row, i.e., [30  40]. The column of the matrix is referenced by the second index. Accordingly, for the parameter $c^{\textnormal{bed}}_{s,h}$, hospital one refers to column one, i.e., \scriptsize{$\begin{bmatrix} 20 \\30\\\end{bmatrix}$}\normalsize, and hospital two refers to column two, i.e., \scriptsize{$\begin{bmatrix} 30 \\40\\\end{bmatrix}$}\normalsize. Therefore $c^{\textnormal{bed}}_{1,2}$ denotes the top-right corner of the two by two matrix and the value of 30.
+
+
+The demand from the matrix can be calculated as follows to determine the average daily bed demand, i.e., $D_{s,r}$:
+
+\begin{equation}\footnotesize{
+     \text{Average daily bed demand}_{s,h} &= \text{Average LOS}_{s,h} \times \text{Average daily number of admissions}_{s,h} } \label{eq:averagebeds1}
+ \end{equation}
+\begin{equation}\footnotesize{
+    D_{s,r} = \text{Average daily bed demand}_{s,r} &= \sum_{h \in \mathcal{R}} \text{Average daily bed demand}_{s,h} } \label{eq:averagebeds2}
+\end{equation}
+
+The model can be run with this as the medium daily bed demand - we can also artificially create a low (-10\%) and high level (+10\%) daily bed demand to determine how robust the model is.
+
+Table \ref{tab:WEDemands} displays the average daily bed demand for the worked example. The average daily bed demands were calculated using Equations \eqref{eq:averagebeds1} and \eqref{eq:averagebeds2}. The high and low demands were then artificially created.
+
+\begin{table}[h!]
+    \centering\scalebox{0.8}{
+    \begin{tabular}{cccc}\toprule
+       & \textbf{Low Daily Bed Demand}  & \textbf{Average Daily Bed Demand} & \textbf{High Daily Bed Demand} \\\midrule
+       \textbf{$D_{0,0}$}  & 15.00001 &16.66668 & 18.33333  \\
+       \textbf{$D_{1,0}$} & 17.10000 &19.00002 & 20.90000 \\ \bottomrule
+    \end{tabular}}
+    \caption{The daily bed demand figures for each region and specialty ($D_{s,r}$), categorised by low, average and high.}
+    \label{tab:WEDemands}
+\end{table}
+
+Inputting these parameters into the model, we can determine the value of the deterministic model, for the high, average and low daily bed demand cases. Within Table \ref{tab:WEDeterministicResults}, the values for each of the decision variables, $x^\textnormal{bed}_{s,h}$ and $x^\textnormal{staff}_{s,b,h}$, and the objective function are displayed.
+
+
+\begin{table}[h!]
+    \centering\scalebox{0.7}{
+    \begin{tabular}{cccc}\toprule
+    \textbf{Decision Variable}     &\textbf{Low Daily Bed Demand} &\textbf{Average Daily Bed Demand} & \textbf{High Daily Bed Demand}  \\\midrule
+     $x^\textnormal{bed}_{0,0}$        & 13  & 0 &  19\\
+     $x^\textnormal{bed}_{0,1}$        & 3  & 17 &  0\\
+     $x^\textnormal{bed}_{1,0}$        & 6  & 20& 0\\
+     $x^\textnormal{bed}_{1,1}$        & 12 & 0 &  21\\ \midrule
+     $x^\textnormal{staff}_{0,0,0}$    & 4 &0& 6\\
+     $x^\textnormal{staff}_{0,0,1}$    &1 &5&0\\
+     $x^\textnormal{staff}_{0,1,0}$    & 2 &0&3\\
+     $x^\textnormal{staff}_{0,1,1}$    & 1 &3&0\\
+     $x^\textnormal{staff}_{1,0,0}$    &1 &3&0\\
+     $x^\textnormal{staff}_{1,0,1}$    & 2 &0&3\\
+     $x^\textnormal{staff}_{1,1,0}$    & 2 &6&0\\
+     $x^\textnormal{staff}_{1,1,1}$    & 4 &0&7\\ \midrule
+     \textbf{Objective} &$\pounds$1,950.00 & $\pounds$2,050.00& $\pounds$2,270.00\\\bottomrule
+    \end{tabular}}
+    \caption{The deterministic results for each of the decision variables $x^\textnormal{bed}$ and $x^\textnormal{staff}$ categorised by the low, average and high daily bed demands.}
+    \label{tab:WEDeterministicResults}
+\end{table}
+
+The EV values for the low, average and high daily bed demands were $\pounds$1,950.00, $\pounds$2,050.00 and $\pounds$2,270.00 respectively. The results show there was a larger increase when comparing the average to high demand than the low to average demand (Figure \ref{fig:WEDeterministic}).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.8]{Chapters/Chapter4/Figures/WorkedExampleUp1.png}
+    \caption{Line graph showing the objective function for the deterministic implementation against the different daily demand levels, where -10\% indicated the low daily bed demand and +10\% indicates the high daily bed demand.}
+    \label{fig:WEDeterministic}
+\end{figure}
+
+When comparing the low to average level daily bed demands, there is an increase of 10\% in the daily demands. In turn, this increases the total costs by 5.12\%. Similarly, the average to high level demand increase of 10\% shows there is an increase of 10.73\% in the objective function. The low to high daily demands cause an additional 20\% in demand, with a total increase of 16.41\% in costs.
+
+
+\section{Two-Stage Stochastic Model Extension}\label{sec:twostagestochasticmodel}
+The two-stage stochastic model is an extension of the deterministic model built in Section \ref{sec:DeterministicModel}. Since this is a two-stage model, Equations \eqref{eq:firststage} and \eqref{eq:secondstage} can be adapted in order to apply these to the case of bed and staffing capacity planning.
+
+All hospital beds are planned in advance before the demand for each specialty and hospital is known. Similarly, nursing staff are deployed to specialties within the hospitals. When the demand is known, there is the option to change some specialty beds to alternative specialty beds with a cost. The two-stage version of this model enables various scenarios to be determined; if either the demand is changed, maximum capacities are changed or costs are changed. If the number of beds within the hospital is insufficient to satisfy the demand, then a patient may be transferred to another hospital with availability, or a new ward will be opened within the original hospital location, with additional associated costs. Ultimately, the total number of beds must not exceed the bed capacity for each individual hospital. Additionally, sufficient nursing staff must be deployed to open beds and maintain the staff/bed ratios, otherwise, bank staff would have to be used, increasing costs.
+
+Recall, the ultimate objective of the model is to determine, for each hospital, the number of beds and staff required for each specialty in order to minimise the total costs, given by the sum of opening specialty beds within the hospital and the transportation costs of moving patients between hospitals.
+
+
+\subsection{Sets}
+In addition to the sets within the deterministic model, there is also the set of scenarios in which different demands and situations can be run through the model.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccl}\toprule
+        \textbf{Parameter} & \textbf{Range} &\textbf{Definition} \\\midrule
+       $\mathcal{B}$ & b = 1,..., B & \text{Set of nursing bands}\\
+        $\mathcal{S}$ & s = 1,..., S & \text{Set of specialties} \\
+    $\mathcal{H}$ & h = 1,..., H & \text{Set of hospitals} \\
+    $\mathcal{R}$ & r = 1,..., R & \text{Set of regions}\\
+    $\mathcal{K}$ & k = 1,..., K & \text{Set of scenarios}\\\bottomrule
+    \end{tabular}
+    \caption{The sets used within the two-stage stochastic model where (B, S, H, R, K) rep-
+resent the maximum number of nursing bands, specialties, hospitals, regions and scenarios,
+respectively}
+    \label{tab:tssms}
+\end{table}
+
+\subsection{Parameters}
+Table \ref{tab:tssmp} denotes the parameters used within the two-stage stochastic model, along with a definition for each parameter.
+\begin{table}[h!]
+    \centering\scalebox{0.85}{
+    \begin{tabular}{cl}\toprule
+        \textbf{Parameter} & \textbf{Definition}  \\\midrule
+            c^\textnormal{bed, 1st}_{s,h}& \text{Cost of the first stage bed per day for specialty $s\in\mathcal{S}$, in hospital $h\in\mathcal{H}$}\\ [0.2cm]
+    c^\textnormal{bed, 2nd}_{s,h}& \text{Cost of the second stage bed per day for specialty $s\in\mathcal{S}$, in hospital $h\in\mathcal{H}$}\\ [0.2cm]
+    c^\textnormal{staff, 1st}_{b}& \text{Cost of the first stage staff per day of band $b\in\mathcal{B}$}\\ [0.2cm]
+    c^\textnormal{staff, 2nd}_{b}& \text{Cost of the second stage staff per day of band $b\in\mathcal{B}$}\\ [0.2cm]
+    p_{k}&  \text{Probability of scenario $k \in \mathcal{K}$}\\ [0.2cm]
+    D_{s,r,k} & \text{Average daily bed demand for each specialty $s\in\mathcal{S}$} \\  [0.2cm]
+    & \text{arriving from region $r\in\mathcal{R}$, for scenario $k\in\mathcal{K}$}\\ [0.2cm]
+    R_{s,b} &\text{Ratio of nursing staff of band $b\in\mathcal{B}$ to patient for each specialty $s\in\mathcal{S}$}\\ [0.2cm]
+    $K_{s,h}$ & \text{Maximum number of beds available to open in each specialty $s \in \mathcal{S}$} \\ [0.2cm] & \text{in hospital $h \in \mathcal{H}$} \\[0.2cm]
+    UB^\textnormal{max, bed, 1st}_{h} & \text{Upper bound of the number of beds that are able to be deployed }\\ 
+    &\text{in hospital $h\in\mathcal{H}$ in the first stage}\\ [0.2cm]
+    UB^\textnormal{max, bed, 2nd}_{h} & \text{Upper bound of the number of beds that are able to be deployed}\\[0.2cm]
+    &\text{in hospital $h\in\mathcal{H}$ in the second stage}\\ [0.2cm]
+    UB^\textnormal{max, staff, 1st}_{b} & \text{Upper bound of the number of staff that can be deployed in the $1^{st}$ stage}\\[0.2cm]
+    UB^\textnormal{max, staff, 2nd}_{b} & \text{Upper bound of the number of staff that can be deployed in the $2^{nd}$ stage} \\\bottomrule
+    \end{tabular}}
+    \caption{The parameters used within the two-stage stochastic model where (\(b, s, h, r, k\)) represent the maximum number of nursing bands, specialties, hospitals, regions and scenarios, respectively}
+    \label{tab:tssmp}
+\end{table}
+
+\subsection{Decision Variables}
+The decision variables that were listed in Table \ref{tab:dmdv} can be extended to include the second stage decision variables, given in Table \ref{tab:tssmdv}.
+
+\begin{table}[h!]
+    \centering\scalebox{0.9}{
+    \begin{tabular}{cl}\toprule
+        \textbf{Decision Variable} & \textbf{Definition} \\\midrule
+         $x^\textnormal{bed}_{s,h}$ \in \mathbb{N} & \text{Number of beds planned in the $1^{st}$ stage for specialty $s\in\mathcal{S}$,} \\
+         & {in hospital $h\in\mathcal{H}$} \\ [0.2cm]
+
+     $x^\textnormal{staff}_{s,b,h}$ \in \mathbb{N} &\text{Number of staff planned in the $1^{st}$ stage for specialty $s\in\mathcal{S}$,} \\
+    & {of band $b\in\mathcal{B}$, in hospital $h\in\mathcal{H}$}\\ [0.2cm]
+    $u^\textnormal{bed}_{s,r,h,k} $ \in \mathbb{N} &\text{Additional number of beds needed in the $2^{nd}$ stage} \\ &\text{for specialty $s\in\mathcal{S}$, for patients arriving from region $r\in\mathcal{R}$}\\ &\text{in hospital $h\in\mathcal{H}$, for scenario $k\in\mathcal{K}$} \\   [0.2cm]
+   $ u^\textnormal{staff}_{s,b,h,k}$ \in \mathbb{N} & \text{Additional number of staff needed in the $2^{nd}$ stage} \\ & \text{for specialty $s\in\mathcal{S}$, of band $b\in\mathcal{B}$, in hospital $h\in\mathcal{H}$,} \\ & \text{for scenario $k\in\mathcal{K}$} \\  \bottomrule 
+    \end{tabular}}
+    \caption{The sets used within the two-stage stochastic model where (\(b, s, h, r, k\)) represent the value number of nursing bands, specialties, hospitals, regions and scenarios, respectively}
+    \label{tab:tssmdv}
+\end{table}
+
+\subsection{Model}\label{sec:stochasticmodel}
+The following two-stage stochastic model can be determined, adapted from Equations \eqref{eq:det_objective} - \eqref{eq:det_con5}, resulting in the Equations \eqref{eq:sto_objective} - \eqref{eq:sto_con7}.
+
+\begin{multline}\label{eq:sto_objective}
+    \text{min} \sum_{h\in\mathcal{H}}\sum_{s\in\mathcal{S}}(c^\textnormal{bed, 1st}_{s,h}x^\textnormal{bed}_{s,h} + \sum_{b\in\mathcal{B}}c^\textnormal{staff, 1st}_{b}x^\textnormal{staff}_{s,b,h})\\ 
+    +\sum_{k\in\mathcal{K}}\sum_{h\in\mathcal{H}}\sum_{s\in\mathcal{S}}p_{k}(c^\textnormal{bed, 2nd}_{s,h} u^\textnormal{bed}_{s,h,k}+
+   \sum_{b\in\mathcal{B}} c^\textnormal{staff, 2nd}_{b}u^\textnormal{staff}_{s,b,k,h})
+\end{multline}
+
+
+subject to:
+\begin{align}
+    \sum_{h\in\mathcal{H}} ({x_{s,h}^\textnormal{bed}} +  {u_{s,h,k}^\textnormal{bed}}) &\geq D_{s,r,k}  & & \forall s \in \mathcal{S}, r \in \mathcal{R}, k \in \mathcal{K}  \label{eq:sto_con1}\\
+    \sum\limits_{b'\in\mathcal{B}: b'\geq b} {x_{s,b',h}^\textnormal{staff}} &\geq R_{s,b}\cdot{x_{s,h}^\textnormal{bed}} & & \forall s \in \mathcal{S}, b \in \mathcal{B}, h \in \mathcal{H} \label{eq:sto_con2a}\\
+    \sum\limits_{b'\in\mathcal{B}: b'\geq b} u_{s,b',k,h}^\textnormal{staff} &\geq R_{s,b} \cdot {u_{s,h,k}^\textnormal{bed}} & &\forall s \in \mathcal{S}, b \in \mathcal{B}, h \in \mathcal{H}, k \in \mathcal{K} \label{eq:sto_con2b}\\
+    {x_{s,h}^\textnormal{bed}} &\leq K_{s,h} & & \forall s \in \mathcal{S}, h \in \mathcal{H}\label{eq:sto_con3a}\\
+        {u_{s,h,k}^\textnormal{bed}} &\leq K_{s,h} & & \forall s \in \mathcal{S}, h \in \mathcal{H}, k \in \mathcal{K}\label{eq:sto_con3b}\\
+       0 \leq \sum_{s\in\mathcal{S}}{x_{s,h}^\textnormal{bed}} &\leq {UB_h^\textnormal{max, bed, 1st}} & &\forall h \in \mathcal{H}\label{eq:sto_con4}\\
+   0 \leq \sum_{s\in\mathcal{S}}\sum_{h\in\mathcal{H}}{x_{s,b,h}^\textnormal{staff}} &\leq {UB_{b}^\textnormal{max, staff, 1st}}& & \forall b \in \mathcal{B}\label{eq:sto_con5}\\
+    0 \leq  \sum_{s\in\mathcal{S}}{u_{s,h,k}^\textnormal{bed}} &\leq {UB_h^\textnormal{max, bed, 2nd}} & & \forall h \in \mathcal{H}, k \in \mathcal{K}  \label{eq:sto_con6}\\
+    0 \leq  \sum_{s\in\mathcal{S}}\sum_{h\in\mathcal{H}}{u_{s,b,k,h}^\textnormal{staff}} &\leq {UB_{b}^\textnormal{max, staff, 2nd}} & & \forall b \in \mathcal{B}, k \in \mathcal{K} \label{eq:sto_con7}
+\end{align}
+
+The first sum in the objective function \eqref{eq:sto_objective} is the cost of deploying both beds and staff to specialties within each hospital. The second sum represents the additional beds and staff within the same hospital or a different hospital in the region. The first constraint, \eqref{eq:sto_con1}, assures the demand for each specialty and region is met by the number of hospital beds deployed. Constraint \eqref{eq:sto_con2a} ensures the number of staff deployed meets the minimum requirements for staff on each specialty ward in the first stage, whilst Constraint \eqref{eq:sto_con2b} ensures this requirement is met in the second stage. Constraints \eqref{eq:sto_con3a} and \eqref{eq:sto_con3b} assures the beds deployed do not exceed the maximum number of beds available for each specialty within each hospital. Equations \eqref{eq:sto_con4} - \eqref{eq:sto_con7} define the maximum bounds on the first and second stage decision variables of the problem.
+
+\subsection{Worked Example}
+
+Using the 15 patients discussed previously, these can be applied to the two-stage stochastic model. Table \ref{tab:DeterministicWorkedExample} can be extended to generate Table \ref{tab:StochaWorkedExample} to include the second stage model parameters.
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ll}\toprule
+       \textbf{Parameters}  & \textbf{Values} \\\midrule
+        1$^{st}$ Stage Bed Costs ($c^\textnormal{bed,1st}_{s,h}$) & $\begin{bmatrix} 20 & 30 \\ 30 & 40 \end{bmatrix}$\\  [0.5cm]
+        2$^{st}$ Stage Bed Costs ($c^\textnormal{bed,2nd}_{s,h}$) & $\begin{bmatrix} 22 & 33 \\ 33 & 44 \end{bmatrix}$\\ [0.5cm]
+        Ratio ($R_{s,b}$) &$\begin{bmatrix}0.29&0.14\\
+         0.14&0.29\end{bmatrix}$\\ [0.5cm]
+         Maximum Specialty Capacity ($K_{s,h}$) &$\begin{bmatrix}
+         20 &25  \\ 20 & 25\\
+         \end{bmatrix}$\\[0.5cm]
+         1$^{st}$ Stage Staff Costs ($c^\textnormal{staff, 1st}_{b}$) &[$\pounds50, \pounds60$] \\ [0.25cm]
+         2$^{nd}$ Stage Staff Costs ($c^\textnormal{staff, 2nd}_{b}$) &[$\pounds55, \pounds66$] \\ [0.25cm]
+         Upper 1$^{st}$ bed limit ($UB^\textnormal{max,bed,1st}_{h}$) &  [20,25]\\[0.25cm]
+         Upper 2$^{nd}$ bed limit ($UB^\textnormal{max,bed,2nd}_{h,k}$) &  $\begin{bmatrix} 20 & 20 &20\\ 25 & 25 &25 \end{bmatrix}$\\[0.5cm]
+         Upper 1$^{st}$ staff limit ($UB^\textnormal{max,staff,1st}_{b}$)& [15,25]\\[0.25cm]
+         Upper 2$^{nd}$ staff limit ($UB^\textnormal{max,staff,2nd}_{b.k}$)& $\begin{bmatrix} 15 & 15 \\ 25 & 25 \end{bmatrix}$\\[0.5cm]
+         Probability of Scenarios ($p_{k}$) & [0.4,0.3,0.3]\\
+         
+         \bottomrule
+    \end{tabular}
+    \caption{The parameter values that will be used within the two-stage stochastic model specifically for the worked example}
+    \label{tab:StochaWorkedExample}
+\end{table}
+
+The matrices are stored in row-major order. For the terms with two indices, the first index of the parameter refers to the row of the matrix, and the second refers to the column of the matrix.
+
+Similarly, Equations \eqref{eq:averagebeds1} and \eqref{eq:averagebeds2} can be used to determine the average daily bed demand. Three scenarios are studied:
+
+\begin{itemize}
+    \item Average demand with a probability of 40\%
+    \item Demand increasing by 20\% with a probability of 30\% 
+    \item Demand decreasing by 20\% with a probability of 30\%
+\end{itemize}
+
+The model is additionally run with low demand (-10\%) and high demand (+10\%) with the same scenario percentages.
+\begin{table}[h!]
+    \centering\scalebox{0.9}{
+    \begin{tabular}{cccccccccc}\toprule
+    \textbf{} & \multicolumn{3}{c}{\textbf{Low Demand}}
+         &  \multicolumn{3}{c}{\textbf{Average Demand}} & \multicolumn{3}{c}{\textbf{High Demand}}\\
+         & \textbf{k=0} & \textbf{k=1} & \textbf{k=2}& \textbf{k=0} & \textbf{k=1} & \textbf{k=2} & \textbf{k=0} & \textbf{k=1} & \textbf{k=2} \\
+         \midrule
+        $D_{0,0,k}$ & 15.001 & 18.002 & 12.001 & 16.660 & 19.992 & 13.328 & 18.33 & 21.996 & 14.664 \\
+        $D_{1,0,k}$ & 17.100  & 20.520  & 13.680  & 19.001                            & 22.80   & 15.200   & 20.900  & 25.080  & 16.720 \\ \bottomrule
+    \end{tabular}}
+    \caption{The daily bed demand figures for each region and specialty $D_{s,r,k}$, categorised by low, average and high.}
+    \label{tab:WEStochDemands}
+\end{table}
+These values can be represented in a matrix. For example the average demand $D_{s,r,k}$ matrix would be represented as:\\
+\centering
+$\begin{bmatrix}
+   [[16.660, 19.992, 13.328]] \\
+    [[19.000, 22.800, 15.200]]
+\end{bmatrix}$
+\flushleft
+The demand term is stored as a three-dimensional array ($D_{s,r,k}$). The first index refers to the row and the second index corresponds to the column. In this case, we only have one region, so only one matrix column is shown. The third index refers to the column inside the sub-matrix. To illustrate, if we refer to the first hospital and region ($D_{0,0,k}$), then, if $k=0$, we refer to the first element inside the [0,0] matrix, i.e., 16.660. If $k=1$, we refer to the second element inside the [0,0] matrix, i.e., 19.000.
+
+
+Table \ref{tab:WEStochDemands} displays the demands for each scenario of the low, average and high demands for the two-stage stochastic problem. 
+
+
+
+These demands can be input into the two-stage stochastic model to obtain the objective function for each case. Table \ref{tab:WEStochResults} shows the values for each of the decision variables, $x^{\textnormal{bed}}_{s,h}$, $x^{\textnormal{staff}}_{s,b,h}$, $x^{\textnormal{bed}}_{s,r,h,k}$ and $u^{\textnormal{staff}}_{s,b,h,k}$, is displayed.
+
+\begin{landscape}
+\begin{table}[h!]
+    \centering\scalebox{0.85}{
+    \begin{tabular}{cccccccccc}\toprule
+\textbf{$1^{st}$ Stage Decision Variables} & \multicolumn{3}{c}{\textbf{Low Demand}} & \multicolumn{3}{c}{\textbf{Average Demand}} & \multicolumn{3}{c}{\textbf{High Demand}} \\\midrule
+
+    $x^\textnormal{bed}_{0,0}$        &\multicolumn{3}{c}{13}  &\multicolumn{3}{c}{0}    &\multicolumn{3}{c}{6}    \\
+    $x^\textnormal{bed}_{0,1}$        &\multicolumn{3}{c}{0}  &\multicolumn{3}{c}{0}    &\multicolumn{3}{c}{0}    \\
+    $x^\textnormal{bed}_{1,0}$        &\multicolumn{3}{c}{6}  &\multicolumn{3}{c}{20}    &\multicolumn{3}{c}{13}    \\
+    $x^\textnormal{bed}_{1,1}$        &\multicolumn{3}{c}{6} &\multicolumn{3}{c}{0}   &\multicolumn{3}{c}{0}   \\ \midrule
+    $x^\textnormal{staff}_{0,0,0}$    &\multicolumn{3}{c}{4} &\multicolumn{3}{c}{0} &\multicolumn{3}{c}{2} \\
+    $x^\textnormal{staff}_{0,0,1}$    &\multicolumn{3}{c}{0}  &\multicolumn{3}{c}{0}  &\multicolumn{3}{c}{0}  \\
+    $x^\textnormal{staff}_{0,1,0}$    &\multicolumn{3}{c}{2}  &\multicolumn{3}{c}{0} &\multicolumn{3}{c}{1} \\
+    $x^\textnormal{staff}_{0,1,1}$    &\multicolumn{3}{c}{0}  &\multicolumn{3}{c}{0}  &\multicolumn{3}{c}{0}  \\
+    $x^\textnormal{staff}_{1,0,0}$    &\multicolumn{3}{c}{1}  &\multicolumn{3}{c}{3}  &\multicolumn{3}{c}{2}  \\
+    $x^\textnormal{staff}_{1,0,1}$    &\multicolumn{3}{c}{1} &\multicolumn{3}{c}{0} & \multicolumn{3}{c}{0}\\
+    $x^\textnormal{staff}_{1,1,0}$    &\multicolumn{3}{c}{2}  &\multicolumn{3}{c}{6}  &\multicolumn{3}{c}{4}  \\
+    $x^\textnormal{staff}_{1,1,1}$    &\multicolumn{3}{c}{2}  &\multicolumn{3}{c}{0}  & \multicolumn{3}{c}{0} \\ \midrule
+     \textbf{$2^{nd}$ Stage Decision Variables} & \multicolumn{3}{c}{\textbf{Low Demand}} & \multicolumn{3}{c}{\textbf{Average Demand}} & \multicolumn{3}{c}{\textbf{High Demand}} \\
+     & \textbf{k=1} & \textbf{k=2} & \textbf{k=3}& \textbf{k=1} & \textbf{k=2} & \textbf{k=3}& \textbf{k=1} & \textbf{k=2} & \textbf{k=3}\\
+     \midrule
+    $u^\textnormal{bed}_{0,0,k}$     & 3 & 4  & 3  &  17 & 20  & 14  & 13  &  17 &  10 \\
+    $u^\textnormal{bed}_{0,1,k}$     & 0  & 5  & 0  &  0&  1 &  0 & 0  & 0  &   0\\
+    $u^\textnormal{bed}_{1,0,k}$     & 6 & 4  & 0  &  0 & 4  &  0 & 8  & 13  & 4  \\
+    $u^\textnormal{bed}_{1,1,k}$     & 0 & 3  & 0  &  0 &  0 & 0  & 0  &  0 & 0  \\ \midrule
+    $u^\textnormal{staff}_{0,0,0,k}$ & 1 & 3 & 0 & 5 &6  & 5 &4  & 5  & 3  \\
+    $u^\textnormal{staff}_{0,0,1,k}$ & 0 & 0 & 0 & 0 & 1  & 0 &  0 & 0  &  0 \\
+    $u^\textnormal{staff}_{0,1,0,k}$ & 1 & 1 & 0 & 3 &  3 & 2 &  2 & 3 &   2 \\
+    $u^\textnormal{staff}_{0,1,1,k}$ & 0 & 0 & 0 & 0 &  1 & 0 &  0 & 0  & 0  \\
+    $u^\textnormal{staff}_{1,0,0,k}$ & 1 & 2 & 1 & 0 & 1 & 0 & 2  & 2  &  1 \\
+    $u^\textnormal{staff}_{1,0,1,k}$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 &  0 &   0 \\
+    $u^\textnormal{staff}_{1,1,0,k}$ & 2 & 3 & 1 & 0 & 2  & 0 & 3  & 4  & 2  \\
+    $u^\textnormal{staff}_{1,1,1,k}$ & 0 & 0 & 0 & 0  &  0 & 0 &  0 &  0 &  0 \\ \midrule
+     \textbf{Objective Function Value} &\multicolumn{3}{c}{$\pounds$1,996.40} & \multicolumn{3}{c}{$\pounds$2,185.20}& \multicolumn{3}{c}{$\pounds$2,351.60}\\\bottomrule
+    \end{tabular}}
+    \caption{The two-stage stochastic results for each of the decision variables $x^{\textnormal{bed}}$, $x^{\textnormal{staff}}$, $u^{\textnormal{bed}}$ and $x^{\textnormal{staff}}$, categorised by low, average and high daily bed demands.}
+    \label{tab:WEStochResults}
+\end{table}
+
+\end{landscape}
+
+The RP values for the three demand levels are $\pounds$1,996.40, $\pounds$2,185.20, and $\pounds$2,351.60 for the low, average and high levels of demand. All three results show that there is a linear relationship, with the increases being almost directly proportional (Figure \ref{fig:WEStochastic1}).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.75]{Chapters/Chapter4/Figures/WorkedExampleUp2.png}
+    \caption{Line graph showing the objective function for the two-stage stochastic implementation against the different daily demand levels, where -10\% indicates the low daily bed demand and +10\% indicated the high daily bed demand.}
+    \label{fig:WEStochastic1}
+\end{figure}
+
+The low to average level demands show a 9.46\% increase which is similar to the 10\% increase in demand. Similarly, average to high level demands yield a 7.61\% increase. The low to high daily demands cause an additional 20\% in costs, with a total increase of 17.79\% in demands.
+
+\section{Evaluation of Measures}\label{sec:evalofmeasures}
+This section looks at applying the three tests discussed in Sections \ref{sec:TestA}, \ref{sec:TestB} and \ref{sec:TestC} to the worked example of frail and elderly patient services. Furthermore, it will determine how the results can be evaluated and determine where the model is under performing.
+
+
+\subsection{Test A}
+Test A involves calculating the VSS to determine the expected loss when using the deterministic solution. If we recall Equations \eqref{eq:EEV} and \eqref{eq:VSS}, which calculates the EEV and VSS respectively.
+
+\begin{equation}
+    EEV = E_{\boldsymbol{\xi}} (z(\bar x (\bar \xi),\boldsymbol{\xi})) \tag{\ref{eq:EEV} revisited}
+\end{equation}
+\begin{equation}
+    VSS = EEV - RP\tag{\ref{eq:VSS} revisited}
+\end{equation}
+
+Tables \ref{tab:WELowDemandTestA} - \ref{tab:WEHighDemandTestA} display the results for calculating the VSS for the worked example, with low, average and high demand respectively. The deterministic model deploys fewer beds and nursing staff than the stochastic model in each of the three cases, leading to an EV solution that costs approximately two-thirds of the RP. However, the EEV is larger in all cases and this results in the following VSS scores:
+\begin{align}
+    VSS_{Low} &= 2,140.80 - 1,996.40 = \pounds144.40 \ (7.23\%)\\
+    VSS_{Average} &= 2,240.80 - 2,185.20 = \pounds55.60 \ (5.4\%)\\
+    VSS_{High} &= 2,668.40 - 2,351.60 = \pounds316.80 \ (13.47\%)
+\end{align}
+
+This demonstrates that utilising the stochastic model rather than the deterministic, can save between 5.4\% and 13.47\% in bed and staffing costs.
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(6), (2, 1)] & [(10), (3, 2)] & [(13), (2, 4)] & [(5), (1, 2)] & 1,950.00 = EV\\
+        Stochastic & [(20), (7, 3)] & [(0), (0, 0)] & [(16), (3, 5)] &[(6), (1, 2)] & 1,996.40 = RP\\
+        Test A  & [(17), (6, 3)] & [(3), (1,1)] & [(10), (2,4)] & [(12), (2,4)] & 2,140.80 = EEV\\\bottomrule
+    \end{tabular}}
+    \caption{Test A results for the worked example using low daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WELowDemandTestA}
+\end{table}
+
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+         Deterministic & [(0), (0,0)] & [(17), (5, 3)] & [(20), (3, 6)] & [(0), (0, 0)] & 2,050.00= EV\\
+        Stochastic & [(20), (6, 3)] & [(1), (1, 1)] & [(24), (4, 8)] &[(0), (0, 0)] &  2,185.20= RP\\
+        Test A  & [(4), (2, 1)] & [(17), (5, 3)] & [(24), (4, 8)] & [(0), (0, 0)] & 2,240.80 = EEV\\\bottomrule
+    \end{tabular}}
+    \caption{Test A results for the worked example using average daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WENorDemandTestA}
+\end{table}
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(19), (6, 3)] & [(0), (0, 0)] & [(0), (0, 0)] & [(21), (3, 7)] & 2,270.00 = EV\\
+        Stochastic & [(23, (7, 4)] & [(0), (0, 0)] & [(14), (4, 8)] &[(0), (0, 0)]& 2,351.60 = RP\\
+        Test A  & [(22), (7, 4)] &[(0), (0, 0)] & [(14), (2, 3)] & [(21), (3, 7)] & 2,668.40 = EEV\\\bottomrule
+    \end{tabular}}
+    \caption{Test A results for the worked example using high daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WEHighDemandTestA}
+\end{table}
+
+To determine the exact reason why the deterministic model performed poorly, further tests were conducted.
+
+\subsection{Test B}
+Test B takes the skeleton solution from the deterministic model. Since the deterministic model did not result in any zero values being produced, the lower bound values instead will be used. 
+
+We calculate the ESSV as follows:
+\begin{equation}
+    ESSV = E_{\boldsymbol{\xi}}(z(\hat x, \boldsymbol{\xi})) \tag{\ref{eq:ESSV} revisited} 
+\end{equation}
+and then use this information to calculate the LUSS:
+\begin{equation}
+    LUSS = ESSV - RP\tag{\ref{eq:LUSS} revisited}
+\end{equation}
+
+Tables \ref{tab:WELowDemandTestB} - \ref{tab:WEHighDemandTestB}, present the results after the ESSV calculations have been calculated. For each case, the ESSV is larger than the RP and therefore the LUSS is as follows:
+\vspace{-0.25cm}
+\begin{align}
+    LUSS_{Low} & = 1,996.40 - 1,996.40 = \pounds0\\
+    LUSS_{Average} & = 2,240.80 - 2,185.20 = \pounds55.6\\
+    LUSS_{High} & = 2,408.40 - 2,351.60  = \pounds56.80
+\end{align}
+
+Since the model is fixed by how many beds it can deploy in the first stage, the demand is not satisfied within the first stage. The model reacts by opening beds in the second stage, in the facilities where this is restricted in the first stage. This occurs because the second stage costs for some bed specialties are in fact less expensive than first stage costs in other bed specialties.
+
+
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(6), (2, 1)] & [(10), (3, 2)] & [(13), (2, 4)] & [(5), (1, 2)] & 1,950.00 = EV\\
+        Stochastic & [(20), (7, 3)] & [(0), (0, 0)] & [(16), (3, 5)] &[(6), (1, 2)] & 1,996.40 = RP\\
+        Test A  & [(17), (6, 3)] & [(3), (1,1)] & [(10), (2,4)] & [(12), (2,4)] & 2,140.80 = EEV\\
+        Test B & [(20), (7, 3)] & [(0), (0, 0)] & [(16), (3, 5)] & [(6), (1, 2)] &1,996.40 = ESSV = RP \\\bottomrule
+    \end{tabular}}
+    \caption{Test B results for the worked example using low daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WELowDemandTestB}
+\end{table}
+
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+         Deterministic & [(0), (0,0)] & [(17), (5, 3)] & [(20), (3, 6)] & [(0), (0, 0)] & 2,050.00= EV\\
+        Stochastic & [(20), (6, 3)] & [(1), (1, 1)] & [(24), (4, 8)] &[(0), (0, 0)] &  2,185.20= RP\\
+        Test A  & [(4), (2, 1)] & [(17), (5, 3)] & [(24), (4, 8)] & [(0), (0, 0)] & 2,240.80 = EEV\\
+        Test B & [(4), (2, 1)] & [(17), (5, 3)] & [(24), (4, 8)] & [(0), (0, 0)] & 2,240.80 = ESSV = EEV\\  \bottomrule
+    \end{tabular}}
+    \caption{Test B results for the worked example using average daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WENorDemandTestB}
+\end{table}
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(19), (6, 3)] & [(0), (0, 0)] & [(0), (0, 0)] & [(21), (3, 7)] & 2,270.00 = EV\\
+        Stochastic & [(23, (7, 4)] & [(0), (0, 0)] & [(14), (4, 8)] &[(0), (0, 0)]& 2,351.60 = RP\\
+        Test A  & [(22), (7, 4)] &[(0), (0, 0)] & [(14), (2, 3)] & [(21), (3, 7)] & 2,668.40 = EEV\\
+        Test B & [(23), (7,4)] & [(0), (0, 0)]  & [(9), (2, 3)]  & [(17), (3, 5)] & 2,408.40 = ESSV \\\bottomrule
+    \end{tabular}}
+    \caption{Test B results for the worked example using high daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WEHighDemandTestB}
+\end{table}
+
+
+\subsection{Test C}
+Test C determines the upgradeability of the model. The number of beds and staff deployed in the deterministic solution are added as constraints, where these minimum numbers have to be met in the first stage. Equation \eqref{eq:EIV} calculates the expectant result from this test:
+
+\begin{equation}
+    EIV = E_{\boldsymbol{\xi}}(z(\Tilde{x},\boldsymbol{\xi})) \tag{\ref{eq:EIV} revisited}
+\end{equation}
+\begin{equation}
+    LUDS = EIV - RP \tag{\ref{eq:LUDS} revisited}
+\end{equation}
+The LUDS values for each case are as follows:
+\begin{align}
+    LUDS_{Low} &= 2,235.40 - 1,996.40 = \pounds239 \\
+    LUDS_{Average} &= 2,240.80 - 2,185.20 = \pounds55.6 \\
+    LUDS_{High} &= 2,565.40 - 2,351.60 = \pounds213.80
+\end{align}
+Tables \ref{tab:WELowDemandTestC} - \ref{tab:WEHighDemandTestC} display the results for the EIV. For all cases, the LUDS value is greater than zero but less than the VSS. This demonstrates partial upgradeability.
+
+\begin{table}[h!]
+    \centering\scalebox{0.75}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(6), (2, 1)] & [(10), (3, 2)] & [(13), (2, 4)] & [(5), (1, 2)] & 1,950.00 = EV\\
+        Stochastic & [(20), (7, 3)] & [(0), (0, 0)] & [(16), (3, 5)] &[(6), (1, 2)] & 1,996.40 = RP\\
+        Test A  & [(17), (6, 3)] & [(3), (1,1)] & [(10), (2,4)] & [(12), (2,4)] & 2,140.80 = EEV\\
+        Test B & [(20), (7, 3)] & [(0), (0, 0)] & [(16), (3, 5)] & [(6), (1, 2)] &1,996.40 = ESSV = RP \\
+        Test C  & [(17), (6, 3)] & [(3), (1,1)] & [(9), (2,3)] & [(13), (2,3)] & 2,235.40 = EIV \\\bottomrule
+    \end{tabular}}
+    \caption{Test C results for the worked example using low daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WELowDemandTestC}
+\end{table}
+
+\begin{table}[h!]
+    \centering\scalebox{0.72}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(0), (0,0)] & [(17), (5, 3)] & [(20), (3, 6)] & [(0), (0, 0)] & 2,050.00= EV\\
+        Stochastic & [(20), (6, 3)] & [(1), (1, 1)] & [(24), (4, 8)] &[(0), (0, 0)] &  2,185.20= RP\\
+        Test A  & [(4), (2, 1)] & [(17), (5, 3)] & [(24), (4, 8)] & [(0), (0, 0)] & 2,240.80 = EEV\\
+        Test B & [(4), (2, 1)] & [(17), (5, 3)] & [(24), (4, 8)] & [(0), (0, 0)] & 2,240.80 = ESSV = EEV\\ 
+        Test C  & [(4), (2, 1)] & [(17), (5, 3)] & [(24), (4, 8)] & [(0), (0, 0)] & 2,240.80 = EIV = ESSV = EEV\\\bottomrule
+    \end{tabular}}
+    \caption{Test C results for the worked example using average daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WENorDemandTestC}
+\end{table}
+\begin{table}[h!]
+    \centering\scalebox{0.72}{
+    \begin{tabular}{l|cccc|l} \toprule
+         & \textbf{s=0, h=0} & \textbf{s=0, h=1}  &\textbf{s=1, h=0}  &\textbf{s=1, h=1}  & \textbf{Objective Value ($\pounds$)}\\ \midrule
+        Deterministic & [(19), (6, 3)] & [(0), (0, 0)] & [(0), (0, 0)] & [(21), (3, 7)] & 2,270.00 = EV\\
+        Stochastic & [(23, (7, 4)] & [(0), (0, 0)] & [(14), (4, 8)] &[(0), (0, 0)]& 2,351.60 = RP\\
+        Test A  & [(22), (7, 4)] &[(0), (0, 0)] & [(14), (2, 3)] & [(21), (3, 7)] & 2,668.40 = EEV\\
+        Test B & [(23), (7,4)] & [(0), (0, 0)]  & [(9), (2, 3)]  & [(17), (3, 5)] & 2,408.40 = ESSV \\
+        Test C & [(23), (7, 4)] & [(0), (0, 0)] & [(5), (1, 2)] &[(21), (3, 7)] & 2,565.40 = EIV\\\bottomrule
+    \end{tabular}}
+    \caption{Test C results for the worked example using high daily bed demand values, with results recorded in the form [(beds), (staff)].}
+    \label{tab:WEHighDemandTestC}
+\end{table}
+
+\subsection{Worked Example Conclusion}
+The worked example provided three low, average and high demand scenarios to determine how beds and staff can be planned for two specialties within two hospitals. To replicate both real world planning and real world events, these cases were performed in both a deterministic and stochastic environment. 
+
+Figure \ref{fig:WETests} provides a visual for the results, showing the differences between the deterministic and stochastic models for all three cases.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Chapters/Chapter4/Figures/updatestests.png}
+    \caption{Clustered bar chart showing the objective function value for the deterministic and two-stage stochastic models. Included within this is the EEV, ESSV and EIV results for the low, average and high daily bed demands.}
+    \label{fig:WETests}
+\end{figure}
+
+The results show the deterministic solution does not perform well in a stochastic environment, because of the too low number of beds and staff deployed at the first stage. By performing Test A, this showed there may be value in considering the deterministic solution as a lower bound for the stochastic case. Test B has shown that the deterministic solution performed poorly because it deployed the incorrect number of beds and staff. Finally, Test C, showed that even if some beds and staff are planned using the deterministic model, the stochastic model provides options on how to upgrade or improve the solution. It also informed as to where shortages are likely to be expected.
+
+\section{Summary}
+Prescriptive analytics offer healthcare professionals the opportunity to optimise outcomes by recommending the best course of action for patients or providers. Often, healthcare decisions are made using simple tools or are based on staff intuition, potentially leading to less than ideal outcomes by subjecting patients to unnecessary risks. Using more evidence-based and unbiased approaches, prescriptive analytics can be driven by real-time data which is routinely collected. Due to the ability to perform numerous scenario analysis, the impact of selecting different actions can be evaluated prior to implementation.
+
+This chapter has provided an introduction into two prescriptive methodologies, deterministic and two-stage stochastic modelling. Expanding on the two-stage stochastic programming paradigm and building on the tests introduced by Maggioni and Wallace \cite{Maggioni2010}, this chapter has gone further by creating two-dimensional decision variables which are dependent on each other along with the application to a different field of research, namely healthcare. To demonstrate the procedure and the robustness of the models, a simplified worked example including two hospitals and two specialties was used. The tests discussed in \cite{Maggioni2010}, have also been employed, applied and evaluated to each of the examples.
+
+In the following chapter, Chapter \ref{chp:Experimental Analysis}, the theory from both this and the previous chapter will be applied to a case study of frail and elderly patients. The deterministic and two-stage stochastic models developed will be expanded to a case of 14 hospitals and 29 specialties, to determine how to effectively organise bed numbers and staffing requirements to fulfil current and future demands, whilst being mindful of increasing medical costs.
+\end{document}  

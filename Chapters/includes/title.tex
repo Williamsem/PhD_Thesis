@@ -1,0 +1,42 @@
+\documentclass[../thesis.tex]{subfiles}
+
+\begin{document}
+    % in order to centre the title block visually, it has to be wrapped in an adjustwidth
+    % environment which shifts the entire textblock to a centred block on the page. then
+    % the usual latex \centering or center environment work as expected. without the adjustwidth
+    % the title block would be centred in a textblock which is *not* centred on the page
+\thispagestyle{empty} % we don't want page numbers on our titlepage
+%\calccentering{\unitlength}
+% \begin{adjustwidth*}{\unitlength}{-\unitlength}
+\centering
+\vspace*{0.05\textheight} % drop 10% of the height from the top
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%               YOU MUST MODIFY THE FOLLOWING THREE LINES               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\rule{\textwidth}{0.4pt}% Thin horizontal rule
+\vspace{1\baselineskip} 
+{\LARGE \textbf{Linking Predictive And Prescriptive Analytics For Modelling Healthcare Services For Frail And Elderly Patients}}
+\vspace{0.75\baselineskip} % Whitespace below the title
+\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+\vfill
+%\\[0.35em] }\\[\baselineskip]
+%{\LARGE Elizabeth Williams}\\[\baselineskip]
+%{\LARGE Month 2022}\\[\baselineskip]
+%\vspace*{0.1\textheight}
+\includegraphics[width =90mm]{includes/Combined images.png}\\
+\vfill
+{\Large Elizabeth Mary Millicent Williams}\\
+\vspace{0.75\baselineskip} 
+{\Large School of Mathematics}\\
+\vspace{0.75\baselineskip}
+{\Large Cardiff University}
+\vfill
+
+{\Large A thesis submitted for the degree of\\[0.35em] \textit{Doctor of Philosophy}}\\
+\vfill
+{\Large August 2023}      % fill any remaining vertical space between title/author/year and the logo
+
+%\vspace*{0.00001\textheight} % leave 10% of pageblock empty at bottom
+% \end{adjustwidth*}
+\end{document}

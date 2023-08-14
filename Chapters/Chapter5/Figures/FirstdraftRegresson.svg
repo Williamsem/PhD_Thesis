@@ -1,0 +1,3917 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="344.22333mm"
+   height="190.765mm"
+   viewBox="0 0 344.22333 190.765"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="FirstdraftRegresson.svg"
+   inkscape:export-filename="C:\Users\C1503449\regressiontreevisual.png"
+   inkscape:export-xdpi="96.199997"
+   inkscape:export-ydpi="96.199997">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="marker13863"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) rotate(180) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path13861" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker11935"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.3) rotate(180) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path11933" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker11925"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) rotate(180) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path11923" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker11506"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path11504" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker11140"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path11138" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker11008"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path11006" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker10516"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path10514" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker9780"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path9778" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker9438"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path9436" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker9102"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path9100" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker8772"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path8770" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker8448"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path8446" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker8130"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path8128" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker7378"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path7376" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker7066"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path7064" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker6554"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6552" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5948"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5946" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5660"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5658" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5378"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5376" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5102"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5100" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4832"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4830" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4568"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4566" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4310"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4308" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4058"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4056" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker3812"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3810" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker3572"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3570" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker3338"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3336" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker3078"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3076" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker2856"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2854" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker2640"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2638" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker2430"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2428" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker2226"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2224" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker2028"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2026" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker1836"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1834" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker1632"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1630" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker6755"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6753" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker6581"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6579" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker6413"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6411" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker6251"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6249" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker6046"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path6044" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5896"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5894" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5752"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5750" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5614"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5612" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5482"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5480" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5303"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5301" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5183"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5181" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker5069"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5067" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4961"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4959" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4859"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4857" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4763"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4761" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4673"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4671" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4589"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4587" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4503"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4501" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4437"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4435" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker4165"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4163" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Send"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3654" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Sstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) translate(6,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3651" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker4009"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path4007" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Sstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path3669" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3645" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path3639" />
+    </marker>
+    <rect
+       x="101.70652"
+       y="83.912994"
+       width="0.058435231"
+       height="4.7040362"
+       id="rect20" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="61.229576"
+       height="17.854101"
+       id="rect14" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="42.028529"
+       height="18.130554"
+       id="rect14-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect33" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect33-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect33-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect33-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect33-1" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect33-11" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect328" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect328-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect328-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="30.313292"
+       height="21.11274"
+       id="rect458" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect519" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect563" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect625" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect628" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9-5" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect719" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9-5-1" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect779" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect829" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect829-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect829-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9-5-1-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect938" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9-5-1-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect938-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1031" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1081" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1130" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9-5-1-3-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect1133" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74-7-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1224" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-3-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1317" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-3-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1317-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1398" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1398-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1398-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-23" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1398-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1556" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-94" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect1767" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect1767-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1860" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1860-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-1" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1860-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74-7-6-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect1973" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2030" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-8-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2079" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74-7-6-0-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2172" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-9" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2229" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2229-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2229-6" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74-7-6-0-0-3" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2368" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-6-2" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2425" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="43.974239"
+       height="21.022038"
+       id="rect14-2-8-7-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2474" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-26" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2531" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="65.967293"
+       height="16.148153"
+       id="rect14-2-26-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2581" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-6-2-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2638" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-6-2-5" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2638-0" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-6-2-1" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2638-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-6-2-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect2638-77" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-9-3-25" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect5434" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-4" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect6207" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-74-7-6-0-01" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect6905" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-5" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect6962" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-9-0-8-61" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect6962-1" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect14-7-6-8-9-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.763176"
+       height="13.114432"
+       id="rect12990" />
+    <marker
+       style="overflow:visible"
+       id="marker6046-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6044-7" />
+    </marker>
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-41-2-4-8" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect12995" />
+    <marker
+       style="overflow:visible"
+       id="marker6251-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path6249-9" />
+    </marker>
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14-2-2-7" />
+    <rect
+       x="65.651985"
+       y="69.567146"
+       width="38.742561"
+       height="22.848177"
+       id="rect14358" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.7545513"
+     inkscape:cx="514.76944"
+     inkscape:cy="379.73913"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="1572"
+     inkscape:window-y="1621"
+     inkscape:window-maximized="1"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid508"
+       originx="84.799163"
+       originy="-63.367499" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(84.799164,-63.3675)">
+    <rect
+       style="opacity:1;fill:#fbebdf;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10"
+       width="62.58997"
+       height="12.240865"
+       x="85.576698"
+       y="72.425797"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14);"
+       transform="translate(19.962191,3.8600013)"
+       x="19.189526"
+       y="0"><tspan
+         x="66.862667"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">admission_method_Other - transferred from another hospital &lt;= 0.5
+</tspan></tspan><tspan
+         x="90.525858"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 174.76
+</tspan></tspan><tspan
+         x="88.536829"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 132094
+</tspan></tspan><tspan
+         x="90.553246"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 6.378</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text18"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect20);" />
+    <g
+       id="g302"
+       transform="translate(12.037658,-1.4024456)">
+      <rect
+         style="opacity:1;fill:#fcf0e8;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+         id="rect10-8"
+         width="43.656246"
+         height="11.767913"
+         x="22.358175"
+         y="88.714951"
+         ry="2.1166692"
+         rx="2.1166692" />
+      <text
+         xml:space="preserve"
+         id="text12-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7);"
+         transform="translate(-42.728177,19.855433)"
+         x="19.189526"
+         y="0"><tspan
+           x="66.271881"
+           y="71.418492"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">admission_method_Elective - waiting list &lt;= 0.5
+</tspan></tspan><tspan
+           x="80.925272"
+           y="74.064328"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 96.783
+</tspan></tspan><tspan
+           x="78.936243"
+           y="76.710164"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 121320
+</tspan></tspan><tspan
+           x="80.952661"
+           y="79.356"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 4.682</tspan></tspan></text>
+    </g>
+    <rect
+       style="opacity:1;fill:#fffdfc;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3"
+       width="31.899"
+       height="12.282225"
+       x="87.730492"
+       y="118.68652"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2);"
+       transform="translate(18.437287,50.169143)"
+       x="19.189526"
+       y="0"><tspan
+         x="70.281679"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Ysbyty Ystrad Fawr &lt;= 0.5
+</tspan></tspan><tspan
+         x="79.282694"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 25.221
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 7620
+</tspan></tspan><tspan
+         x="79.310082"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 3.016</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#fffdfc;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-69"
+       width="36.692112"
+       height="12.015551"
+       x="57.095051"
+       y="103.92358"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74);"
+       transform="translate(-9.2556296,35.065605)"
+       x="19.189526"
+       y="0"><tspan
+         x="68.06579"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Trauma &amp; Orthopaedic &lt;= 0.5
+</tspan></tspan><tspan
+         x="79.282694"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 10.043
+</tspan></tspan><tspan
+         x="77.830067"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 58766
+</tspan></tspan><tspan
+         x="79.310082"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 0.742</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6"
+       width="16.472103"
+       height="10.31921"
+       x="61.88623"
+       y="120.80292"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1"
+       width="16.472099"
+       height="10.31921"
+       x="97.895836"
+       y="135.20161"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41);"
+       transform="translate(-14.652944,52.25094)"
+       x="19.189526"
+       y="0"><tspan
+         x="79.819096"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 6.897
+</tspan></tspan><tspan
+         x="77.830067"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 51146
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 0.403</tspan></tspan></text>
+    <g
+       id="g13695"
+       style="fill:#fdf4ee;fill-opacity:1">
+      <text
+         xml:space="preserve"
+         id="text12-5-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-4);fill:#fdf4ee;fill-opacity:1;"
+         transform="translate(-5.7707877,66.742877)"
+         x="19.189526"
+         y="0"><tspan
+           x="79.282694"
+           y="71.418492"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#fdf4ee;fill-opacity:1">mse = 28.158
+</tspan></tspan><tspan
+           x="78.366469"
+           y="74.064328"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#fdf4ee;fill-opacity:1">samples = 6391
+</tspan></tspan><tspan
+           x="79.310082"
+           y="76.710164"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#fdf4ee;fill-opacity:1">value = 3.563</tspan></tspan></text>
+      <rect
+         style="opacity:0.649275;fill:#fdf4ee;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+         id="rect10-3-0"
+         width="16.472097"
+         height="10.319212"
+         x="71.352745"
+         y="134.79279"
+         ry="2.1166692"
+         rx="2.1166692" />
+    </g>
+    <text
+       xml:space="preserve"
+       id="text12-5-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2);"
+       transform="translate(20.999049,66.879799)"
+       x="19.189526"
+       y="0"><tspan
+         x="79.819096"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 0.282
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 1229
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 0.168</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eb9f68;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-8"
+       width="33.221928"
+       height="12.282225"
+       x="120.23642"
+       y="133.61458"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-19"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-8);"
+       transform="translate(51.769615,65.097198)"
+       x="19.189526"
+       y="0"><tspan
+         x="68.946358"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Ysbyty Aneurin Bevan &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 701.327
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 8182
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 29.559</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eca26d;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-00"
+       width="31.899"
+       height="12.282225"
+       x="141.40308"
+       y="119.0625"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-10"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-0);"
+       transform="translate(72.109873,50.545123)"
+       x="19.189526"
+       y="0"><tspan
+         x="70.141636"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Nevill Hall Hospital &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 687.722
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 8967
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 28.455</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eca470;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-9"
+       width="37.041668"
+       height="12.282225"
+       x="153.45833"
+       y="103.71666"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <rect
+       style="opacity:1;fill:#f9e4d5;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4"
+       width="39.915073"
+       height="12.263471"
+       x="13.213263"
+       y="103.67565"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6);"
+       transform="translate(-51.583797,34.852632)"
+       x="19.189526"
+       y="0"><tspan
+         x="66.058048"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">admission_method_Elective - booked</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle"> &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 149.985
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 62554
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 8.383</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#fefefe;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1"
+       width="16.472103"
+       height="10.31921"
+       x="40.413315"
+       y="120.64954"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2);"
+       transform="translate(-36.125863,52.097559)"
+       x="19.189526"
+       y="0"><tspan
+         x="80.355498"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 4.19
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 4779
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 0.246</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f9e0ce;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2"
+       width="35.71875"
+       height="12.263471"
+       x="1.3229164"
+       y="118.70528"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8);"
+       transform="translate(-66.347548,49.882254)"
+       x="19.189526"
+       y="0"><tspan
+         x="68.188154"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Accident &amp; Emergency &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 156.116
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 57775
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.056</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#fae7da;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8"
+       width="16.472103"
+       height="10.31921"
+       x="-17.795019"
+       y="180.44521"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9);fill:#000000;fill-opacity:1;"
+       transform="translate(-94.334189,111.89344)"
+       x="19.189526"
+       y="0"><tspan
+         x="79.282694"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1">mse = 98.555
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1">samples = 6784
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1">value = 7.353</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f9e0ce;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1"
+       width="35.71875"
+       height="12.263471"
+       x="-10.583333"
+       y="151.0769"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9);"
+       transform="translate(-78.253797,82.254078)"
+       x="19.189526"
+       y="0"><tspan
+         x="70.292421"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Ysbyty Ystrad Fawr &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 163.568
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 52102
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.847</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f5cdb1;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1-4"
+       width="21.166668"
+       height="12.263471"
+       x="21.166666"
+       y="165.27177"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9-5);"
+       transform="translate(-53.118379,96.448944)"
+       x="19.189526"
+       y="0"><tspan
+         x="75.748427"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">FrailtyGroup_2 &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 449.943
+</tspan></tspan><tspan
+         x="78.377212"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 3710
+</tspan></tspan><tspan
+         x="78.784422"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 15.391</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f6d2b8;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1-4-0"
+       width="23.812498"
+       height="12.263471"
+       x="2.6458335"
+       y="179.82385"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8-1-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9-5-1);"
+       transform="translate(-70.316294,111.00105)"
+       x="19.189526"
+       y="0"><tspan
+         x="74.489071"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">Age_group_90-94 &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 370.747
+</tspan></tspan><tspan
+         x="78.377212"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 2889
+</tspan></tspan><tspan
+         x="78.784422"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 13.981</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#edba95;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-6"
+       width="16.472103"
+       height="10.31921"
+       x="32.475815"
+       y="180.44521"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-2);"
+       transform="translate(-44.063356,111.89344)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 696.998
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 821
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 20.353</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f2c19e;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-8"
+       width="16.472103"
+       height="10.31921"
+       x="29.104166"
+       y="194.73317"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-4);"
+       transform="translate(-47.435002,126.18143)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 425.075
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 281
+</tspan></tspan><tspan
+         x="80.650054"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 19</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f2d1b8;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-64"
+       width="16.472103"
+       height="10.31921"
+       x="4.6945634"
+       y="194.99728"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-64"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-9);"
+       transform="translate(-71.844605,126.44554)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 361.887
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 2608
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 13.44</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f9e1cf;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1-4-0-0"
+       width="23.812498"
+       height="12.263471"
+       x="-26.458332"
+       y="165.27177"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8-1-1-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9-5-1-6);"
+       transform="translate(-99.420459,96.448945)"
+       x="19.189526"
+       y="0"><tspan
+         x="74.489071"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">Age_group_65-69 &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 139.076
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 48392
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.422</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f4dcca;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1-4-0-4"
+       width="23.812498"
+       height="12.263471"
+       x="-46.302078"
+       y="179.82385"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8-1-1-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9-5-1-3);"
+       transform="translate(-119.26421,111.00106)"
+       x="19.189526"
+       y="0"><tspan
+         x="74.489071"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">Age_group_70-74 &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 144.872
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 41608
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.759</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f8decb;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-69-5"
+       width="36.692112"
+       height="12.015551"
+       x="-68.442116"
+       y="194.62387"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-4-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74-7);"
+       transform="translate(-134.79279,125.76614)"
+       x="19.189526"
+       y="0"><tspan
+         x="68.06579"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Trauma &amp; Orthopaedic &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 150.088
+</tspan></tspan><tspan
+         x="77.830067"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 33011
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 10.259</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#fae6d8;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-1"
+       width="16.472103"
+       height="10.31921"
+       x="-25.732519"
+       y="196.32021"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-0);"
+       transform="translate(-102.27169,127.76846)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 120.194
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 8597
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 7.839</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f9e3d2;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-0"
+       width="16.472103"
+       height="10.31921"
+       x="-38.961689"
+       y="226.74728"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-20"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-3);"
+       transform="translate(-115.50085,158.19553)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 128.379
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 8464
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 8.831</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f8dfcd;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1-4-0-4-6"
+       width="23.812498"
+       height="12.263471"
+       x="-66.145828"
+       y="210.25095"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8-1-1-7-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9-5-1-3-4);"
+       transform="translate(-139.10796,141.42817)"
+       x="19.189526"
+       y="0"><tspan
+         x="74.489071"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">Age_group_75-79 &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 144.654
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 29507
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.901</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f8decb;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-69-5-4"
+       width="36.692112"
+       height="12.015551"
+       x="-81.67128"
+       y="226.37387"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-4-0-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74-7-6);"
+       transform="translate(-148.02195,157.51614)"
+       x="19.189526"
+       y="0"><tspan
+         x="69.627455"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Care Of The Elderly &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 150.554
+</tspan></tspan><tspan
+         x="77.830067"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 21043
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 10.331</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f6d9c4;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-0-8"
+       width="16.472103"
+       height="10.31921"
+       x="-58.805435"
+       y="241.29936"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-20-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-3-6);"
+       transform="translate(-135.50989,172.41979)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 162.806
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 6917
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 11.393</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f8dfcd;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-0-82"
+       width="16.472103"
+       height="10.31921"
+       x="-82.617935"
+       y="241.29936"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-20-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-3-2);"
+       transform="translate(-159.1571,172.74762)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 143.732
+</tspan></tspan><tspan
+         x="77.830067"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 14126
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.811</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text12-5-61"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-9);"
+       transform="translate(86.661966,35.199282)"
+       x="19.189526"
+       y="0"><tspan
+         x="67.411049"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_St Woolos Acute Hospital &lt;= 0.5
+</tspan></tspan><tspan
+         x="79.282694"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 25.221
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 7620
+</tspan></tspan><tspan
+         x="79.310082"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 3.016</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eeac7d;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-17"
+       width="35.718758"
+       height="12.282225"
+       x="174.88945"
+       y="87.465691"
+       ry="2.1166692"
+       rx="2.1166689" />
+    <text
+       xml:space="preserve"
+       id="text12-5-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-23);"
+       transform="translate(106.91935,18.57234)"
+       x="19.189526"
+       y="0"><tspan
+         x="69.055912"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Royal Gwent Hospital &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 655.588
+</tspan></tspan><tspan
+         x="77.830067"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 10774
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 25.479</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#fae9dc;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2"
+       width="16.472099"
+       height="10.31921"
+       x="177.99666"
+       y="120.64954"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9);"
+       transform="translate(101.04116,52.175957)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 103.244
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 233
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 6.906</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f7dbc6;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-7"
+       width="35.71875"
+       height="12.263471"
+       x="212.98958"
+       y="103.35944"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-94);"
+       transform="translate(145.31912,34.536418)"
+       x="19.189526"
+       y="0"><tspan
+         x="70.984887"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_General Surgery &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 250.859
+</tspan></tspan><tspan
+         x="78.377212"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 1574
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 11.27</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f8ddca;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-5"
+       width="35.71875"
+       height="12.263471"
+       x="199.76042"
+       y="118.70528"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-2);"
+       transform="translate(132.08996,49.882259)"
+       x="19.189526"
+       y="0"><tspan
+         x="68.076533"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Trauma &amp; Orthopaedic &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 220.962
+</tspan></tspan><tspan
+         x="78.377212"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 1407
+</tspan></tspan><tspan
+         x="78.784422"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 10.475</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f9e0ce;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5"
+       width="16.472099"
+       height="10.31921"
+       x="196.51749"
+       y="133.87871"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0);"
+       transform="translate(119.56198,65.669237)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 187.372
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 1257
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.714</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f9e0ce;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-4"
+       width="16.472099"
+       height="10.31921"
+       x="218.40996"
+       y="133.61366"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-3);"
+       transform="translate(141.45447,65.140065)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 456.912
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 150
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 16.853</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f3c5a3;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-48"
+       width="16.472099"
+       height="10.31921"
+       x="240.17372"
+       y="119.32663"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-1);"
+       transform="translate(163.21823,50.853039)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 452.621
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 167
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 17.964</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="227.54167"
+       y="136.26042"
+       id="text1962"><tspan
+         sodipodi:role="line"
+         id="tspan1960"
+         x="227.54167"
+         y="136.26042"
+         style="stroke-width:0.264583" /></text>
+    <rect
+       style="opacity:1;fill:#e9965b;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-69-5-4-3"
+       width="33.072906"
+       height="12.015551"
+       x="113.77084"
+       y="150.7032"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-4-0-9-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74-7-6-0);"
+       transform="translate(44.774333,81.845222)"
+       x="19.189526"
+       y="0"><tspan
+         x="69.627455"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Care Of The Elderly &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 762.617
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 5666
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 32.113</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#efb285;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3"
+       width="16.472099"
+       height="10.31921"
+       x="150.21539"
+       y="151.07661"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8);"
+       transform="translate(73.259888,82.867148)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 515.518
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 2516
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 23.806</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eeae80;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-8-0"
+       width="30.427073"
+       height="12.282225"
+       x="136.26042"
+       y="165.36458"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-19-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-8-7);"
+       transform="translate(66.321681,96.847205)"
+       x="19.189526"
+       y="0"><tspan
+         x="71.386006"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_County Hospital &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 707.576
+</tspan></tspan><tspan
+         x="78.902872"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 774
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 24.873</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e99355;fill-opacity:1;stroke:#000000;stroke-width:0.264998"
+       id="rect10-69-5-4-3-3"
+       width="39.687508"
+       height="12.015551"
+       x="82.020828"
+       y="165.25528"
+       ry="2.1166692"
+       rx="2.1166689" />
+    <text
+       xml:space="preserve"
+       id="text12-4-0-9-3-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74-7-6-0-0);"
+       transform="translate(16.993083,96.397313)"
+       x="19.189526"
+       y="0"><tspan
+         x="65.750166"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Diabetes And Endocrinology &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 761.721
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 4892
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 33.258</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eb9d65;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-0"
+       width="16.472099"
+       height="10.31921"
+       x="155.50708"
+       y="179.91667"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-9);"
+       transform="translate(78.551578,111.70719)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 688.961
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 249
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 30.084</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f0b68d;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-06"
+       width="16.472099"
+       height="10.31921"
+       x="131.69458"
+       y="180.18079"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-8);"
+       transform="translate(54.739078,111.97132)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 697.418
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 525
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 22.402</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#efbb95;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-5"
+       width="16.472099"
+       height="10.31921"
+       x="103.91332"
+       y="179.91667"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-57"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-6);"
+       transform="translate(26.957828,111.70719)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 521.829
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 250
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 20.428</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e89051;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-69-5-4-3-3-9"
+       width="29.104166"
+       height="12.015551"
+       x="67.46875"
+       y="179.80737"
+       ry="2.1166692"
+       rx="2.1166689" />
+    <text
+       xml:space="preserve"
+       id="text12-4-0-9-3-9-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74-7-6-0-0-3);"
+       transform="translate(-2.8506652,110.94939)"
+       x="19.189526"
+       y="0"><tspan
+         x="71.88055"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Rehabilitation &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 765.298
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 4642
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 33.949</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e58139;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-5-3"
+       width="16.472099"
+       height="10.31921"
+       x="58.934151"
+       y="194.73286"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-57-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-6-2);"
+       transform="translate(-18.021337,126.52339)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 521.829
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 250
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 20.428</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e99457;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-8-0-0"
+       width="43.65625"
+       height="12.282225"
+       x="79.375"
+       y="194.88654"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-19-2-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-8-7-8);"
+       transform="translate(13.405027,126.36915)"
+       x="19.189526"
+       y="0"><tspan
+         x="67.564874"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Chepstow Community Hospital &lt;= 0.5
+</tspan></tspan><tspan
+         x="81.898905"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 687.64
+</tspan></tspan><tspan
+         x="80.98268"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 3730
+</tspan></tspan><tspan
+         x="81.389891"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 32.804</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e9965a;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-15"
+       width="31.899"
+       height="12.282225"
+       x="67.319748"
+       y="209.96777"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-26);"
+       transform="translate(-1.9734477,141.45039)"
+       x="19.189526"
+       y="0"><tspan
+         x="70.281679"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">hospital_Ysbyty Ystrad Fawr &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.746292"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 654.353
+</tspan></tspan><tspan
+         x="78.366469"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 3358
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 33.293</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#ea995e;fill-opacity:0.98630136;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-15-0"
+       width="60.854164"
+       height="12.282225"
+       x="25.13542"
+       y="224.89583"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-9-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-26-8);"
+       transform="translate(-42.889692,156.46109)"
+       x="19.189526"
+       y="0"><tspan
+         x="68.991512"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">admission_source_Same Trust-General or young phys.diasbled &lt;= 0.5
+</tspan></tspan><tspan
+         x="92.358596"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 617.484
+</tspan></tspan><tspan
+         x="91.978774"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 2607
+</tspan></tspan><tspan
+         x="92.922387"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 31.45</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e6853f;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-5-3-6"
+       width="16.472099"
+       height="10.31921"
+       x="105.23624"
+       y="210.60786"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-57-0-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-6-2-8);"
+       transform="translate(28.280757,142.3984)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 964.432
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 372
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 37.422</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e78c4b;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-5-3-1"
+       width="16.472099"
+       height="10.31921"
+       x="88.635414"
+       y="226.48286"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-57-0-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-6-2-5);"
+       transform="translate(11.679927,158.2734)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 521.829
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 250
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 20.428</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e18d50;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-5-3-5"
+       width="16.472099"
+       height="10.31921"
+       x="33.798733"
+       y="239.71211"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-57-0-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-6-2-1);"
+       transform="translate(-43.156754,171.50253)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 705.509
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 961
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 33.485</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#eb9c64;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-5-3-67"
+       width="16.472099"
+       height="10.31921"
+       x="60.257072"
+       y="239.71204"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-57-0-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-6-2-7);"
+       transform="translate(-16.698415,171.50256)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 562.263
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 1646
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 30.262</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker11925)"
+       d="m -18.520834,177.53549 -4.282583,2.32694"
+       id="path4073"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker11935)"
+       d="m -11.779717,177.53524 1.196381,2.64608"
+       id="path4277"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4437)"
+       d="m 0.0511021,163.34037 -2.6969384,2.28887"
+       id="path4433"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4503)"
+       d="m 18.015393,163.34062 3.415855,2.28862"
+       id="path4499"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 18.52083,164.30632 v 0"
+       id="path4577"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4589)"
+       d="m 28.053506,177.53524 -1.595176,2.64608"
+       id="path4585"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4673)"
+       d="m 32.67412,177.53524 0.398793,2.64608"
+       id="path4669"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4763)"
+       d="m 13.627958,192.08732 -0.398795,2.64608"
+       id="path4759"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4859)"
+       d="m 24.674637,192.06151 4.429526,2.67189"
+       id="path4855"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4961)"
+       d="m -42.712938,192.08732 -3.589148,2.64608"
+       id="path4957"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5069)"
+       d="m -27.971131,192.08732 4.158628,3.969"
+       id="path5065"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5183)"
+       d="m -50.997936,206.63942 -0.595816,3.96898"
+       id="path5179"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5303)"
+       d="m -40.64174,206.63942 6.245904,3.96898"
+       id="path5299"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5" />
+    <rect
+       style="opacity:1;fill:#f6d4bc;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-8-0-2"
+       width="16.472103"
+       height="10.31921"
+       x="-34.992939"
+       y="210.87228"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-2-20-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-9-3-25);"
+       transform="translate(-111.53211,142.32052)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 185.667
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 3504
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 13.276</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="-25.135422"
+       y="197.11458"
+       id="text5476"><tspan
+         sodipodi:role="line"
+         id="tspan5474"
+         x="-25.135422"
+         y="197.11458"
+         style="stroke-width:0.264583" /></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5482)"
+       d="m -57.451938,222.51442 -2.079313,3.96898"
+       id="path5478"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0-4-6" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5614)"
+       d="m -44.602517,222.51442 6.237931,3.96898"
+       id="path5610"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-1-4-0-4-6" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5752)"
+       d="m -68.957026,238.38942 -2.480475,2.64607"
+       id="path5748"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5896)"
+       d="m -57.936094,238.38942 2.373592,2.64607"
+       id="path5892"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264584px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6046)"
+       d="m 5.2916655,146.84375 -3.1173756,3.96876"
+       id="path6042"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-9"
+       width="16.472103"
+       height="10.31921"
+       x="29.829979"
+       y="151.60562"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-4);"
+       transform="translate(-46.709195,83.053804)"
+       x="19.189526"
+       y="0"><tspan
+         x="79.282694"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 2.2428
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 1340
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 0.192</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6251)"
+       d="m 25.135416,146.84375 5.291666,5.29166"
+       id="path6247"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6413)"
+       d="m 30.027213,115.93912 -0.92305,1.80046"
+       id="path6409"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6581)"
+       d="m 38.482015,115.93912 3.851315,4.4463"
+       id="path6577"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6755)"
+       d="M 48.043441,99.080418 42.33333,103.1875"
+       id="path6751"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g302" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1632)"
+       d="m 102.12918,177.27083 -6.067267,2.64584"
+       id="path643"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:transform-center-x="3.3454977"
+       inkscape:transform-center-y="-0.033832275" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1836)"
+       d="m 106.45676,177.27083 2.02241,2.64584"
+       id="path1832"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5-4-3-3" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2028)"
+       d="m 76.51021,191.82292 -2.426881,2.64583"
+       id="path2024"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5-4-3-3-9" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2226)"
+       d="m 85.694578,191.82292 1.617918,2.64583"
+       id="path2222"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5-4-3-3-9" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2430)"
+       d="M 93.900415,207.69792 91.281252,209.55"
+       id="path2426"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2640)"
+       d="m 106.31488,207.16876 3.48721,3.17499"
+       id="path2636"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2856)"
+       d="m 90.546806,222.25 4.70319,3.96875"
+       id="path2852"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-15" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3078)"
+       d="m 71.87123,222.25 -4.91071,2.64583"
+       id="path3074"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-15"
+       inkscape:connection-end="#rect10-3-15-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3338)"
+       d="m 47.835284,237.17802 -2.856121,2.26987"
+       id="path3334"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3572)"
+       d="m 64.255613,237.17805 3.213133,2.26987"
+       id="path3568"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-15-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3812)"
+       d="m 144.22969,177.6468 -2.67761,2.26987"
+       id="path3808"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-8-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4058)"
+       d="m 161.61592,177.6468 2.42575,2.26987"
+       id="path4054"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4310)"
+       d="m 114.35305,162.06285 -9.84264,3.30173"
+       id="path4306"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69-5-4-3" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4568)"
+       d="m 146.0321,162.27102 2.13457,3.09356"
+       id="path4564"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4832)"
+       d="m 72.380042,115.93913 -2.265463,4.44629"
+       id="path4828"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5102)"
+       d="m 90.215035,115.93913 7.680794,3.12337"
+       id="path5098"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-69" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5378)"
+       d="m 90.523401,130.96875 -3.210902,3.96876"
+       id="path5374"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5660)"
+       d="m 105.7916,130.96875 1.36465,3.96875"
+       id="path5656"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5948)"
+       d="m 64.404469,99.080418 5.71011,4.107082"
+       id="path5944"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g302" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6554)"
+       d="m 142.54448,131.10867 -6.28407,2.50591"
+       id="path6550"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-00" />
+    <rect
+       style="opacity:1;fill:#f4c8a9;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-69-5-4-3-0"
+       width="30.427084"
+       height="12.015551"
+       x="158.75"
+       y="133.50528"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-4-0-9-3-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-74-7-6-0-01);"
+       transform="translate(88.165989,65.441059)"
+       x="19.189526"
+       y="0"><tspan
+         x="71.88055"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">specialty_Rehabilitation &lt;= 0.5
+</tspan></tspan><tspan
+         x="79.282694"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 400.98
+</tspan></tspan><tspan
+         x="78.902872"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 785
+</tspan></tspan><tspan
+         x="78.77368"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 16.955</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#f7d9c3;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-7"
+       width="16.472099"
+       height="10.31921"
+       x="168.73622"
+       y="151.07661"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-5);"
+       transform="translate(91.780721,82.867146)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 193.606
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 555
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 11.73</tspan></tspan></text>
+    <rect
+       style="opacity:1;fill:#e49a65;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-1-2-5-3-55"
+       width="16.472099"
+       height="10.31921"
+       x="188.57999"
+       y="151.07661"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-3-5-5-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-9-0-8-61);"
+       transform="translate(111.62449,82.867157)"
+       x="19.189526"
+       y="0"><tspan
+         x="78.746292"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 676.481
+</tspan></tspan><tspan
+         x="78.902872"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 230
+</tspan></tspan><tspan
+         x="78.77368"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 29.565</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker7066)"
+       d="M 177.69063,145.52083 174.625,150.8125"
+       id="path7062"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker7378)"
+       d="m 188.24131,145.52083 2.78793,5.29167"
+       id="path7374"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker8130)"
+       d="m 132.11277,145.8968 -3.78986,4.9157"
+       id="path8126"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-8" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker8448)"
+       d="m 154.77425,115.84328 -9.25342,3.21922"
+       id="path8444"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-9" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker8772)"
+       d="m 175.83766,115.99888 2.75608,4.38654"
+       id="path8768"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-9" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9102)"
+       d="m 208.84039,130.96875 -3.7883,2.64583"
+       id="path9098"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-5" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9438)"
+       d="m 224.55091,130.96875 2.99076,2.64583"
+       id="path9434"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-5" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker10516)"
+       d="m 213.26435,115.09374 -4.24352,3.4396"
+       id="path9776"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9780)"
+       d="m 237.20527,115.62291 3.56557,3.43959"
+       id="path10148"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-8-4-2-7" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker10516)"
+       d="m 178.58774,99.747915 -7.9315,3.439585"
+       id="path10642"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-17" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker11008)"
+       d="m 205.72291,99.747915 7.26668,3.439585"
+       id="path11004"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-17" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker11140)"
+       d="m 85.989582,83.343751 -7.937503,3.96875"
+       id="path11136"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker11506)"
+       d="m 148.0394,83.277122 26.58559,4.035379"
+       id="path11502"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10" />
+    <rect
+       style="opacity:1;fill:#f9e0ce;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-8-4-2-1-2"
+       width="39.6875"
+       height="12.263471"
+       x="-5.2916675"
+       y="134.58028"
+       ry="2.1166692"
+       rx="2.1166694" />
+    <text
+       xml:space="preserve"
+       id="text12-1-2-0-8-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-7-6-8-9-7);"
+       transform="translate(-70.316299,65.757449)"
+       x="19.189526"
+       y="0"><tspan
+         x="65.759358"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">admission_method_Elective - planned &lt;= 0.5
+</tspan></tspan><tspan
+         x="78.757034"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 161.807
+</tspan></tspan><tspan
+         x="77.840809"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 53442
+</tspan></tspan><tspan
+         x="79.320825"
+         y="79.356"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 9.605</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6046-1)"
+       d="m 6.614584,130.96875 -2.645835,2.64583"
+       id="path6042-2"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#fef8f4;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect10-3-6-1-9-1"
+       width="16.472103"
+       height="10.31921"
+       x="37.767479"
+       y="135.10899"
+       ry="2.1166692"
+       rx="2.1166692" />
+    <text
+       xml:space="preserve"
+       id="text12-5-1-5-1-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-41-2-4-8);"
+       transform="translate(-38.771699,66.557176)"
+       x="19.189526"
+       y="0"><tspan
+         x="79.282694"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 36.414
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 4333
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 2.288</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6251-1)"
+       d="m 33.946201,131.40551 4.418378,3.96876"
+       id="path6247-5"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13863)"
+       d="m 145.33858,145.8968 6.79683,4.9157"
+       id="path13859"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-8" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 172.20527,131.0849 6.38847,2.52968"
+       id="path14255"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect10-3-00" />
+    <text
+       xml:space="preserve"
+       id="text12-5-6-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;white-space:pre;shape-inside:url(#rect14-2-2-7);"
+       transform="translate(-5.4374921,66.339737)"
+       x="19.189526"
+       y="0"><tspan
+         x="79.282694"
+         y="71.418492"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">mse = 28.158
+</tspan></tspan><tspan
+         x="78.366469"
+         y="74.064328"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">samples = 6391
+</tspan></tspan><tspan
+         x="79.310082"
+         y="76.710164"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle">value = 3.563</tspan></tspan></text>
+  </g>
+</svg>

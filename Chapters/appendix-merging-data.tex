@@ -1,0 +1,60 @@
+\documentclass[thesis.tex]{subfiles}
+\begin{document}
+\chapter{Excel VBA Code for Merging Data Sets}\label{App:ExcelVBA}
+%\section{Excel VBA Code for Merging Data Sets}
+
+
+\begin{Verbatim}[breaklines=true]
+Sub Matching_cases()
+
+Dim s1 As Worksheet
+Dim s2 As Worksheet
+Dim s3 As Worksheet
+Dim n As Long
+Dim a As Integer
+Dim b As Integer
+Dim c As Integer, x As Integer, d As Integer
+
+Dim lastrow As Long
+Dim scanrow As Long
+
+Set s1 = Worksheets("Admission") 'Admission Data Set
+Set s2 = Worksheets("Scan") 'Radis Data Set
+Set s3 = Worksheets("Result") 'Where all data is to be outputted
+
+lastrow = s1.Cells(Rows.Count, 1).End(xlUp).Row 'Determine length of Admission Data Set
+scanrow = s2.Cells(Rows.Count, 1).End(xlUp).Row 'Determine length of Radis Data Set
+
+n = 1
+a = 0
+b = 0
+x = 0
+t = 2
+
+For n = 1 To lastrow
+    valuetoSearch = s1.Cells(n, 1) 'Selecting Patient NHS number
+    For t = 2 To scanrow 
+        If s2.Cells(t, 1) = valuetoSearch Then 'If there is a matching NHS number in the Radis Data Set as to the NHS number in the Admission Data Set 
+            If s2.Cells(t, 6) <= s1.Cells(n, 5) And s1.Cells(n, 5) <= s2.Cells(t, 6) Then 'Check that the Scan requested date falls between the admission and discharge dates and if it does
+                s3.Cells(n, 34) = "Y" 'Prints that there has been a scan
+                For a = 0 To 19 
+                    s3.Cells(n, a + 35) = s2.Cells(t, a + 1) 'Copies Scan information to Result Worksheet inline with the patient admission row 
+                Next a
+                Do While s2.Cells(t, 1) = s2.Cells(t + 1, 1) 'This ensures if multiple scans have taken place then all information will be copied over
+                    b = 54 + x 'Placement of the next scan information
+                    For a = 0 To 19
+                        s3.Cells(n, b + a) = s2.Cells(t, a + 1) 'If multiple scans, this is copying the information to the Results work sheet.
+                    Next a
+                    x = x + 19
+                t = t + 1
+                Loop
+                x = 0
+                b = 0
+            End If
+        Exit For
+        End If
+    Next t
+Next n
+End Sub
+\end{Verbatim}
+\end{document}

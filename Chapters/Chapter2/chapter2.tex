@@ -1,0 +1,698 @@
+\documentclass[../thesis.tex]{subfiles}
+\begin{document}
+
+\chapter{Literature Review}\label{chp:LiteratureReview}
+
+\section{Introduction}
+This chapter aims to provide insight into the existing operational research and management science (OR/MS) literature and its application to planning patient care for frail and elderly patients. By identifying gaps within the literature, this will enable avenues for future research. Additionally, it will also make it possible to define the motivation for this research and establish the significance of the issues currently being faced within healthcare. Two main literature reviews are provided within this chapter. The first literature review, presented in Section \ref{sec:litreview1}, comprises of the research paper, `A survey of OR/MS models on care planning for frail and elderly patients' which was published within Operations Research for Health Care \cite{Williams2021}. This initial review provided a broad and foundational understanding of the area, determining various strategies and methodologies utilised in healthcare planning for the elderly and frail population. The focus of the review identifies different methods to examine, forecast or improve the current care planning. A subsequent and more targeted literature review, detailed in Section \ref{sec:litreview2}, has been conducted focusing on LOS prediction through the utilisation of hierarchical prediction models within healthcare settings. Section \ref{sec:litdiscussion} will discuss the overlap between the two reviews. Finally, Section \ref{sec:litreviewsum} will summarise the important findings from both literature reviews and discuss common research gaps.
+
+\section{A Survey of OR/MS Models on Care Planning for Frail and Elderly Patients}\label{sec:litreview1}
+
+This section focuses on the research, `A survey of OR/MS models on care planning for frail and elderly patients' \cite{Williams2021}. The section is structured as follows: Section \ref{sec:SC} introduces the methods used to identify the papers and discusses related literature reviews identified through this search. Section \ref{sec:Classification} analyses and provides a classification of the results. Section \ref{Sec:Research} considers gaps within the research, with Section \ref{sec:Conclusion} discussing the findings of the review. For the figures which discuss a classification result, a respective table within the Appendix has been included detailing the reference numbers for each paper. Table B.1 within the Appendix provides a comprehensive list of the 62 papers including each classification category.
+
+\subsection{Methods} \label{sec:SC}
+ 
+\subsubsection{Data Sources}
+To identify major research streams in the literature, a structured search was performed following Webster and Watson's methodology \cite{Webster}. The search engine, Scopus, was used to identify relevant journal articles and conference proceedings papers, from January 2000 to December 2020 restricting the search to English results.
+
+\subsubsection{Inclusion Criteria}
+Webster and Watson \cite{Webster} highlighted that a literature search should not be confined to one research methodology, one journal or one region. To provide a complete search, the search string contained at least one of the following terms found within each column of Table \ref{tab:Searchterms}: One OR/MS method phrase, one patient flow term and one age category, mentioned in the article title, abstract or given keywords. The Boolean operators: `AND' and `OR' were used to concatenate different terms among different categories. For each category, the terms within the string were concatenated with an `OR' command, whilst the overall categories were connected with an `AND' command. For terms such as `Integer program*' an * was used to signify multiple endings, e.g., `integer program' or `integer programming'. For phrases with multiple endings with only one character, such as `Heuristic\$', a \$ sign was used to indicate this, i.e., `Heuristic' or `Heuristics'. This is similar to the methods Hulshof et al. \cite{PHulshof} performed within their taxonomy. 
+
+\begin{table*}[h!]
+\centering
+\scalebox{0.65}{%
+\begin{tabular}[hb]{@{}llll@{}} \toprule
+\multicolumn{2}{c}{OR Method} & Patient Flow & Classification of People\\ \midrule
+Agent based model* & Network analysis&Appointment& Elderly   \\ 
+Branch and bound & Neural network\$ & Capacity allocation & Elderly care  \\ 
+Branch and price & Optimi* &   Capacity management & Frail*   \\ 
+Clustering& Quadratic program* & Capacity planning & Geriatr* \\
+Column generation&  Queuing & Care access  &Home care \\
+Computer simulation& Queueing& Care pathway  & Long term care\\
+Constraint program*&SCA& Clinical pathway &Nurs* care \\
+Discrete event simulation&Scatter search& Critical pathway & Old people  \\ 
+Discrete optimi* &Scheduling& Demand forecasting& Older people\\
+Dynamic program*&Simulation&  Demand management &Palliative care \\
+Genetic algorithm &SSM& Demand prediction & $>$65  \\ 
+Goal program* &Strategic Choice Analysis&Flow of care& \\
+Heuristics\$  &Strategic Options Development and Analysis& Flow of patients  & \\
+Integer program* &Stochastic analysis&Integrated pathway & \\
+Linear program*&Stochastic modelling& Patient flow& \\
+Logistics &Stochastic processes&Patient pathway & \\
+Markov chain &Stochastic program*& Patient process & \\
+Markov decision &SODA&Patient route& \\ 
+Markov model &Soft OR&Patient throughput& \\ 
+Mathematical model &Soft Systems Methodology&Process flow& \\ 
+ Mathematical program* &System dynamics& Scheduling& \\ 
+Metaheuristic\$ &Tabu search& Whole-system\$ \\ 
+Mixed integer program* && \\\bottomrule
+\end{tabular}
+}
+\caption{Scopus search string terms for the care planning literature review to include at least one `OR Method', one `Patient Flow' term and one `Classification of People' term.}
+\label{tab:Searchterms}
+\end{table*}
+
+To allow multiple OR methods to be investigated, the search terms were identified within Hulshof et al. \cite{PHulshof} and Palmer et al's. \cite{RPalmer} review of OR methods for modelling patient flow and outcomes. Soft OR methods were investigated including systems thinking, problem structuring and Delphi methods, however, these did not increase the number of publications. This suggests that soft OR methods are under-represented within the field and highlights potential future research. To include a range of techniques, overall classification terms were used such as `Metaheuristic\$' as well as common methods encompassed within this technique such as `Tabu search' and `Genetic algorithm'.
+
+Patient flow terms were identified through multiple sources (Table \ref{tab:Searchterms}). Firstly, Palmer et al.'s \cite{RPalmer} review on patient flow within community care allowed demand and capacity terms such as ``demand management'' and ``capacity allocation'' to be incorporated. Secondly, De Luc et al. \cite{DLuc} found 17 phrases which encompassed pathways of patients with the most prominent terms within the literature: ``integrated care pathway'' and ``critical pathway''. These terms all loosely follow the same three main stages: the development process to design the pathway; the application and use of the pathway; and the ongoing review of the pathway to learn from the practical experience and to continuously apply improvements~\cite{DLuc, DKitchiner}. 
+
+
+To ensure a variety of journal sets were used, the search focused on five categories in the Clarivate Journal Citation Report (JCR). The five categories were as follows: Geriatrics and Gerontology (GG), Health Policy and Services (HPS), Industrial Engineering (IE), Medical Informatics (MI) and Operations Research and Management Sciences (OR/MS). The rationale to select these five journal categories was because they contain journals in which OR/MS methods are applied to healthcare. A number of upcoming journals were also incorporated as they do not belong to a JCR category and these were appropriately assigned to one of the five categories. These journals were as follows: Health Systems, IISE Transactions on Healthcare Systems Engineering (formally known as IIE Transactions on Healthcare Systems Engineering), Operations Research for Health Care and Proceedings of the Winter Simulation Conference. A brief description of each journal category is as follows with the four additional journals added to the most appropriate JCR category:
+
+\begin{itemize}
+    \item Geriatrics and Gerontology (GG) - Captures a subgroup of medical journals which focus on clinical problems in the treatment of elderly patients (e.g., Age and Ageing).
+    \item Health Policy and Services (HPS) - Captures journals covering policy and service improvements within healthcare systems (e.g., Health Care Management Science and Journal of Health, Organisation and Management).
+    \item Industrial Engineering (IE) - Includes papers that focus on systems that integrate people, materials and equipment to provide a service (e.g., International Journal of Simulation Modelling and IISE Transactions on Healthcare Systems Engineering).
+    \item Medical Informatics (MI) - Captures papers which focus on healthcare information in clinical studies and medical research (e.g., Health Information Management Journal).
+    \item Operations Research and Management Sciences (OR/MS) - Includes papers focusing on advanced analytical methods to solve complex problems (e.g., Journal of Operations Management, Health Systems, Operations Research for Health Care and Proceedings of the Winter Simulation Conference).
+\end{itemize}
+
+\subsubsection{Study Selection and Data Extraction}
+The initial search resulted in 437 papers being identified and these underwent analysis by abstract to determine the papers which met the inclusion criteria. A publication was excluded if the abstract was not relevant to frail and elderly patients and their planning of care. These exclusions reduced the number of papers to 39. As advised within Webster and Watson's paper \cite{Webster}, a forward and backward search was conducted after the initial analysis to ensure related papers that had not met all the key search criteria were included.
+In total 65 publications were found to be relevant, including three literature reviews. The three reviews are discussed separately within Section \ref{subsection:pr}, with the remainder of this paper focusing on the other 62 papers. The PRISMA diagram showing a visual representation of this process is shown within Figure \ref{appfig:SearchDiag}. 
+\begin{landscape}
+\begin{figure}
+\centering
+  \includegraphics[scale=0.65]{Chapter2/Figures/Flowchart.png}
+ \caption{The PRISMA flow diagram for the care planning literature review detailing the Scopus searches, the number of abstracts screened, the reason for exclusion and the number of full texts retrieved.}  
+\label{appfig:SearchDiag}
+\end{figure}
+\end{landscape}
+
+
+\subsubsection{Study Protocol}
+To classify and analyse the papers the following protocol was set up to ensure the objectives of the literature review were met. Firstly, a general classification is provided demonstrating the characteristics of the papers including geographical location, JCR category and publication year. Secondly, the papers' medical context is established with discussion around the care locations and diseases suffered by the frail and elderly. Finally, the research aims, the planning decisions and the types of OR/MS methods utilised within the papers are discussed.
+
+\subsubsection{Previous Literature Reviews}\label{subsection:pr}
+This subsection aims to provide a brief overview of the three literature reviews identified through the Scopus search, followed by a discussion of how our review aims to fill the gaps in the literature not covered by these reviews.
+
+Firstly, Berntsen et al. \cite{Berntsen} used their research to provide evidence for a patient pathway for the frail and elderly to be generated using Digi-PIP (digitally support person-centred, integrated and proactive care) methods. Through a systematic search, 10 papers were identified as focusing on Digi-PIP care on population health, patient experience and cost-effectiveness. The results showed that despite the belief that a Digi-PIP approach was the key to sustainable care, research has not been able to provide sufficient evidence.
+
+Secondly, Freeman et al. \cite{Freeman} focused on patients aged over 65 and the factors affecting the transition from long-term care facilities (LTCFs) to the community. LTCFs were distinguished as care institutions that provided 24-hour nursing care, personal care or other services, whereas community was defined as home care programmes, retirement homes, assisted living facilities or patient's own home, where 24-hour care is not provided. They identified 36 articles and recommended that further understanding was needed due to the complexity of the discharge process with more evidence in the factors and barriers that influence the discharge. The authors concluded that it was unclear of the combination of multidisciplinary team members and institutional factors that best support discharge planning.
+
+The third and final review identified was Gaugler et al.'s \cite{Gaugler} paper on the research focusing on admission predictors of community care specifically within nursing homes in the USA. The review identified 77 papers which encompassed 12 data sources. After analysing different methods, such as logistic regression and Cox regression models, on a variety of different care factors, including gender and medical condition, their results identified a number of predictors, e.g., cognitive impairment. The work highlights the opportunity for future research to develop tools using the strongest predictors to estimate nursing home admissions, potentially adapting and applying these methods to predict demand for nursing homes and other long-term care facilities.
+
+The three reviews either focused on specific locations within the pathway; \cite{Freeman} with the movement from LTCFs to the community, \cite{Gaugler} with nursing home care or they focused on analysing specific OR/MS methods \cite{Berntsen}. Whilst these reviews provide beneficial contributions to their areas, we aim to consolidate literature on a wider scale. Instead of analysing one OR/MS technique, \cite{Berntsen}, 44 different OR/MS methods have been incorporated into the search criteria to cover a wider range of methods. There has also been expansion across different patient groups and treatment settings, (e.g., nursing homes and palliative care), to ensure each aspect of the pathway and its care planning can be investigated. As multiple settings were analysed, this allowed further investigation into how different settings were applying different OR/MS methods. Additionally, there was analysis on how different settings are working collaboratively to ensure successful care planning. This review will serve as a guide on how to conduct further research on the future challenges in frail and elderly care planning.  
+
+\subsection{Results} \label{sec:Classification} 
+After highlighting the focus of previous literature reviews, it was identified that there was a need for the research on OR/MS methods for frail and elderly care planning to be summarised. This would then allow for gaps within the present literature to be determined and a research agenda to be developed enabling these gaps to be filled. The following results analysed the findings of the initial, forward and backward searches and classified the literature by general, medical and methodological contents. Each section provides summary statistics discussing the results. Research gaps and discussion of results will take place in Sections \ref{Sec:Research} and \ref{sec:Conclusion}, respectively.
+
+\subsubsection{General Classification}
+Table \ref{tab:country} highlights the divide between the location of the research conducted, with the majority of papers being published within Europe and North America. Kerpershoek et al.'s \cite{Kerpershoek} study focused on eight different European countries analysing access to dementia care and is denoted as `Multi-national' within Table \ref{tab:country}. It is worth highlighting that no other papers were found to be multi-national.
+
+
+\begin{table*}[h!]
+\centering
+\scalebox{0.7}{%
+    \begin{tabular}{@{}cccccccccc@{}} \toprule
+         \textbf{Country} & \textbf{UK} & \textbf{Canada} & \textbf{USA} & \textbf{Italy} & \textbf{Australia} & \textbf{France} & \textbf{Hong Kong} & \textbf{Ireland}     \\ \midrule
+         \textbf{GG} & 2 & 1 & 2 & 2 & 2 & 0 &0&0 \\
+         \textbf{HPS} & 6 & 3& 3 &1 & 0 &  1  &0&0\\ 
+         \textbf{IE} & 0 & 1& 1 &1 & 0 &  1  &1&0\\
+         \textbf{MI} & 2 & 1& 0 &1 & 0 &  0  &0&0\\
+         \textbf{OR/MS} & 5 & 3& 3 &0 & 0 &  1  &1&1\\
+         \textbf{Other} & 3 & 1& 1 &1 & 1 & 0  &0&1\\
+         \midrule
+         \textbf{Total} & 18 & 10 & 10 & 6 & 3 & 3 & 2 & 2\\ \toprule
+         \textbf{Country} & \textbf{China} & \textbf{Japan} &  \textbf{Netherlands} & \textbf{Norway} &\textbf{Poland} & \textbf{Sweden} & \textbf{Spain} & \textbf{Multi-national} &\textbf{Total}  \\ \midrule
+         \textbf{GG} & 0 & 1 & 0 & 0 & 1 & 0 &0&1 &12 \\ 
+         \textbf{HPS} & 0 & 0& 1 &1 & 0 &  0  &0&0 & 16\\
+         \textbf{IE} & 0 & 0& 0 &0 & 0 &  0  &0&0& 5\\
+         \textbf{MI} & 0 & 0& 0 &0 & 0 &  0  &0&0&4\\
+         \textbf{OR/MS} & 0 & 0& 0 &0 & 0 &  1  &0&0&15\\
+         \textbf{Other} & 1 & 0& 0 &0 & 0 & 0  &1&0&10\\
+         \midrule
+         \textbf{Total} & 1 & 1 & 1 & 1 & 1 &  1 & 1 & 1&62\\
+         \bottomrule
+    \end{tabular}
+}
+\caption{Number of papers which fall into each JCR category and the location of where the research was conducted.}
+\label{tab:country}
+\end{table*}
+
+English only papers were analysed which may explain why mainly European and North American publications met the inclusion criteria. Further categorisation shows there was a disparity between these continents and the work within this field that is being published. Table \ref{tab:country} also displays the JCR categories for each country.
+
+The final column in Table \ref{tab:country} shows the quantity of papers published within each of the JCR categories as discussed within Section \ref{sec:SC}. Within the backward and forward searches, there were 10 papers which did not have ISSNs related to the five JCR categories (Figure \ref{fig:journalsearch1}), so these papers have been attributed to the `Other' category. HPS and OR/MS were the leading journal categories with 16 and 15 papers respectively.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[scale = 0.6,angle=270]{Chapter2/Figures/Journal search chapter1.pdf}
+  \caption{Number of publications broken down by JCR categories and Scopus search type.}
+\label{fig:journalsearch1}  
+\end{figure}
+
+Although there were only four and five papers within the MI and IE categories respectively, it is important to include these within the analysis as they are under-represented areas and provide a different journal focus on patient pathways and their application.
+
+To show the general trend of the research in this field, Figure \ref{fig:yearofpaper} displays the quantity of papers published every three years. Between 2000 and 2014, the number of papers published remained fairly stable with an upward trend from 2015. Within the last three years, 27\% of papers were published, highlighting that this area is becoming more widely researched. 
+
+\begin{figure}[H]
+\centering
+  \includegraphics[scale=0.5]{Chapter2/Figures/Years2.pdf}
+  \caption{Bar chart of the 62 papers identified through the Scopus search, by publication year.}
+\label{fig:yearofpaper}    
+\end{figure}
+
+\subsubsection{Medical Context}
+This subsection will analyse the medical context of the papers broken down into the medical setting and the condition area. The medical setting of a patient is the location where their care takes place, e.g., a hospital ward or nursing home. The condition area focuses on the medical condition of the patient in the study and whether this was long-term such as dementia or acute, e.g., heart attack. Successful care planning should consider the entire pathway of a patient across multiple settings. It is often necessary to consider the next steps a patient will take to ensure appropriate resources and available capacity to avoid delays in discharge. It is also important to know the condition type of the patient as this will likely affect their discharge destination or the time required to stay within the care setting. 
+\subsubsubsection{Medical Setting} \label{Medical Setting}
+The medical setting of the paper was important to understand how care settings can work together for the planning of care for frail and elderly patients. The research focused on three main areas:
+
+\begin{itemize}
+    \item Single Hospital
+    \item Multiple Hospitals
+    \item Community Care
+\end{itemize}
+
+The community care grouping encompassed: Home care, long-term care, nursing care and hospice care, to meet the wide range of healthcare services that do not take place in a hospital setting.
+Figure \ref{fig:VennDiag} shows a Venn diagram which breaks down the publications into the type of care settings. The numbers reveal there was a clear focus on both community care and single hospital settings.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[scale=0.75]{Chapter2/Figures/Venn2.pdf}
+\caption{Venn diagram of the 62 papers identified through the Scopus search, by medical setting.}
+\label{fig:VennDiag}  
+\end{figure}
+
+
+In total, there were 16 papers (26\%), which used care planning in a holistic manner. These papers were particularly interesting as they focused on the cross over between community care and either single or multiple hospitals. Papers \cite{Davari, Intrevado, Johnson, Lim,McClean,Patrick,Ragab, Walker, Zychlinski} focused on the intersection between community care and multiple hospitals whilst papers \cite{Faddy,Garg1,Garg2, Gordon1,Gordon2, Hare, Taylor} focused on single hospitals and community care.
+
+A brief overview of Patrick \cite{Patrick} and Taylor et al. \cite{Taylor} is provided as these works are examples of community care with multiple hospitals and single hospital settings. 
+
+Patrick \cite{Patrick} developed a Markov decision model that determined the required bed numbers in long-term care facilities in order to keep demand below a given threshold. Patrick also developed a simulation model to incorporate both hospital and community care demand to predict the impact of policy implementations. These models have aided future capacity planning by comparing current practices against proposed alternative models.
+
+The work conducted by Taylor et al. \cite{Taylor} involved modelling the time geriatric patients spent in hospital and in community care. The authors generated a stochastic compartmental Markov model with three hospital components: acute care; rehabilitative and long stay; two community components and an absorbing state. They were able to successfully provide short-term estimates and a better understanding of future bed usage within geriatric hospital settings.
+
+\subsubsubsection{Illness/Disease Focused Papers}
+There were eight papers which focused on a specific illness/disease often suffered by the frail and elderly. These illnesses were as follows: dementia \cite{Cepoiu}, falls \cite{Franklin}, gastrointestinal \cite{Abe}, heart failure \cite{Azad, Kul, Shaw} and hip fractures \cite{Beaupre, Wallace}. Seven of the eight papers focused on a single hospital setting and the remaining paper focused on community care \cite{Cepoiu}. There were a further eight papers which focused on an inpatient department: an emergency department \cite{Patrick, Rashwan, Rossille,Trevisan} or a geriatric ward \cite{Christodoulou, Franck, Gorunescu,Marshall3}. Interestingly, none of these 16 papers used care planning across multiple settings. The recovery times for frail and elderly patients is usually longer than the general population. Often, they will require further care within the community once they are ready to be discharged. If there are insufficient resources or a lack of availability within the community, then these patients may have to remain in the hospital, causing bed blocking.
+
+
+\subsubsubsection{Community Care Focused Papers}
+There were 23 papers which had community care as the only setting. Six of these papers concentrated on the overlap and movement between settings in community \cite{Bae, Gassoumis, YLi,Bidhandi,Welberry, Zhang1}. Lin et al. \cite{Lin} focused on day care whilst \cite{Eveborn, Grenouilleau, Guo, Yalcindag} studied home care. The remaining papers focused on either nursing care \cite{Arling,Borowiak, Muramatsu} or long-term/aged related care facilities \cite{Ambagtsheer, Arvelo, Cepoiu, Desai, Eggink, Katsaliaki, Kerpershoek, Tao, Xie}. This showed that within the grouping of community care, there was a wide range of different settings being analysed.
+
+
+For frail and elderly care mapping to be successful, the journey of a patient should be documented, which will depend on the type of illness or condition they are suffering from. Therefore it is important for more research to be conducted into specific medical conditions and healthcare settings. Monitoring the journey of a patient from admittance through to discharge, may become a valuable tool in order to predict long-term demands and capacity planning.
+
+\subsubsubsection{Condition Area}
+A classification which has been commonly used within healthcare literature reviews is the condition area of the patient \cite{Aspland,YZhang}. These condition areas are often categorised as either: acute or chronic.
+
+\begin{itemize}
+    \item Acute - Medical conditions that are brought on unexpectedly, e.g., heart failure, or patients undergoing or recovering from a surgical procedure, e.g., femur fracture.
+    \item Chronic - Medical conditions that are prolonged and rarely cured, e.g., dementia.
+\end{itemize}
+
+Often chronic conditions can develop and cause an acute condition, and likewise, if untreated an acute condition can often become chronic. It is therefore important for research to be focused on both strands of conditions, especially when considering frail and elderly patients. These patients often have many chronic conditions which require long-term care, however, they can easily become more serious conditions requiring immediate care.
+
+Figure \ref{fig:Condition} displays the quantity of papers in each condition category.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[scale=0.3]{Chapter2/Figures/AcuteChronic.pdf} 
+  \caption{Bar chart of the 62 papers identified through the Scopus search, by `Acute' or `Chronic' medical conditions.}
+  \label{fig:Condition}
+\end{figure} 
+
+Within the elderly population, there are many people who have multiple long-term conditions (MLTC), which may explain why there were several papers that focus on chronic conditions. There were 11 papers focused on the acute care setting \cite{Abe, Azad, Franklin, Kul, Onggo, Rashwan, Rossille, Shaw, Silvester, Trevisan, Wallace}. 
+This was surprising given frail and elderly patients are more likely to suffer from acute conditions as a result of chronic illness.
+The 11 papers were all based in a single hospital setting with no overlap between community care (Figure \ref{fig:HospCondition}).
+
+\begin{figure}[H]
+\centering
+  \includegraphics[scale =0.6]{Chapter2/Figures/HospitalCondition1.pdf}
+\caption{Cross analysis of medical setting and condition area of the 62 papers identified through the Scopus search.}
+\label{fig:HospCondition}  
+\end{figure} 
+
+
+
+\subsubsection{Methodological Content}
+This subsection will analyse the technical side of the research. Firstly, discussing the research aims, then moving on to the planning decision levels discussed in Hulshof et al.'s taxonomy \cite{PHulshof}. Finally, the different OR/MS methods used within frail and elderly care planning are identified.
+
+\subsubsubsection{Research Aims}
+The literature, in terms of care planning, can be grouped into three main aims: examining, forecasting and improving. These categories indicate the direction of the research and the main interest to the authors. 
+
+\begin{itemize}
+    \item Examining - Using OR methods to determine how a care plan was performing, e.g., characteristics of patients who move within community care \cite{Gassoumis}, hospital outcomes following an updated care pathway \cite{Wallace}.
+    \item Forecasting - Predicting future scenarios with the current care plan in place, e.g., forecasting LOS in hospital and community care \cite{Gordon2}, capacity planning in community care settings \cite{Bidhandi}.
+    \item Improving - Improvements were made or suggested to enhance the quality of care planning, e.g., improve elderly care in hospital \cite{Ragab}, improving quality and efficiency in home care \cite{Eveborn}.
+\end{itemize}
+
+Figure \ref{fig:Aims} displays the quantity of papers in each research aim category.
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale = 0.3]{Chapter2/Figures/Focus1.pdf}
+   \caption{Bar chart of the 62 papers identified through the Scopus search, by research focus.}
+   \label{fig:Aims}
+\end{figure}
+
+There were three papers which considered a multiple combination of the research aims. Abe et al. \cite{Abe} examined how polypharmacy affected gastrointestinal surgery patients, whilst also identifying the effects on LOS if measures reducing polypharmacy were implemented. Garg et al. \cite{Garg2} and Patrick \cite{Patrick} both have improving and forecasting aims: Garg et al. focused on improving admission scheduling with resource forecasting and Patrick focused on improving waiting times along with capacity planning. All three of these papers, focused on a single hospital setting.
+
+The results showed most papers aim to forecast frail and elderly patients in the system. Out of the 28 papers, 16 focused on predicting future demands and how the corresponding departments would be required to adapt to this change \cite{Ambagtsheer, Bae, Borowiak, Christodoulou, Davari, Desai, Gorunescu, Grenouilleau, Hare, Johnson, Katsaliaki, YLi, Bidhandi, Patrick,Zhang1, Zhang2}. A further nine papers aimed to predict the LOS of patients in hospitals or within community care \cite{Abe, Gordon2, Heggestad, Marshall1, Marshall2, Marshall3, Shaw, Taylor, Xie}. Surprisingly, of these nine, one author was co-author on five of these papers, suggesting that the research within this field is limited to a few research teams \cite{Gordon2, Marshall1, Marshall2, Marshall3, Shaw}.
+
+There were 14 papers focused on making improvements to an aspect of the pathway. Five of these aimed to improve the flow of patients \cite{Chaussalet, Hamdani, Rashwan, Silvester, Trevisan}. Only three papers had the primary focus on improving patient care \cite{Eveborn, Ragab, Rossille}. Their results highlighted the importance of appropriate care to the elderly, which in Rossille et al.'s \cite{Rossille} paper can be achieved by successfully scheduling patients in an emergency department and not categorising these patients by their symptoms. Ragab et al. \cite{Ragab} used simulation modelling to improve the management of frail patients by introducing intermediate care beds for those admitted to acute hospitals. Eveborn et al. \cite{Eveborn} used the vehicle routing problem to improve quality for patients receiving home care.
+
+\subsubsubsection{Planning Decisions}
+Hulshof et al's. \cite{PHulshof} research on taxonomic classification in healthcare systems highlighted a hierarchy of decision-making techniques. There were three different decision levels discussed: strategic, tactical and operational. A brief description is given as follows:
+
+\begin{itemize}
+    \item Strategic planning focuses on structural decision-making such as determining the locations of facilities or resource capacities, these often have a long planning time.
+    \item Tactical planning addresses the execution of strategic plans on the mid-horizon planning time, e.g., staffing levels.
+    \item Operational planning analyses short-term decisions and focuses on the individual patient and resources. Patient appointment scheduling would be an example of this.
+\end{itemize}
+
+Figure \ref{fig:PlanningDecision} displays the breakdown of publications by planning decision level.
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale = 0.3]{Chapter2/Figures/Planning1.pdf}
+   \caption{Bar chart of the 62 papers identified through the Scopus search, by planning decision level.} \label{fig:PlanningDecision}
+\end{figure}
+
+The majority of papers focused on strategic planning, with a high concentration on capacity planning and placement policy. Xie et al. \cite{Xie} used strategic planning and created a Markov model to represent the LOS of the elderly moving within and between residential and nursing homes. By developing this model, it aimed to assist planning authorities to fully understand the pattern of resource usage within their local area. Further work included an extension of their model to incorporate particular attributes of patients, e.g., age, gender and physical conditions, to predict differences in survival by treatment locations.
+
+The number of papers (two) on the operational planning level was smaller than the number of papers (six) that had no planning decision level. The results showed that care planning for frail and elderly pathways was being addressed on some scale across all three decision levels; day-to-day; mid-level planning; long-term, wider policy decisions. However, as there were substantially fewer papers in the tactical and operational decision levels it would suggest these areas are more difficult to plan in frail and elderly healthcare.
+
+Two of the four operational planning papers focused on staff scheduling \cite{Eveborn,Grenouilleau} and the other two focused on readmission of patients \cite{Gordon1} and treatment outcomes \cite{Kul}. Kul et al. \cite{Kul} evaluated the effect of the heart failure care pathway on geriatric patients. Logistic regression showed positive results supporting the use of care pathways, highlighting reduced mortality and readmission rates along with no increase in hospital costs.
+
+Figure \ref{fig:PlanningSetting} displays the cross analysis between the planning decision and the medical setting. To some degree, tactical planning levels were addressed in each setting, although the operational papers had only been addressed within community care and single hospital settings. 
+
+\begin{figure}[H]
+\centering
+        \includegraphics[scale = 0.5]{Chapter2/Figures/PlanningSetting1.pdf}
+        \caption{Cross analysis of planning decision and medical setting of the 62 papers identified through the Scopus search.}
+    \label{fig:PlanningSetting}
+\end{figure}
+
+Hulshof et al. \cite{PHulshof} analysed the taxonomy for papers within the OR/MS JCR category. This has been further extended to include four additional JCR categories. The cross analysis can be seen within Figure \ref{fig:PlanningJCR}.
+
+\begin{figure}[H]
+\centering
+ \includegraphics[scale = 0.5,angle=270]{Chapter2/Figures/JCRDecision1.pdf}
+ \caption{Cross analysis of JCR category and planning decision level of the 62 papers identified through the Scopus search.}
+    \label{fig:PlanningJCR}
+\end{figure}
+
+Figure \ref{fig:PlanningJCR} shows there is a spread of decision levels against each JCR category. It demonstrates that the decision level taxonomy discussed within Hulshof et al. \cite{PHulshof} can be successfully applied to JCR categories other than OR/MS. 
+
+\subsubsubsection{OR/MS Methods}
+The final area for analysis was investigating the OR/MS methods that have been utilised within these studies. There has been a variety of different OR/MS techniques which have been used to demonstrate the effectiveness of care planning designed specifically for the frail and elderly. Figure \ref{fig:Mathematical} demonstrates the quantity of each of these methods, with statistical analysis encompassing a wide range of traditional statistical/operational analysis techniques, including Cox's regression analysis \cite{Heggestad}, mixed exponential distributions \cite{Harrison} and time survival analysis \cite{Muramatsu}. Optimisation included mixed integer programming \cite{Davari} and quadratic programming \cite{Tao}. Simulation included discrete event simulation \cite{Zhang1} and system dynamics \cite{Cepoiu}. There were two papers which focused on multiple methods.
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale = 0.45]{Chapter2/Figures/ModelsGraph.pdf}
+    \caption{Bar chart of the 62 papers identified through the Scopus search, by mathematical method.}
+    \label{fig:Mathematical}
+\end{figure}
+
+Patrick \cite{Patrick} as discussed in Section \ref{Medical Setting} used discrete event simulation along with a Markov decision process model to predict demand for long-term care. 
+
+Mohammadi Bidhandi et al. \cite{Bidhandi} used both simulation and queueing theory methods to plan demand capacities within community care. They focused on six services and ran their optimised queueing model through a simulation to determine transient behaviours of the system. By combining these two methods, capacities were optimised over the entire network at one time, instead of considering them as separate isolated units.
+
+Table \ref{tab:MethodHosp} shows the breakdown of each OR/MS method and its corresponding setting. The seven papers which looked at the overlap between single hospitals and community care all used Markov methods. This may suggest that Markov methods are the most applicable to this setting, particularly for frail and elderly individuals. The data available may also lend itself well to fit into a Markov model. Expanding upon this, when analysing both single and multiple hospitals with community care, only Markov, simulation and statistical analysis methods were used, suggesting these methods were useful when applied to multiple services at the same time. This leaves room in these settings for further research using alternative OR/MS methods to the Markov model. 
+
+Community care settings used the widest range of methods, 13 in total, for care planning. This showed the data available within community care can accommodate a variety of methods. There is potential for further investigation and expansion into the methods utilised as an area for future research.
+
+
+\begin{landscape}
+\begin{table*}[h!]
+\centering
+\scalebox{0.7}{%
+    \begin{tabular}{@{}cccccc|c@{}} \toprule
+ &
+\textbf{Single Hospital} & \textbf{Single Hospital and Community} & \textbf{Community Care} & \textbf{Multiple Hospitals and Community} & \textbf{Multiple Hospitals} &\textbf{Total} \\ \midrule
+%\textbf{Markov}  & 6 & 7 & 1 & 2 & 1 & 17 \\
+\textbf{Markov} & \cite{Christodoulou, Franklin, Hamdani, Marshall1,Marshall2,Shaw} & \cite{Faddy, Garg1, Garg2, Gordon1, Gordon2, Hare, Taylor} & \cite{Xie} & \cite{McClean, Patrick} & \cite{Marshall3} & 17\\
+\textbf{Simulation} &\cite{Onggo,Rashwan,Zhang2}&&\cite{Bae, Cepoiu,Desai,Eggink,Katsaliaki,Bidhandi, Zhang1}&\cite{Patrick, Ragab,Walker}&\cite{Franck}& 14\\
+\textbf{Statistical Analysis} &\cite{Azad,Beaupre,Silvester,Wallace}&&\cite{Borowiak,Guo,Muramatsu}&&\cite{Harrison,Heggestad}& 9\\
+\textbf{Machine Learning} &\cite{Abe,Kul, Rossille, Trevisan}&&\cite{Ambagtsheer,Gassoumis,Welberry}&&& 7 \\
+\textbf{Optimisation} & &&\cite{Arling,Arvelo,Tao}&\cite{Davari, Intrevado, Johnson}&&6\\
+\textbf{Queueing models} &\cite{Chaussalet,Gorunescu}&&\cite{Bidhandi}&&&3 \\
+
+\textbf{Metaheuristic}&&&\cite{Grenouilleau,Lin}&& &2 \\
+\textbf{Routing}&&&\cite{Yalcindag}&\cite{Lim}& &2 \\
+\textbf{Anderson Model}&&&\cite{Kerpershoek}&& &1 \\
+\textbf{Fluid model}&&&&\cite{Zychlinski}&& 1 \\
+\textbf{Heuristics}&&&\cite{Eveborn}&& &1 \\
+\textbf{Newsvendor type model}&&&\cite{YLi}&&& 1 \\
+
+\midrule
+\textbf{Total} & 19 & 7 & 24 & 10 & 4 & 64\\
+\bottomrule
+\end{tabular}
+}\caption{Number of papers which fall into each medical setting and OR/MS method within the published research.}
+
+\label{tab:MethodHosp}
+\\
+[8pt]
+\caption*{Note: Mohammadi Bidhandi et al. \cite{Bidhandi} and Patrick \cite{Patrick} utilise two methods and therefore appear twice in the table. This resulted in a total of 64 publications.}
+\end{table*}
+
+\end{landscape}
+
+Figure \ref{fig:Mathematical} and Table \ref{tab:MethodHosp} highlight that Markov models were the most frequent method used, followed by simulation and statistical analysis. Within these 17 papers, there were a variety of Markovian methods utilised, however these were subgrouped into continuous and discrete time models. Figure \ref{Fig:markov} shows the breakdown of the Markov category from Figure \ref{fig:Mathematical}. Continuous time Markov models were more often used with a total of 14 papers \cite{Christodoulou,Faddy,Franklin, Garg1, Gordon1, Gordon2, Hamdani, Marshall1, Marshall2, Marshall3,McClean, Shaw, Taylor, Xie}. There were a variety of different types of continuous time models with many focusing on Coxian phase-type Markov models. There were three papers which used discrete time \cite{Garg2,Hare, Patrick} to model frail and elderly patients.
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale = 0.3]{Chapter2/Figures/Markov1.pdf}
+ \caption{Bar chart of the 17 papers using a Markov model identified through the Scopus search, classified by `Continuous' or `Discrete' time.}
+ \label{Fig:markov}
+\end{figure}
+
+\subsubsection{Common Themes}
+Section \ref{sec:Classification} has provided an overview of the work on care planning for frail and elderly. Markov models were the most common method applied to healthcare settings. In more recent years, there has been the emergence of newer techniques being applied to healthcare, i.e., metaheuristics, the Anderson Model and fluid models. Strategic planning remained the most common planning decision level across the OR/MS methods, showing research was being accomplished in longer term care planning. There has been a wider spread of research aims across the papers, although, the majority tend to focus on forecasting future scenarios rather than improving the current systems in place. Finally, the emphasis of these papers has been on single settings, whether this be within a hospital or the community. The current research provides a wide range of different techniques for readers to apply to their own hospital or community care facility. However, there remains scope for future research to be conducted in the frail and elderly patient setting.
+
+\subsection{Research Gaps} \label{Sec:Research} 
+The literature found within this review covered a wide range of facilities, locations and patient types within frail and elderly care planning. Despite this variety, the majority of papers fit into a few groupings as discussed previously, with a heavy focus on certain methods and locations.
+
+\subsubsection{Gaps in terms of Methodology}
+Across 62 papers, there were 12 different methods utilised, with a heavy focus on Markov and simulation. Research conducted between 1990 and 2015 has shown that the most common OR methods used in hospital applications were discrete event simulation and deterministic modelling (optimisation) \cite{Abe1,Abe2}. It was interesting to see the disparities between methods within frail and elderly care and general hospital applications. In the simulation method category (Table \ref{tab:MethodHosp}), only five papers used discrete event as their simulation method \cite{Franck, Katsaliaki, Onggo, Zhang1, Zhang2} and papers focusing on optimisation techniques were embedded within other methods \cite{Bae, Garg1, Lin,Bidhandi, Silvester, Tao, Yalcindag, Zhang2}. 
+
+ Within Abe et al.’s paper \cite{Abe2}, the statement was made that the introduction of the Patient Protection and Affordable Care Act in 2010 (USA), has led to hospitals being required to improve quality of care and alongside this, there has also been an increase in the demand of services in USA hospitals. The seven papers that were based on data from the USA post 2010, focused on capacity planning and improving outcomes \cite{Arling,Bae, Gassoumis,Guo,YLi, Wallace, Zychlinski}. This suggests that the implementation of Government policy provides another avenue for research topics and should be closely monitored when identifying new areas to study.
+ 
+ Although healthcare data may lend itself well to some OR/MS methods explaining their higher frequency of papers (Markov, simulation, statistical analysis and machine learning), the remaining eight methods highlight the potential for further exploration into these fewer applied techniques. Soft OR methods, even though included in the search criteria, did not result in any papers being identified. This leaves potential for research using these techniques, such as soft systems methodology, and applying this to frail and elderly healthcare.
+ 
+\subsubsection{Gaps on the Intersection between Research Aims and Decision Levels}
+Successful care planning should consider long-term and day-to-day planning. The work has highlighted a large number of papers with strategic decision levels (long-term), with only 14 papers analysing tactical and operational approaches, 10 and four combined. Reviewing the 23 community care papers, three focused on tactical planning \cite{Borowiak, Eggink, Yalcindag}, and two on operational planning \cite{Eveborn, Grenouilleau}. Despite being long-term care facilities, the day-to-day planning of staff, resources and occupancy demands should be investigated for improving care planning. Such investigation could provide an interesting avenue to explore further, by comparing how factors vary day-to-day for private care companies compared to government funded elderly care services. Operational planning levels were addressed in single and not multiple hospital settings. One potential reason for this could be that when addressing multiple hospitals, the authors are more interested in strategic developments within care planning.
+
+Another area examined was the research aims, which were able to be grouped into three streams for care planning: examining (23 papers), forecasting (28 papers) and improving (14 papers).
+The most popular aim, forecasting, mainly used simulation and Markov methods. Potentially the data required for forecasting techniques lends itself well to these methods, however, there were 11 papers that showed forecasting techniques can be used alongside different methods and therefore should be further explored \cite{Abe,Arling,Borowiak, Davari,Desai, Grenouilleau, Gorunescu, Johnson,Lim, Bidhandi,Yalcindag}.
+ 
+\subsubsection{Shortcomings on the Intersections between Medical Settings}
+
+Within the community care setting, there were only six papers which focused on the overlap between settings in the community \cite{Bae, Gassoumis, YLi,Bidhandi,Welberry, Zhang1}. The remaining papers from this setting focused their research on a variety of settings including long-term care facilities, nursing homes, home care and day care.
+
+When studying the application of the methods, the common research focus has been on capacity planning for community care services. This is important, as bed blocking often occurs when patients are medically fit to be discharged from hospital but there are insufficient places available within community care settings \cite{Katsaliaki}. However, there has been little research into capacity planning for care of the elderly wards within hospitals. Patient flows \cite{Chaussalet}, occupancy levels \cite{Christodoulou} and the LOS \cite{Marshall3} are the main focus of research based in geriatric wards. These papers do not address future demands or predictions. This leaves the potential for capacity planning research within the care of the elderly wards, incorporating both short-term and long-term predicted demands. If capacities within these wards remain constant over time, with increased demand, these wards are likely to reach maximum capacity at a quicker rate. It is therefore important for research to focus on hospitals and how they feed into community care services. This overlap, between hospital and community care, will allow a successful integrated care system, similar to these nine papers \cite{Davari, Intrevado, Johnson,Lim, McClean,Patrick,Ragab, Walker,Zychlinski}.
+
+\subsubsection{Limitations of the Study}
+This review has provided a consolidation of care planning for frail and elderly across the care pathway, identifying gaps in research. A reproducible approach was given in relation to the search strategy in Table \ref{tab:Searchterms}. We acknowledge that searching papers by keyword criteria can fail to identify relevant papers, which could be identified through other approaches. The keywords used were not an exhaustive list of all OR/MS approaches, patient flow terms or classification of patients, however, they provided a broad range of terms. To mitigate the number of papers excluded, reference lists and forward references of the initial 39 papers were included in the search. Similarly, only one search database was used (Scopus) to allow the results to be reproducible, however, this may have resulted in a small number of papers being excluded. To only include recent developments in OR/MS methods, this review restricted the literature to papers published in English between 2000 to 2020. The quality of the papers was not a factor in whether they should be included within the analysis. Despite the limitations of the study, the results have yielded some valuable findings which will be beneficial to both researchers and healthcare managers.
+
+\subsection{Literature Review Findings}\label{sec:Conclusion}
+This section has provided a categorisation framework for general, medical and methodological aspects of frail and elderly care planning literature, classifying 21 years' worth of research accordingly. The importance of bridging the gap between care of the elderly journals (GG) with HPS, IE, MI and OR/MS journals to consolidate papers with the focus of care planning for frail and elderly has been highlighted. As a result, we identified three overarching research possibilities:   
+
+\begin{enumerate}%[wide, labelwidth=!, labelindent=0pt]
+    \item When analysing the 12 methods utilised, nearly half of the papers focused on either Markov or simulation models. Although there were variations within the type of Markov model used, such as non-homogeneous discrete time and Coxian phase-type distributions, this leaves potential for further research to expand on the other methods discussed such as queueing models or routing. This could be further developed by combining multiple methods to create a more diverse model, as this review only identified two papers using this approach (Markov and simulation, and queueing theory with simulation). The features of the data which is routinely collected within community or hospital care settings might impact which OR/MS method is chosen. A further research possibility is the use of soft OR methods, which although included within the search terms discussed in Section \ref{sec:SC} did not produce any relevant results.
+    
+    
+\item More research would be beneficial in care planning across the care pathway for frail and elderly. Only nine papers were identified where the focus was on the combination of multiple hospitals and community care.
+Community care had the highest setting focus followed by single hospital settings. Whilst it is important to consider these separately for improvements in efficiency, they may not be able to be implemented successfully without consideration for one another.
+There were eight papers identified that concentrated on a specific illness and tended to focus on general wards for care of the elderly. Hospitalised frail and elderly patients can be admitted to specialised wards for a specific medical condition or general geriatric wards. This means it can be difficult to plan for the next step of the pathway when they are medically fit to be discharged. To predict future demands and assist capacity planning in both hospitals and community care, it would be valuable to understand the complete patient journey from the first point of contact to discharge. Many frail and elderly care pathways do not differ from other patient pathways, and as a result, these groups are included in more general studies. However, frail and elderly patients suffer from more age-related issues, often with longer recovery times, so it is important to consider frail and elderly patient care planning separately for a successful healthcare system.
+
+\item There was only one paper with research conducted on how systems would manage if a sudden rise in frail and elderly patients were to occur \cite{Arvelo}. Sudden increase in demand is not a novel area to healthcare modelling with a high quantity of papers investigating this issue, e.g., intensive care units \cite{Corke, Kahn, Williams}. The Covid-19 pandemic has demonstrated why research is important to help healthcare providers meet increasing and sudden changes within demand \cite{WHO2023}.
+Future research could investigate the effect Covid-19 has had within long-term care settings and the effectiveness of different Governmental policies for frail and elderly patients. 
+
+\end{enumerate}
+
+\section{Hierarchical Prediction Models for Elderly and Frail Patients’ Lengths of Stay}\label{sec:litreview2}
+
+Hierarchical prediction models expand the flexibility of prediction models by accommodating grouped data. According to Luna \cite{Luna1993}, the term ``hierarchical" is a general term for group structured models and describes a relationship in which the entities are grouped. In the literature, these are often referred to as multilevel, mixed effect or random effects models and are frequently used interchangeably.
+
+The format of this section is as follows: The search criteria used to identify publications are introduced in Section \ref{sec:lt2Methods}. Section \ref{sec:lr2results} systematically classifies the identified papers into general, medical and methodological contents. The research gaps discovered from the classification of the papers are described in Section \ref{sec:lr2researchgaps}. The findings of the review are then discussed in Section \ref{sec:lr2findings}. Similar to the previous literature review, an appendix table has been supplied that lists the references for each figure that discusses a categorisation result. A complete list of the 90 papers that have been identified, together with each classification category, is provided in Table B.8 of the Appendix.
+
+
+\subsection{Methods}\label{sec:lt2Methods}
+The Webster and Watson's \cite{Webster} methodology, which was previously discussed in Section \ref{sec:litreview1}, was utilised to find relevant literature. To maintain consistency across the two literature reviews, the same methodology was applied. Scopus was also utilised to locate journal and conference proceedings articles of English-language publications.
+
+Further to the previous literature review, an additional two years of papers were included in the criteria, therefore the search was performed from January 2000 to December 2022. Five Clarivate Journal Citation Report (JCR) categories were used: GG, HPS, IE, MI and OR/MS, along with upcoming journals not included in a JCR category, again similar to Section \ref{sec:litreview1}.
+
+The same procedure as before was used to create a search string to ensure the search was not limited to a single methodology, journal or geographical area \cite{Webster}. Therefore, at least one OR/MS prediction method, one length of stay (LOS) phrase and one age category, were included in the search string. The classification of people listed in Table \ref{tab:Searchterms2} and those listed in Table \ref{tab:Searchterms} are identical, however, the other two columns are different. 
+
+The search string parameters used to find published studies on LOS modelling for frail and elderly patients are shown in Table \ref{tab:Searchterms2}. 
+
+\begin{table*}[h!]
+\centering
+
+\scalebox{1}{%
+\begin{tabular}[hb]{@{}lll@{}} \toprule
+{Prediction Method} & Length of Stay & Classification of People\\ \midrule
+CART &Length of Stay& Elderly   \\ 
+Classification & LOS & Elderly care  \\ 
+Clustering &  Patient Stay & Frail*   \\ 
+Data Mining && Geriatr*  \\
+Decision Tree\$&  &Home care \\
+Forecast* && Long term care \\
+Hierarchical &    &Nurs* care \\
+Linear Regression && Old people \\
+Logistic Regression && Older people \\
+Multilevel&   &Palliative care \\
+Mixed Effect &   & $>$65\\
+Naive Bayesian & \\
+Neural Network\$&    \\ 
+Predictive Model* & \\
+Random Effect\$ &\\
+Random Forest\$&  \\
+Regression &  \\ 
+Support Vector Machine\$ & \\
+SVM & \\
+Time Series Analy* \\
+XGBoost & \\
+
+\bottomrule
+\end{tabular}
+}
+\caption{Scopus search terms for hierarchical prediction literature search to include at least one `Prediction Method', one `Length of Stay' term and one `Classification of People' term .}
+\label{tab:Searchterms2}
+\end{table*}
+\subsubsection{Study Selection and Data Extraction}
+The initial search produced 943 papers. In order to eliminate publications that did not focus on frail and elderly patients, the papers underwent abstract analysis. Therefore, if within the abstract the papers did not mention the age of the patients within the study or if the age of the patients were not classified as elderly, the paper was excluded. Additionally, if the papers did not discuss the OR/MS method used, it was excluded. As a result of this, the number of papers were reduced to 66 papers. As discussed within Webster and Watson's research \cite{Webster}, and within Section \ref{sec:SC}, a forward and backward search was conducted. This resulted in a total number of 90 publications that were found to be relevant, including one literature review. A PRISMA flow diagram has been created and can be visualised in Figure \ref{appfig:SearchDiag2}. The study protocol remains the same as the first literature review, with a general classification being provided, the medical context discussed and then the planning decisions and types of OR/MS methods applied. 
+
+\begin{landscape}
+\begin{figure}
+\centering
+  \includegraphics[scale=0.5]{Chapters/Chapter2/Figures/FlowChart2Update.png}
+ \caption{The PRISMA flow diagram for the hierarchical prediction literature review detailing the Scopus searches, the number of abstracts screened, the reason for exclusion and the number of full texts retrieved.}  
+\label{appfig:SearchDiag2}
+\end{figure}
+\end{landscape}
+
+Through the search parameters, no literature reviews were identified.
+Through an additional separate search, Hunt-O'Connors et al. \cite{OConnor2021} literature review was identified. It should be noted that because the Journal of Nursing Management is not listed in one of the five chosen JCR categories, this was not found in the Scopus search. Additionally, it does not focus specifically on frail and elderly patients. In their assessment of 181 studies, Hunt-O'Connors et al. \cite{OConnor2021} examined the impact discharge planning on LOS and readmission rates of older adults in acute hospitals. Interestingly, the authors findings suggest that discharge planning did not have a statistically significant difference on LOS. One study, Pellett \cite{Pellett2016}, revealed that medical and nursing teams in the UK had a strong commitment in promoting discharge planning. This ultimately led to a small reduction in LOS. One conclusion Hunt-O'Connor et al. \cite{OConnor2021} alluded to was that because of heterogeneity, studies could not be easily replicated. As a result, the methodology and findings in this thesis will be straightforward to replicate and modify. 
+
+In the following section, the 90 papers identified through the search string will be subjected to the same study protocol as previously outlined. 
+
+\subsection{Results}\label{sec:lr2results}
+The 90 papers that were found to be relevant can be divided into general, medical, and methodological themes to help determine what the gaps in the current body of literature are. Summary statistics outlining the results are provided in the sections that follow.
+
+\subsubsection{General Classification}
+The country and JCR category where the research was conducted are shown in Table \ref{tab:litreview2-countryandjcr}. Despite the inclusion of five JCR categories, only four categories yielded results. The categories' sizes differed by varying degrees, with the GG category accounting for 72\% of publications. This would imply that instead of other healthcare journals, this topic of study typically tends to be published in specialised journals for the frail and elderly journals. The `Other' category is generated from papers from the forward and backward, which did not have the JCR category as a limitation. 
+\begin{table}[h!]
+    \centering
+    \scalebox{0.6}{%
+    \begin{tabular}{ccccccccccc}\toprule
+      \textbf{Country}   & \textbf{UK} &\textbf{USA} &\textbf{Australia} &\textbf{Italy} &\textbf{France} &\textbf{Canada} & \textbf{China} &\textbf{Japan} & \textbf{Finland} & \textbf{Germany}\\\midrule
+     \textbf{GG}   & 8 & 8 &6&8&4&4&6&5&5 & 3\\
+      \textbf{HPS} & 3&0&1&0&0&0&0&1&0 & 0\\
+      \textbf{IE} & 0&0&0&0&1&0&0&0&0& 0\\
+      \textbf{MI}&0&0&0&0&0&0&1&0&0 & 0 \\
+      \textbf{Other} &2& 2 & 1& 0& 2 & 2 & 0 & 0 & 0 & 1\\\midrule
+      \textbf{Total} &13 & 10&8&8&7&6&6&6&5 & 4\\\toprule
+    \textbf{Country}   & \textbf{Ireland} &\textbf{Brazil} &\textbf{Israel} &\textbf{Singapore}
+    &\textbf{South Korea} &\textbf{Sweden} &\textbf{Netherlands} & \textbf{Jordan} &\textbf{Spain} & \textbf{Total}\\\midrule
+     \textbf{GG}   & 2&1&2&0&1&1&2&0&0 & 65 \\
+      \textbf{HPS} &1&0&0&0&1&0&0&0&0 & 7 \\
+      \textbf{IE} &0&0&0&0&0&0&0&0&0 & 1\\
+      \textbf{MI} &0&0&0&0&0&0&0&1& 0& 2\\
+      \textbf{Other} & 0 &1 & 0 & 2 & 0 & 1 & 0 & 0 & 1 & 15\\\midrule
+      \textbf{Total} &3&2&2&2&2&2&2&1&1 & 90 \\\toprule
+    \end{tabular}}
+    \caption{Number of papers which fall into each JCR category and the location of the where the research was conducted.}
+    \label{tab:litreview2-countryandjcr}
+\end{table}
+
+
+The findings demonstrate the variety of places where this research has been published. However, even in nations where English is not the first language (such as Italy, Japan, and Germany), English-language publications are still produced.
+
+Similar to the previous literature review, IE and MI JCR categories had the fewest articles (with the exception of OR/MS which yielded zero results). These publications should still be considered in the analysis because they offer different aspects of LOS modelling with different focuses.
+
+Figure \ref{fig:litreview2-year} illustrates the number of papers published broken down into three year intervals. The period 2018 to 2020 yielded the highest number of papers with 32\% of research being published within this time frame. The data shows varying numbers of papers published during each period, with a consistent level of 13 papers published between 2009-2011, 2012-2014 and 2015-2017.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale = 1]{Chapters/Chapter2/Figures3/2lryear.png}
+    \caption{Bar chart of the 90 papers identified through the Scopus search, by publication year.}
+    \label{fig:litreview2-year}
+\end{figure}
+
+\subsubsection{Medical Context}
+This subsection examines the articles medical background, which can be grouped into two categories: the patient's condition area and the treatment's medical environment. Recall the definition of medical setting, which refers to the site where care is being provided, and condition area, which refers to whether a patient's medical condition was short-term or long-term.
+
+To understand where these individuals were receiving care, three medical settings were examined. These are listed below:
+
+\begin{itemize}
+    \item Single Hospital
+    \item Multiple Hospitals
+    \item Community Care
+\end{itemize}
+
+Figure \ref{fig:litreview2-care} displays the results for the number of publications within each care setting. Single hospital settings were the most common with 54 papers (60\%). These papers concentrated on hospital wards, such as cardiac wards \cite{Cacciatore2012}, emergency departments (EDs) \cite{Bahrmann2018} and geriatric wards \cite{Tal2021}. Only five papers, \cite{Cai2009, Hoben2019, Johnson2011, Park2012, Welberry}, were based in the community. Cai et al. \cite{Cai2009}, Hoben et al. \cite{Hoben2019} and Welberry et al. \cite{Welberry} evaluated the LOS in nursing homes based on several factors, such as prior home care and policy variations. Johnson et al. \cite{Johnson2011} discussed the differences in location before being admitted to hospices and the effect this has on LOS. Park et al. \cite{Park2012} determined the effects of race and ethnicity in the LOS within hospice care.
+
+Interestingly, there were only three papers which explored hospital and community care settings simultaneously. Fan et al. \cite{Fan2021} used frailty as a predictor to determine the usage of healthcare, including LOS inside hospitals. Gordon et al. \cite{Gordon2} applied Coxian phase-type distributions to predict patient LOS in hospital and across community care. Walsh et al. \cite{Walsh2020} analysed whether formal home care decreased LOS in hospitals. There was no overlap between multiple hospitals and community care. It is important for this area to be considered to create a robust and holistic pathway. This therefore suggests a possible direction for further study by using prediction models to calculate LOS across various services.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{Chapters/Chapter2/Figures3/2lrvenn.png}
+    \caption{Venn diagram of the 90 papers identified through the Scopus search, by medical setting.}
+    \label{fig:litreview2-care}
+\end{figure}
+
+Another aspect to investigate is the condition area of a patient. There are three types of conditions included in this group: acute, chronic, and surgical. There are studies based on surgery in addition to the literature review covered in Section \ref{sec:litreview1}. Surgery papers are characterised as, medical disorders for which particular surgical procedures are used.
+
+Figure \ref{fig:litreview2-condition} displays the quantity of papers in each medical condition category.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{Chapters/Chapter2/Figures3/2lrmedcon.png}
+    \caption{Bar chart of the 90 papers identified through the Scopus search, by `Acute', `Chronic', and `Surgical' medical conditions.}
+    \label{fig:litreview2-condition}
+\end{figure}
+
+Chronic conditions were the most populous area of research yielded 38 papers of relevance. Since elderly and frail patients suffer with more chronic conditions than the general adult population, the higher number of chronic papers compared to acute is expected. ED's \cite{Bahrmann2018}, strokes \cite{Sommerfeld2011}, hip fractures \cite{Rajamaki2020}, and other acute medical conditions were the second most common condition area with 36 papers. If these conditions are not treated, they can frequently lead to more serious medical problems. Finally, there were 16 surgical articles focusing on various sub-specialties of surgery were included: Abdominal \cite{Marano2022}, cancer \cite{Raab2022}, cardiac \cite{Cacciatore2012,Kirfel2021,Lee2010,Pustavoitau2016}, colorectal \cite{AgasiIdenburg2019}, hip \cite{Justo2011,Willems2012} and the combination of hip and knee \cite{MacDonald2010}. In six of the publications \cite{Harvey2020,Jones2021,Kerr2006, Zattoni2018, Zhao2020, Zhao2020a}, the surgical specialty was not specifically addressed.
+
+\subsubsection{Methodological Content}
+This subsection will analyse the technical aspect of the papers such as the goals of the research, the planning decision and the various LOS prediction techniques.
+
+\subsubsubsection{Research Aims}
+The papers can be categorised to define the direction of the research using the three main categories of research aim: examining, forecasting, and improving.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{Chapters/Chapter2/Figures3/2lrresearchaim.png}
+    \caption{Bar chart of the 90 papers identified through the Scopus search, by research focus.}
+    \label{fig:litreview2-aims}
+\end{figure}
+
+Figure \ref{fig:litreview2-aims} displays the quantity of papers in each of the research aim categories. Abe et al. \cite{Abe} using both examining and forecasting research aims by determining the effects of reducing polypharmacy on LOS on gastrointestinal surgery patients. 
+
+The findings indicate that, with 50\% of publications, forecasting is the most prevalent study goal. In these 45 studies, 25 were only concerned with LOS prediction \cite{Abe,Alyahya2017,Antonelli2001,Basic2009,Beauchet2018,Bo2015,Bo2016,Cacciatore2012,Curiati2020,Ferreira2019,Gordon2,Hoben2019,Hu2022,Launay2015,Launay2018,Lisk2018,Marano2022,Marshall2,Nishino2019,Pustavoitau2016,Sommerfeld2001,Sommerfeld2011,Takahashi2011,Willems2012,Zhao2020a}. The remaining 20 articles predicted other variables in addition to LOS such as cost \cite{Feuerstadt2022,Tropea2016}, healthcare utilisation \cite{Fan2021}, mortality \cite{Bahrmann2018,Feuerstadt2022, Volpato2014} and hospital readmission \cite{Bahrmann2018, Morandi2013, Rajamaki2020}.
+
+Only three publications examined how to improve LOS \cite{Basic2015,Hamdani,Walsh2020}. According to Basic and Khoo \cite{Basic2015}, the discovery of novel medical diagnoses would have an impact on funding models based on diagnosis-related groups (DRGs), but it might also improve patient care and their associated LOS. Hamdani et al. \cite{Hamdani} examined the use of Markov chains to model a hospital and the flow of elderly patients. Their model is then used to assess the effectiveness of intra-hospital care and predicting LOS.
+
+\subsubsubsection{Planning Decisions}
+Within Hulshof et al's. \cite{PHulshof} research on the taxonomic classification in healthcare systems, three different decision levels were discussed: strategic, tactical and operational.
+
+Figure \ref{fig:lr2decisions} displays the number of publications by planning decision level. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{Chapters/Chapter2/Figures3/2lrdecision.png}
+    \caption{Bar chart of the 90 papers identified through the Scopus search, by planning decision level.}
+    \label{fig:lr2decisions}
+\end{figure}
+
+The majority of papers focused on operational planning, the day-to-day running of units. This is primarily due to the fact that the publications' main study goals involve predicting a patient's LOS in the hospital, and the authors do not elaborate on this information to aid with long-term planning. 
+
+There were only 12 articles that made long-term planning decisions (strategic planning). This suggests that prediction modelling is more suited to short-term, day-to-day decisions rather than long-term, wider policy decisions. The research by Hoben et al. \cite{Hoben2019} is an illustration of a strategically categorised paper. The authors focused on LOS in nursing homes across three distinct Canadian regions. They investigated how LOS varied based on various regional policies as well as different characteristics of patients.
+
+Figure \ref{fig:lr2cross1} displays the cross analysis between the planning decision and the medical setting. Despite having the fewest number of papers, strategic and tactical planning methods were the only planning decision to be addressed across all medical settings. Operational planning was divided into papers based on single hospitals (47\%) and papers based in multiple hospitals (21\%). Only one paper \cite{Gordon2}, had an operational planning level across hospital and community settings. These findings demonstrate the applicability of prediction modelling in a variety of care settings, including short-term and long-term care planning.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.9]{Chapters/Chapter2/Figures3/2lrhospdec.png}
+    \caption{Cross analysis of planning decision and medical setting of the 90 papers identified through the Scopus search.}
+    \label{fig:lr2cross1}
+\end{figure}
+
+\subsubsubsection{Prediction Methods}\label{sec:2lrpred}
+The final area to investigate was the prediction methods that have been utilised. 
+
+Figure \ref{fig:lr2method} displays the quantity of each of the OR/MS methods. The methods shown vary from those discussed in the first literature review (Section \ref{sec:2lrpred}, as due to the variety of approaches within the first, larger grouping categories were created. For instance, the machine learning category encompassed logistic and linear regressions, however, because these were the most popular techniques in the second literature review these were classified separately. Similarly, Cox regression was grouped within the statistical analysis, however, produced 15 papers of relevance in the second review and therefore was included as its own category.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1.2]{Chapters/Chapter2/Figures3/2lrMethod.png}
+    \caption{Bar chart of the 90 papers identified through the Scopus search, by mathematical method.}
+    \label{fig:lr2method}
+\end{figure}
+
+Linear and Logistic regressions were the most prevalent techniques with 18 and 36 studies, respectively. Four articles, \cite{Adamis2017,Lisk2018,Motohashi2013,Naouri2022}, used both linear and logistic regression models in their research. Only two publications employed traditional hierarchical OR methods such as decision trees and CART \cite{Alyahya2017,Nishino2019}. In order to ascertain whether there was a relationship between LOS and preventable readmissions, Alyahya et al. \cite{Alyahya2017} developed decision trees. The authors discovered a direct correlation. Within the field of internal medicine, the authors were able to advise clinical decision-makers on the recommended length of hospitalisation for patients. Nishino et al'.s \cite{Nishino2019} research involved building CART models to forecast long LOS's. Systolic blood pressure (155 mmHg) and serum albumin (3.4 g/dL, a blood protein present in albumin) readings were identified as lower bounds into predicting long LOS's. 
+
+There were three papers that used regression techniques that did not involve Cox, linear or logistic regression models. Multivariate multilevel regression was utilised by Chung et al. \cite{Chung2010} to identify the variables that affected patients LOS in psychiatric wards. The type of medical institution, patient diagnosis, type of health insurance provider, and patient makeup of medical institutions were all shown to be significant determinants by the authors. Negative binomial hurdle regression models were used by Motzek et al. \cite{Motzek2018} to establish that longer hospital stays in Germany were caused by greater hospitalisation rates for dementia patients. Using unconditional quantile regression, Walsh et al. \cite{Walsh2020} identified a relationship between hospital LOS and formal home care.
+
+Beauchet et al. \cite{Beauchet2018} utilised three methods within their research: cox and logistic regression with Kaplan-Meier models. The impact of several characteristics, such as a history of falls and temporal disorientation, on long hospital LOS's was examined by the authors.
+
+Table \ref{tab:lr2methodsetting} refers to the prediction method used by each paper against its corresponding care setting. Since seven papers make use of various approaches, there are a total of 67 papers. Amongst the methods where there are five or greater papers published, a range of different care settings are used for the research. This demonstrates that, regardless of the situation, numerous strategies can be used in LOS modelling for frail and elderly patients. CART models are only used within single hospitals, and provides potential for research to focus on other care settings when using CART. Seven different methodologies were used in both single and multiple hospital settings, therefore having the most variety of approaches.
+
+\begin{landscape}
+    \begin{table}
+        \centering\scalebox{0.63}{
+        \begin{tabular}{cp{8.5cm}ccp{8.5cm}|c}\toprule
+            &\textbf{Single Hospital} & \textbf{Single Hospital and Community} & \textbf{Community Care} & \textbf{Multiple Hospitals} & \textbf{Total}  \\\midrule 
+            Logistic Regression & \cite{Abe,Adamis2017,Basic2009,Basic2014,Beauchet2018,Curiati2020,Ferreira2019,Jones2021,Justo2011,Launay2018,Lisk2019,Nishida2018,Shen2019,Toh2017,Tropea2016,Volpato2018,Zattoni2018,Zhao2020,Zhao2020a} &\cite{Fan2021}&\cite{Johnson2011}&\cite{AgasiIdenburg2019,Antonelli2001,Harvey2020,Hubbard2017,Lang2006,Lang2009,Lee2010,Lisk2018,MacDonald2010, Motohashi2013,Naouri2022,Rajamaki2020,Rubens2022,Shebeshi2021,Takahashi2011}& 36 \\
+            Linear Regression &\cite{Adamis2017,Beauchet2013,Cacciatore2012,Chua2007,Justo2011,Kirfel2021,Pustavoitau2016,Raab2022,Snowden2004,Willems2012, Yu2018} &&&\cite{Hasebe2018,Kim2018,Liotta2012,Lisk2018,Motohashi2013,Naouri2022,Wong2008}& 18\\
+            Cox Regression & \cite{Basic2014,Basic2015,Beauchet2018,Hartley2019,Kerr2006,Launay2014,Sommerfeld2011,Toshiyuki2010}&&\cite{Cai2009,Hoben2019,Park2012,Welberry}&\cite{Kidd2014,Pilotto2016,Volpato2014}&15 \\
+            Statistical Analysis& \cite{Bo2016,Beauchet2021,Greene2001,Harari2007,Marano2022,Marin2021,Tal2021,Wright2013} &&&\cite{Chen2020}&10 \\
+            Kaplan-Meier & \cite{Bahrmann2018,Beauchet2018,Morandi2013, Sommerfeld2001}&&\cite{Johnson2011}&\cite{Feuerstadt2022}& 6 \\
+            Markov Chain &\cite{Hamdani,Le2011,Marshall2} &\cite{Gordon2}&&\cite{Garg2011}&5 \\
+            Multivariate Regression &\cite{Moellers2019}&&&\cite{Chung2010}& 2\\
+            CART & \cite{Alyahya2017,Nishino2019} &&&& 2\\
+            Unconditional Quantile Regression & &\cite{Walsh2020}&&&1 \\
+            ROC Curve &\cite{Lisk2020}&&&& 1 \\
+            Neural Networks &\cite{Launay2015}&&&& 1\\
+            Negative Binomial Hurdle Regression & &&&\cite{Motzek2018}& 1\\
+            Multi Dimensional Analysis &\cite{Bo2015} &&&& 1\\
+            Gradient Boosting &&&&\cite{Hu2022}& 1 \\\midrule
+            \textbf{Total} & 59 & 3 & 6 & 31 & 99 \\\bottomrule 
+            
+        \end{tabular}}
+        \caption{Number of papers which fall into each medical setting and OR/MS method within the published research.}
+        \label{tab:lr2methodsetting}
+        \caption*{Note: Adamis et al. \cite{Adamis2017}, Basic et al. \cite{Basic2014}, Beauchet et al. \cite{Beauchet2018}, Johnson et al. \cite{Johnson2011}, Lisk et al. \cite{Lisk2018}, Motohashi et al. \cite{Motohashi2013}, Naouri et al. \cite{Naouri2022}, all utilise multiple methods and therefore appear multiple times within the table. This resulted in a total of 99 publications.}
+    \end{table}
+\end{landscape}
+
+\subsubsection{Common Themes}
+Section \ref{sec:lr2results} provided an overview of prediction modelling for frail and elderly patients LOS in both hospitals and community care. Logistic regression was the most widely utilised method, with 36 papers developing these types of models. The last five years have seen the publication of more sophisticated techniques like CART, which are frequently derived from logistic and linear regression models. Operational planning was the most popular form of planning, indicating that prediction modelling is simpler to implement for daily operations of units and patient care. The papers include a variety of research objectives, with forecasting approaches being the most prevalent and frequently used to forecast patients LOS. Finally, hospitals have served as the primary environment for these publications, either based in a single hospital ward or analysed across multiple hospitals. The research identified through the Scopus search has demonstrated that a wide variety of OR/MS techniques can be applied to the care of frail and elderly LOS prediction modelling. Section \ref{sec:lr2researchgaps} will discuss the areas for future research.
+
+\subsection{Research Gaps}\label{sec:lr2researchgaps}
+Within ageing prediction modelling, the 90 studies found in this study addressed a wide range of facilities, regions, and patient types. Three significant gaps still exist in the literature, which could be the subject of future study.
+
+\subsubsection{Gaps in terms of Methodology}
+
+The 90 publications used 14 distinct techniques, with a significant emphasis on linear and logistic regression. This is perhaps because the data lends itself nicely to these prediction techniques. There were in total eight approaches that accounted for 11\% of the paper methods, which used alternative prediction methods, indicating the potential for further research into these less commonly used techniques. The topic of frail and elderly prediction modelling underutilised more sophisticated and complex techniques like CART. In comparison to linear and logistic regression, CART models provide a deeper understanding into the data. Neural networks only produced one relevant study, \cite{Launay2015}, and clustering produced no relevant results in spite of being included in the Scopus search string in Table \ref{tab:Searchterms2}. Future studies may choose to concentrate on these hierarchical techniques, such as CART, clustering, and neural networks.
+
+Patients with long LOS's typically account for a high proportion of overall bed days \cite{Quinn2007}. There are no laws or regulations regarding patient LOS, and it should be determined by when the patient is clinically fit for discharge. Bed occupancy has consistently exceeded 91\% in Canada \cite{OECD2023}, 85\% in England \cite{BMA2023} and 66\% in the USA \cite{CDCP2017}. There were only 17 papers which specifically addressed predicting the longer LOS in hospitals \cite{Abe,Beauchet2013,Beauchet2018,Bo2015,Cacciatore2012,Cai2009,Chen2020,Curiati2020,Greene2001,Kirfel2021,Lang2009,Launay2014,Launay2015,Launay2018,MacDonald2010,Marin2021,Motohashi2013,Toh2017}. Since trends in bed occupancy rates are still rising, particularly following the Covid-19 outbreak, projecting lengthy hospital LOS's and enacting policies to shorten them may lead to a decrease in occupancy rates.
+
+\subsubsection{Gaps on the Intersection between Research Aims and Decision Levels}
+
+Both the long-term and day-to-day planning scenarios should be taken into account for effective care planning. Only 28 publications examined the strategic and tactical decision levels, compared to the 62 papers that concentrated on the operational decision level. Decision-makers do not take into account how to best plan for the future because they are primarily concerned with day-to-day planning. Future, increased needs would not be satisfied as a result of this. All three locations for care, as well as the overlap between hospital wards and community care, were taken into account when determining strategic planning levels. On some level, this does indicate that all care facilities are being taken into account and analysed for the long-term horizon of LOS prediction modelling for frail and elderly patients. Policy makers will be able to make educated decisions based on these research papers regarding how to adapt units to future clinical and demographic changes.
+
+The research's objectives were also evaluated and divided into three groups: examining (43 papers), forecasting (45 papers) and improving (3 papers). In total 13 of the 14 different methods were used to achieve the most popular study goal, forecasting. With 25 publications, forecasting was primarily employed to predict only LOS, with 20 papers demonstrating how LOS prediction can support care planning by working in conjunction with other predictors. Only three studies, all of which took place in a single hospital, were related to the improving research aim \cite{Hamdani,Basic2015,Walsh2020}. Although it does open up a new line of inquiry for researchers, it may also imply that the study methods these publications examined were simpler to apply to single settings.
+
+\subsubsection{Shortcomings on the Intersections between Medical Settings}
+
+There were only eight studies that addressed LOS prediction modelling in the context of community care \cite{Cai2009,Fan2021,Gordon2,Hoben2019,Johnson2011,Park2012,Walsh2020,Welberry}. This shows that LOS prediction modelling may not be well adapted to community care settings, given that patients are often unlikely to return to their own homes after being admitted to a nursing or care facility. Fan et al's. \cite{Fan2021} and Walsh et al.'s \cite{Walsh2020} research using a single hospital and community care setting were the sole crossovers between community and hospital settings. This presents an opportunity to examine if patients who receive some form of community care have different LOS's when admitted. Two potential hypotheses could be tested: whether patients are discharged sooner because they have a home to return to in the community and do not bed block, or because these patients are typically more unwell and take longer to recover as they are already receiving care and hence stay in hospital for longer.
+
+In total, 28 studies addressed multiple hospital settings. Although being able to forecast LOS at the time of admission can help with resource allocation for a patient's hospital stay, none of the publications were found to do more than merely investigate the variables that influence LOS. The development of these LOS prediction models and their use in resource planning would fill a significant research gap. 
+There were 11 of the 28 multiple hospital papers, \cite{Garg2011,Hubbard2017,Kim2018,Lang2006,Liotta2012,Lisk2018,Naouri2022,Pilotto2016,Shebeshi2021,Volpato2014,Wong2008}, did not concentrate on a particular disease but instead analysed the elderly admission and were able to compare LOS based on various illnesses. These publications do not, however, examine or make forecasts for the future on a bigger scale. This leaves open the possibility for future studies to examine the effects of various medical conditions on patient demands and LOS, as well as how these factors may alter over time based on clinical and demographic changes.
+
+\subsection{Literature Review Findings}\label{sec:lr2findings}
+
+This section has established a framework for categorising general, medical, and methodological components of prediction modelling for frail and elderly patients. The literature on healthcare has been categorised for a total of 23 years. The significance of bridging the gap between GG journals and more conventional health mathematics journals (HPS, IE, and MI) has been emphasised, similar to the literature review in Section \ref{sec:litreview1}. As a consequence, the same three  overarching research opportunities, as Section \ref{sec:litreview1}, have been identified.
+
+\begin{enumerate}
+    \item The use of linear and logistic regression was the focus of 55\% of the publications.  Despite the fact that they were employed in conjunction with other techniques, this leaves potential for further study to build on other methods techniques such as CART. Given that our study only found six publications utilising this strategy, it might be further developed by integrating other strategies to produce a more diverse model. The type of prediction method employed may vary depending on the environment and types of data that are regularly collected. Another avenue for investigation is the application of other hierarchical techniques, such as neural networks or clustering, which, despite being part of the Scopus search term, only yielded one outcome.
+
+    \item Predicting LOS for frail and elderly patients across the care pathway would benefit from more research. Only three studies with a single hospital and community care as their primary settings were identified. Due to the bed blockage issue that many healthcare facilities are experiencing, it is crucial that hospitals and community care are integrated. When a patient is medically fit for release but cannot be transferred because there is nowhere for them to go, this is known as bed blocking. This frequently happens as a result of the time it takes to arrange for people who need home care or who need to be admitted to a nursing or care facility. As a result, this leads to longer LOS in hospitals and this cannot be resolved without adequate care in the community. This is supported by the discovery of just nine studies with a specific focus on predicting longer LOS's within hospitals. 
+
+    \item The final research possibility focuses on the increased demands and pressures that healthcare facilities are currently experiencing. None of the publications addressed the possibility that hospital LOS would rise in response to rising demand for admissions of frail and elderly patients. First of all, if there is a greater influx of patients, staff would have to care for more patients and as a result become overworked, which might significantly affect patients recovery times. Additionally, because there would be more demand for inpatient treatments like radiology or pathology, patients would have to wait longer for these examinations, extending their LOS.
+    
+\end{enumerate}
+
+\section{Overlap Between the Two Literature Reviews}\label{sec:litdiscussion}
+Two literature reviews were studied for this research. Firstly, by conducting a broad literature review in Section \ref{sec:litreview1}, we gained a comprehensive understanding of the OR/MS methods applied to frail and elderly patient care planning. This foundational knowledge allowed us to better contextualise and appreciate the specific hierarchical approaches examined in Section \ref{sec:litreview2} for predicting LOS for these patients. The second review, with its more in-depth analysis, allowed us to delve deeper into the predictive methodologies, enabling us to identify key insights and nuances that may have been overlooked in a single, all-encompassing review. Due to the nature of the studies, there was an overlap of the OR/MS methods and therefore there was cross over between the two reviews.
+
+
+There were four papers which appeared in both literature reviews: Abe et al. \cite{Abe}, Hamdami et al. \cite{Hamdani}, Marshall and McClean \cite{Marshall2} and Welberry et al. \cite{Welberry}.
+Abe et al. \cite{Abe} focused on investigating the influence of polypharmacy on LOS for gastrointestinal surgery patients. Their study employed logistic regression to analyse the relationship. Hamdani et al. \cite{Hamdani} utilised Markov chains to track and predict the movement through the Hospital Center of Roanne in France, offering valuable insights into patient flow and LOS dynamics. Marshall and McClean \cite{Marshall2} also employed Markov chains to explore the characteristics of patients that affect their LOS within hospitals, providing a deeper understanding of LOS variability. In a different context, Welberry et al. \cite{Welberry} discussed the impact on prior home care on the LOS for dementia patients in residential care.  To achieve this, they utilised Cox's regression analysis, yielding valuable findings on the subject. This cross-referencing provided an additional layer of validation for their significance and reinforced the relevance of their contributions to the field.
+
+Furthermore, exploring the OR/MS methods from different angles and within various contexts allowed connections to be made. By doing so, a more comprehensive understanding of the literature could be built, ultimately contributing to a more well-rounded and informed research study that can offer practical implications for improving the planning and care of frail and elderly patients in healthcare settings.
+
+
+
+
+\section{Summary}\label{sec:litreviewsum}
+The practice of OR/MS approaches in the planning of care for the frail and elderly was the main topic of this chapter's literature reviews. The underutilisation of OR/MS techniques, the absence of comprehensive holistic care planning, and the implications of increases in demand on healthcare systems have all been noted as gaps in the literature. Within this thesis, we seek to address all three aspects by using underutilised OR/MS methods and applying them to multiple hospitals in Chapter \ref{chp:Experimental Analysis} and discussing growing demand in Chapter \ref{chp:Linking} using scenario analysis.
+
+The application of OR/MS methods to frail and elderly patients literature review (Section \ref{sec:litreview1}) included a higher quantity of strategic level publications, hence the two literature reviews did dispute in terms of planning decisions. There was a stronger emphasis on operational planning choices in the literature review for the hierarchical prediction models for patients' LOS literature review (Section \ref{sec:litreview2}). Therefore, all three planning decisions will be examined in this research, including how to plan the day-to-day running of units while also taking into consideration long-term demands and predictions for frail and elderly patients.
+
+In the following chapter, Chapter \ref{chp:predictive}, we discuss a number of the predictive analytical methods identified within the literature reviews. Through a realistic, simplified example illustrating the procedures and outcomes, the methods will be applied to the case of frail and elderly patients. 
+
+\end{document}
